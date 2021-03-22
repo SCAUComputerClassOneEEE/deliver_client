@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.AdminLoginController">
+    <children>
+        <Text layoutX="162.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator login" wrappingWidth="275.62890625">
+            <font>
+                <Font size="27.0" />
+            </font>
+        </Text>
+        <TextField fx:id="ad_text_account" layoutX="210.0" layoutY="115.0"  />
+        <PasswordField fx:id="ad_text_password" layoutX="210.0" layoutY="180.0" />
+        <Button fx:id="ad_btn_login" layoutX="367.0" layoutY="277.0" mnemonicParsing="false" text="login" onAction="#adminLogin" />
+        <Button fx:id="ad_btn_clear" layoutX="467.0" layoutY="277.0" mnemonicParsing="false" text="clear" onAction="#adminClear" />
+        <Text layoutX="117.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
+        <Text layoutX="113.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+    </children>
+</AnchorPane>
