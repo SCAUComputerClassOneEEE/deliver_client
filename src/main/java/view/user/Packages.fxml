@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.PackageController">
+   <top>
+      <AnchorPane prefHeight="47.0" prefWidth="870.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="user_text_welcome" layoutX="686.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" />
+            <Text fx:id="user_text_username" fill="#2618e4" layoutX="765.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxusername" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.16022727272727272" prefHeight="533.0" prefWidth="882.0" BorderPane.alignment="CENTER">
+         <items>
+            <VBox prefHeight="544.0" prefWidth="143.0">
+               <children>
+                  <Button fx:id="user_btn_package" mnemonicParsing="false" prefHeight="52.0" prefWidth="138.0" text="package" textAlignment="CENTER" onAction="#queryPackageInformation">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="user_btn_send" mnemonicParsing="false" prefHeight="52.0" prefWidth="138.0" text="send" textAlignment="CENTER" onAction="#sendExpress">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="user_btn_bill" mnemonicParsing="false" prefHeight="52.0" prefWidth="138.0" text="bill" textAlignment="CENTER" onAction="#queryBill">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="user_btn_personal" mnemonicParsing="false" prefHeight="52.0" prefWidth="138.0" text="personal" textAlignment="CENTER" onAction="#modifiedPersonalInformation">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="user_btn_notes" mnemonicParsing="false" prefHeight="52.0" prefWidth="138.0" text="notes" textAlignment="CENTER" onAction="#systemNotification">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <ScrollPane prefHeight="554.0" prefWidth="735.0" />
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

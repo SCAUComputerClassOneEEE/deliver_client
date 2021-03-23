@@ -18,8 +18,8 @@ public class UserMain extends Application {
         ChangeService.stage = primaryStage;
         try {
             FXMLLoader loader = new FXMLLoader();
-            System.out.println(getClass().getResource("/view/user/QueryTracking.fxml"));
-            loader.setLocation(getClass().getResource("/view/user/QueryTracking.fxml"));
+            System.out.println(getClass().getResource("/user/QueryTracking.fxml"));
+            loader.setLocation(getClass().getResource("/user/QueryTracking.fxml"));
             Parent root = (Parent)loader.load();
             Scene scene = new Scene(root);
             ChangeService.stage.setScene(scene);

@@ -8,12 +8,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane prefHeight="778.0" prefWidth="1075.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.QueryTrackingController">
    <children>
       <Pane prefHeight="64.0" prefWidth="1075.0">
          <children>
-            <Button fx:id="user_btn_signIn" layoutX="941.0" layoutY="17.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="69.0" style="-fx-background-color: #0000;" text="sign in" textFill="#492bbf" />
+            <Button fx:id="user_btn_signIn" layoutX="941.0" layoutY="17.0" mnemonicParsing="false" onAction="#signIn" prefHeight="20.0" prefWidth="69.0" style="-fx-background-color: #0000;" text="sign in" textFill="#492bbf" />
             <Text layoutX="895.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please" />
          </children>
       </Pane>

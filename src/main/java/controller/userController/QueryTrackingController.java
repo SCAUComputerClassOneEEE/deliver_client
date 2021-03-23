@@ -18,7 +18,7 @@ public class QueryTrackingController {
     private Button user_btn_enter;
 
     @FXML
-    private void signIn(){
+    private void signIn() throws Exception {
         SignInAction.LoginShow();
     }
 
