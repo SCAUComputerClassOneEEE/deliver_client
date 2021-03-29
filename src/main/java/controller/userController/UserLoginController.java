@@ -1,5 +1,6 @@
 package controller.userController;
 
+import action.afterLoginAction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -21,10 +22,10 @@ public class UserLoginController {
     private  Button getUser_btn_clear;
 
     @FXML
-    private void userLogin(){
+    private void userLogin() throws Exception {
         String userPhone=user_text_phone.getText();
         String userPassword=user_text_password.getText();
-
+        afterLoginAction.PackageShow();
 
     }
 

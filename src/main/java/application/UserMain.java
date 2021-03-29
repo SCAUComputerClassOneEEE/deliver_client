@@ -12,7 +12,7 @@ import static javafx.application.Application.launch;
 public class UserMain extends Application {
 
 
-    //csy:啊~ 不知道怎么就报错了呢，再说吧
+
 
     public void start(Stage primaryStage) throws Exception {
         ChangeService.stage = primaryStage;
