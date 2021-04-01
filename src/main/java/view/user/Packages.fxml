@@ -48,31 +48,31 @@
                   </Button>
                </children>
             </VBox>
-            <AnchorPane fx:id="packages_scrollPane" prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane fx:id="packages_anchorPane" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <ScrollPane fx:id="packages_package_scrollPane" layoutX="4.0" prefHeight="563.0" prefWidth="751.0">
                     <content>
-                      <AnchorPane fx:id="packages_package_AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="543.0" prefWidth="740.0" />
+                      <AnchorPane fx:id="packages_package_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="543.0" prefWidth="740.0" />
                     </content>
                   </ScrollPane>
                   <ScrollPane fx:id="packages_send_scrollPane" prefHeight="553.0" prefWidth="744.0">
                     <content>
-                      <AnchorPane fx:id="packages_send_AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="741.0" />
+                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="741.0" />
                     </content>
                   </ScrollPane>
                   <ScrollPane fx:id="packages_bill_scrollPane" prefHeight="552.0" prefWidth="744.0">
                     <content>
-                      <AnchorPane fx:id="packages_bill_AnchorlPane" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="742.0" />
+                      <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="742.0" />
                     </content>
                   </ScrollPane>
                   <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="564.0" prefWidth="753.0">
                     <content>
-                      <AnchorPane fx:id="packages_personal_AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="741.0" />
+                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="741.0" />
                     </content>
                   </ScrollPane>
                   <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="562.0" prefWidth="750.0">
                     <content>
-                      <AnchorPane fx:id="packages_notes_AnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="747.0" />
+                      <AnchorPane fx:id="packages_notes_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="747.0" />
                     </content>
                   </ScrollPane>
                </children>

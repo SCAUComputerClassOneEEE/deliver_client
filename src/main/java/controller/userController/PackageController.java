@@ -3,6 +3,7 @@ package controller.userController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.PerspectiveTransform;
@@ -40,6 +41,41 @@ public class PackageController implements Initializable {
 
     @FXML
     private AnchorPane user_pane_package_anchorPane;
+
+    @FXML
+    private AnchorPane packages_anchorPane;
+
+    @FXML
+    private AnchorPane packages_package_anchorPane;
+
+    @FXML
+    private AnchorPane packages_send_anchorPane;
+
+    @FXML
+    private AnchorPane packages_bill_anchorPane;
+
+    @FXML
+    private AnchorPane packages_notes_anchorPane;
+
+    @FXML
+    private AnchorPane packages_personal_anchorPane;
+
+    @FXML
+    private ScrollPane packages_package_scrollPane;
+
+    @FXML
+    private ScrollPane packages_send_scrollPane;
+
+    @FXML
+    private ScrollPane packages_bill_scrollPane;
+
+    @FXML
+    private ScrollPane packages_notes_scrollPane;
+
+    @FXML
+    private ScrollPane packages_personal_scrollPane;
+
+
 
 
     //以下是button需要绑定的action
