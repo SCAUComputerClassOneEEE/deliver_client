@@ -87,6 +87,7 @@ public class PackageController implements Initializable {
     private void queryPackageInformation(){
         setVisibleFalse();
         packages_package_scrollPane.setVisible(true);
+        packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
         /*
         这里需要提供描述订单的类的数据数组，然后循环添加
         packages_show_vBox.getChildren().clear();
@@ -95,28 +96,41 @@ public class PackageController implements Initializable {
         }*/
     }
 
+
     @FXML
     private void sendExpress(){
         setVisibleFalse();
+        packages_send_scrollPane.setVisible(true);
+        packages_send_anchorPane.setVisible(true);
     }
 
     @FXML
     private void queryBill(){
+        setVisibleFalse();;
+        packages_bill_scrollPane.setVisible(true);
+        packages_bill_anchorPane.setVisible(true);
 
     }
 
     @FXML
     private void modifiedPersonalInformation(){
+        setVisibleFalse();;
+        packages_personal_scrollPane.setVisible(true);
+        packages_personal_anchorPane.setVisible(true);
 
     }
 
     @FXML
     private void systemNotification(){
+        setVisibleFalse();;
+        packages_notes_anchorPane.setVisible(true);
+        packages_notes_anchorPane.setVisible(true);
 
     }
 
 
     public void initialize(URL location, ResourceBundle resources) {
+        setVisibleFalse();
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
