@@ -9,6 +9,22 @@ public class SimpleOrderInfoBar {
     private String receiveName;
     private String orderStatus;
 
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Timestamp getOrderCreateTime() {
+        return orderCreateTime;
+    }
+
+    public String getReceiveName() {
+        return receiveName;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
