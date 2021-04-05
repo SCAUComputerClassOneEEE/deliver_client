@@ -1,15 +1,13 @@
 package utils;
 
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import component.beans.SimpleOrderInfoBar;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.*;
 
 public class HttpClientThreadPool extends ThreadPoolExecutor {
-    private static final String URL = "http://localhost:8080";
-    private static final CloseableHttpClient httpClient = HttpClientBuilder.create().build();
     private static volatile HttpClientThreadPool pool;
 
     public static HttpClientThreadPool getPoolInstance() {
@@ -36,21 +34,10 @@ public class HttpClientThreadPool extends ThreadPoolExecutor {
         super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
     }
 
-    public HttpFutureTask submitRequestTask(String thisUrl, HttpMethod method, Map<String, Object> obMap) {
+    public HttpFutureTask submitRequestTask(HttpRequestCallable callable) {
         HttpFutureTask objectFutureTask = null;
-        try {
-            if (method.equals(HttpMethod.GET)) {
-                objectFutureTask = new HttpFutureTask(new HttpGetCallable(httpClient, URL + thisUrl, obMap));
-            } else if (method.equals(HttpMethod.POST)) {
-                objectFutureTask = new HttpFutureTask(new HttpPostCallable(httpClient, URL + thisUrl, obMap));
-            } else if (method.equals(HttpMethod.DELETE)) {
-
-            }
-        } catch (Exception e) {
-            return null;
-        }
-
-        if (objectFutureTask != null) {
+        if (callable != null) {
+            objectFutureTask = new HttpFutureTask(callable);
             execute(objectFutureTask);
         }
         return objectFutureTask;
@@ -66,15 +53,45 @@ public class HttpClientThreadPool extends ThreadPoolExecutor {
                 } while (shut);
             } catch (InterruptedException e) {
                 e.printStackTrace();
-            } finally {
-                try {
-                    httpClient.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
         thread.start();
         return thread;
+    }
+
+    public static void main(String[] args) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/list")
+                .onMethod(HttpMethod.GET)
+                .addRequestContent("customer_id", 18899715136L)
+                .addRequestContent("offset", 0)
+                .addRequestContent("length", 5)
+                .build();
+        HttpClientThreadPool poolInstance = HttpClientThreadPool.getPoolInstance();
+
+        // 生成异步任务
+        HttpFutureTask futureTask = poolInstance.submitRequestTask(build);
+        //
+        int i = 5;
+        while (i -- > 0) {
+
+            JSONArray contentJSON = futureTask.getContentJSON(50);
+            if (contentJSON != null) {
+                Iterator<Object> iterator = contentJSON.iterator();
+                while (iterator.hasNext()) {
+                    JSONObject parse = JSONObject.parseObject(iterator.next().toString());
+                    SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar();
+                    simpleOrderInfoBar.setOrderId(parse.getInteger("orderId"));
+                    simpleOrderInfoBar.setOrderCreateTime(parse.getTimestamp("orderCreateTime"));
+                    simpleOrderInfoBar.setOrderStatus(parse.getString("orderStatus"));
+                    System.out.println(simpleOrderInfoBar.toString());
+                    iterator.remove();
+                }
+                break;
+            }
+
+            //
+            System.out.println("等待：" + i);
+        }
     }
 }
