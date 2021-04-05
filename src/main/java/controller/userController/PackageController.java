@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import component.SimpleOrderMessagePane;
 import component.beans.SimpleOrderInfoBar;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -197,6 +199,15 @@ public class PackageController implements Initializable {
 
         /*将订单列表容器加到anchor中 --sky*/
         this.packages_package_scrollPane.setContent(packages_show_vBox);
+        this.packages_package_scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if(packages_package_scrollPane.getVvalue()==1.0){
+                    System.out.println("你触及了我的底线！");
+                    addNewPage(18899715136L, 0, 5);
+                }
+            }
+        });
         // this.packages_package_scrollPane
         /*PerspectiveTransform pt = new PerspectiveTransform();
         pt.setUlx(10.0f);
