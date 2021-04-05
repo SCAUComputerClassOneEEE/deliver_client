@@ -106,6 +106,7 @@ public class PackageController implements Initializable {
         ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
         setVisibleFalse();
         packages_package_scrollPane.setVisible(true);
+        packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/list")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
@@ -145,28 +146,41 @@ public class PackageController implements Initializable {
         }
     }
 
+
     @FXML
     private void sendExpress(){
         setVisibleFalse();
+        packages_send_scrollPane.setVisible(true);
+        packages_send_anchorPane.setVisible(true);
     }
 
     @FXML
     private void queryBill(){
+        setVisibleFalse();;
+        packages_bill_scrollPane.setVisible(true);
+        packages_bill_anchorPane.setVisible(true);
 
     }
 
     @FXML
     private void modifiedPersonalInformation(){
+        setVisibleFalse();;
+        packages_personal_scrollPane.setVisible(true);
+        packages_personal_anchorPane.setVisible(true);
 
     }
 
     @FXML
     private void systemNotification(){
+        setVisibleFalse();;
+        packages_notes_anchorPane.setVisible(true);
+        packages_notes_anchorPane.setVisible(true);
 
     }
 
 
     public void initialize(URL location, ResourceBundle resources) {
+        setVisibleFalse();
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
