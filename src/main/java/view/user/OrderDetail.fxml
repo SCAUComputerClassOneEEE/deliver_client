@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="461.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="641.0" prefWidth="459.0">
+         <children>
+            <HBox prefHeight="140.0" prefWidth="460.0">
+               <children>
+                  <AnchorPane prefHeight="134.0" prefWidth="460.0">
+                     <children>
+                        <Line endX="459.0" layoutY="56.0" />
+                        <Label layoutX="167.0" layoutY="6.0" prefHeight="36.0" prefWidth="115.0" text="运单详情" textFill="#030303">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="67.0" text="运单号：1568848457745" />
+                        <Label layoutX="20.0" layoutY="106.0" text="发出地→签收地" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="111.0" prefWidth="460.0">
+               <children>
+                  <AnchorPane prefHeight="111.0" prefWidth="475.0">
+                     <children>
+                        <Label layoutX="25.0" layoutY="14.0" text="已签收" />
+                        <Line endY="120.0" layoutX="100.0" />
+                        <Label layoutX="114.0" layoutY="14.0" text="2021-4-10 15:16:46" />
+                        <TextArea editable="false" layoutX="126.0" layoutY="50.0" prefHeight="63.0" prefWidth="307.0" text="包裹已签收，签收人是“陈思宇”，&#10;感谢您使用老卢快递！&#10;" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="111.0" prefWidth="460.0">
+               <children>
+                  <AnchorPane prefHeight="111.0" prefWidth="475.0">
+                     <children>
+                        <Label layoutX="25.0" layoutY="14.0" text="派送中" />
+                        <Line endY="120.0" layoutX="100.0" />
+                        <Label layoutX="114.0" layoutY="14.0" text="2021-4-10 9:45:16" />
+                        <TextArea editable="false" layoutX="126.0" layoutY="50.0" prefHeight="63.0" prefWidth="307.0" text="快递员“孙考毅”正在派送，请保持手机畅通，&#10;联系电话：18899715136" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="111.0" prefWidth="460.0">
+               <children>
+                  <AnchorPane prefHeight="111.0" prefWidth="475.0">
+                     <children>
+                        <Label layoutX="25.0" layoutY="14.0" text="运送中" />
+                        <Line endY="120.0" layoutX="100.0" />
+                        <Label layoutX="114.0" layoutY="14.0" text="2021-4-10 5:25:36" />
+                        <TextArea editable="false" layoutX="126.0" layoutY="50.0" prefHeight="63.0" prefWidth="307.0" text="包裹已到达华南农业大学泰山快递站，&#10;正在为您安排快递员！&#10;" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
