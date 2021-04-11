@@ -1,6 +1,8 @@
 package component;
 
 import component.beans.SimpleOrderInfoBar;
+import controller.userController.OrderDetailController;
+import controller.userController.PackageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -63,23 +65,28 @@ public class SimpleOrderMessagePane extends AnchorPane {
         detail.setUnderline(true);
 
         detail.setOnMouseClicked(event -> {
-            detailStage = new Stage();
+
             try{
+                detailStage = new Stage();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/OrderDetail.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 detailStage.setScene(scene);
+
+                /*
+                 * 这里需要发送获取数据的请求 获取之后生成界面 未完善 sky
+                 */
+                OrderDetailController odc = loader.getController();
+                odc.addNewRecord();
+
+                if (detailStage.isShowing()){
+                    detailStage.close();
+                }
+                detailStage.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            /*
-             * 这里需要发送获取数据的请求 获取之后生成界面 未完善
-             */
-            if (detailStage.isShowing()){
-                detailStage.close();
-            }
-            detailStage.show();
         });
 
         this.getChildren().addAll(order_id,order_status,receive_name,order_creat_time,detail);
