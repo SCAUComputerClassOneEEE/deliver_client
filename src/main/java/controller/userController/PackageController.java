@@ -93,6 +93,41 @@ public class PackageController implements Initializable {
     private ScrollPane packages_personal_scrollPane;
 
 
+    @FXML
+    private Button packages_personal_btn_upload;
+
+    @FXML
+    private Button packages_personal_btn_modify;
+
+    @FXML
+    private Button packages_personal_btn_save;
+
+    @FXML
+    private TextField packages_personal_textfiled_city;
+
+    @FXML
+    private  TextField packages_personal_textfiled_strret;
+
+    @FXML
+    private TextField packages_personal_textfiled_detailAddress;
+
+    @FXML
+    private  TextField packages_personal_textfiled_account;
+
+    @FXML
+    private  TextField packages_personal_textfiled_password;
+
+    @FXML
+    private TextField packages_personal_textfiled_againPassword;
+
+    @FXML
+    private TextField packages_personal_textfiled_customerPhone;
+
+    @FXML
+    private TextField packages_personal_textfiled_customerName;
+
+    @FXML
+    private  Text packages_personal_text_again;
 
     /*装订单列表的容器 --sky*/
     private static VBox packages_show_vBox = new VBox();
@@ -157,6 +192,19 @@ public class PackageController implements Initializable {
         setVisibleFalse();;
         packages_personal_scrollPane.setVisible(true);
         packages_personal_anchorPane.setVisible(true);
+        packages_personal_text_again.setVisible(false);
+        packages_personal_btn_modify.setVisible(true);
+        packages_personal_textfiled_againPassword.setVisible(false);
+        packages_personal_btn_save.setVisible(false);
+        packages_personal_textfiled_againPassword.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_strret.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_account.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_city.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_strret.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(241,241,241);");
 
     }
 
@@ -168,6 +216,24 @@ public class PackageController implements Initializable {
 
     }
 
+    @FXML
+    private void modifiedAction(){
+        packages_personal_btn_modify.setVisible(false);
+        packages_personal_btn_save.setVisible(true);
+        packages_personal_textfiled_againPassword.setVisible(true);
+        packages_personal_text_again.setVisible(true);
+
+        packages_personal_textfiled_againPassword.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_account.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_city.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_strret.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(255,255,255);");
+
+
+    }
 
     public void initialize(URL location, ResourceBundle resources) {
         setVisibleFalse();

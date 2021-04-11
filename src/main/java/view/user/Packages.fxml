@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -100,9 +101,47 @@
                       <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="742.0" />
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="564.0" prefWidth="753.0" visible="false">
+                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="564.0" prefWidth="753.0">
                     <content>
-                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="741.0" />
+                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="741.0" style="-fx-background-color: 000000;">
+                           <children>
+                              <ImageView fitHeight="126.0" fitWidth="124.0" layoutX="36.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../picture/头像1.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Button fx:id="packages_personal_btn_upload" layoutX="58.0" layoutY="146.0" mnemonicParsing="false" text="upload" />
+                              <Text fill="#655a5a" layoutX="300.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
+                              <Text fill="#655a5a" layoutX="192.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
+                              <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="490.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../picture/二维码.png" />
+                                 </image>
+                              </ImageView>
+                              <Text fill="#655a5a" layoutX="192.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
+                              <Text layoutX="81.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city" />
+                              <Text layoutX="348.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street" />
+                              <Text layoutX="78.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_address" />
+                              <Text layoutX="70.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bank number" />
+                              <Text layoutX="72.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+                              <TextField fx:id="packages_personal_textfiled_city" editable="false" layoutX="131.0" layoutY="245.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
+                              <TextField fx:id="packages_personal_textfiled_street" layoutX="405.0" layoutY="245.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
+                              <Text layoutX="30.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="---------------------------------------------------------------------------------------------------" wrappingWidth="644.30029296875" />
+                              <TextField fx:id="packages_personal_textfiled_detailAddress" layoutX="191.0" layoutY="291.0" prefHeight="33.0" prefWidth="342.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
+                              <TextField fx:id="packages_personal_textfiled_account" layoutX="180.0" layoutY="381.0" style="-fx-background-color: F1F1F1;" text="我是银行卡号~~~~~~~~~~~~~" />
+                              <PasswordField fx:id="packages_personal_textfiled_password" layoutX="166.0" layoutY="422.0" style="-fx-background-color: F1F1F1;" text="666666666" />
+                              <Text fx:id="packages_personal_text_again" layoutX="74.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="again" />
+                              <PasswordField fx:id="packages_personal_textfiled_againPassword" layoutX="160.0" layoutY="464.0" style="-fx-background-color: F1F1F1;" text="666666666" />
+                              <Text layoutX="75.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
+                              <TextField fx:id="packages_personal_textfiled_customerPhone" layoutX="141.0" layoutY="334.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
+                              <Button fx:id="packages_personal_btn_modify" layoutX="527.0" layoutY="503.0" mnemonicParsing="false" onAction="#modifiedAction" text="modify" />
+                              <Button fx:id="packages_personal_btn_save" layoutX="608.0" layoutY="503.0" mnemonicParsing="false" text="save" />
+                              <TextField fx:id="packages_personal_textfiled_customerName" layoutX="273.0" layoutY="64.0" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: F1F1F1;" text="老卢">
+                                 <font>
+                                    <Font name="System Bold" size="26.0" />
+                                 </font>
+                              </TextField>
+                           </children></AnchorPane>
                     </content>
                   </ScrollPane>
                   <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="562.0" prefWidth="750.0" visible="false">
