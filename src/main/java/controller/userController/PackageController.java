@@ -100,15 +100,16 @@ public class PackageController implements Initializable {
     //以下是button需要绑定的action
     @FXML
     private void queryPackageInformation(){
-        //packages_show_vBox.getChildren().clear();
-        addNewPage(18899715136L, 0, 5);
+        setVisibleFalse();
+        packages_package_scrollPane.setVisible(true);
+        packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
+        //addNewPage(18899715136L, 0, 5);
     }
 
     private void addNewPage(long customerId, int offset, int limit) {
         ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
         setVisibleFalse();
         packages_package_scrollPane.setVisible(true);
-        packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/list")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)

@@ -1,10 +1,15 @@
 package component;
 
 import component.beans.SimpleOrderInfoBar;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import service.ChangeService;
 
 /**
  * @Author: Sky
@@ -16,6 +21,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
     private Label receive_name;
     private Label order_creat_time;
     private Label detail;
+    private static Stage detailStage;
 
     public SimpleOrderMessagePane(SimpleOrderInfoBar s){
         order_id = new Label(String.valueOf(s.getOrderId()));
@@ -26,8 +32,12 @@ public class SimpleOrderMessagePane extends AnchorPane {
     }
 
     public SimpleOrderMessagePane(){
-
-
+        order_id = new Label(String.valueOf(1));
+        order_status = new Label(String.valueOf("已签收"));
+        receive_name = new Label("csy");
+        order_creat_time = new Label("2021/4/11 15:01:26");
+        detailStage = new Stage();
+        init();
     }
 
     private void init() {
@@ -51,6 +61,27 @@ public class SimpleOrderMessagePane extends AnchorPane {
         detail.setLayoutY(42);
         detail.setTextFill(Paint.valueOf("BLUE"));
         detail.setUnderline(true);
+
+        detail.setOnMouseClicked(event -> {
+            detailStage = new Stage();
+            try{
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/OrderDetail.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                detailStage.setScene(scene);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            /*
+             * 这里需要发送获取数据的请求 获取之后生成界面 未完善
+             */
+            if (detailStage.isShowing()){
+                detailStage.close();
+            }
+            detailStage.show();
+        });
+
         this.getChildren().addAll(order_id,order_status,receive_name,order_creat_time,detail);
         this.setPrefSize(440,66);
     }

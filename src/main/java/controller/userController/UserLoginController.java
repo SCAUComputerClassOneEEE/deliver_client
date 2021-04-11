@@ -1,11 +1,10 @@
 package controller.userController;
 
-import action.afterLoginAction;
+import action.AfterLoginAction;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 
 public class UserLoginController {
@@ -25,7 +24,7 @@ public class UserLoginController {
     private void userLogin() throws Exception {
         String userPhone=user_text_phone.getText();
         String userPassword=user_text_password.getText();
-        afterLoginAction.PackageShow();
+        AfterLoginAction.PackageShow();
 
     }
 
