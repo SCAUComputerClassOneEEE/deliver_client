@@ -118,28 +118,15 @@ public class PackageController implements Initializable {
                 .addRequestContent("length", limit)
                 .build();
         HttpFutureTask futureTask = poolInstance.submitRequestTask(build);
-        int i = 5;
+        int i = 20;
         while (i -- > 0) {
-
-            JSONArray contentJSON = futureTask.getContentJSON(50);
-            if (contentJSON != null) {
-                Iterator<Object> iterator = contentJSON.iterator();
-                while (iterator.hasNext()) {
-                    JSONObject parse = JSONObject.parseObject(iterator.next().toString());
-                    SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar();
-                    simpleOrderInfoBar.setOrderId(parse.getInteger("orderId"));
-                    simpleOrderInfoBar.setOrderCreateTime(parse.getTimestamp("orderCreateTime"));
-                    simpleOrderInfoBar.setOrderStatus(parse.getString("orderStatus"));
-                    simpleOrderInfoBar.setReceiveName(parse.getString("receiveName"));
-                    System.out.println(simpleOrderInfoBar.toString());
-                    iterator.remove();
-                    results.add(new SimpleOrderMessagePane(simpleOrderInfoBar));
-                }
-                break;
+            Iterator<?> content = futureTask.getContentJSON();
+            while (content.hasNext()) {
+                JSONObject parse = JSONObject.parseObject(content.next().toString());
+                SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar(parse);
+                content.remove();
+                results.add(new SimpleOrderMessagePane(simpleOrderInfoBar));
             }
-
-            //
-            System.out.println("等待：" + i);
         }
         /*
         这里需要提供描述订单的类的数据数组，然后循环添加

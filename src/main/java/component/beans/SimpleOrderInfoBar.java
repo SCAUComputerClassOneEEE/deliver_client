@@ -1,6 +1,8 @@
 package component.beans;
 
 
+import com.alibaba.fastjson.JSONObject;
+
 import java.sql.Timestamp;
 
 public class SimpleOrderInfoBar {
@@ -8,6 +10,16 @@ public class SimpleOrderInfoBar {
     private Timestamp orderCreateTime;
     private String receiveName;
     private String orderStatus;
+
+    public SimpleOrderInfoBar() {
+
+    }
+    public SimpleOrderInfoBar(JSONObject parse) {
+        setOrderId(parse.getInteger("orderId"));
+        setOrderCreateTime(parse.getTimestamp("orderCreateTime"));
+        setOrderStatus(parse.getString("orderStatus"));
+        setReceiveName(parse.getString("receiveName"));
+    }
 
     public int getOrderId() {
         return orderId;

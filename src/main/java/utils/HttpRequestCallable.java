@@ -1,23 +1,20 @@
 package utils;
 
-import org.apache.http.HttpException;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
-import java.net.URI;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
@@ -56,14 +53,7 @@ public abstract class HttpRequestCallable implements Callable<HttpResponse> {
             if (obMap == null) {
                 obMap = new HashMap<>();
             }
-            if (method.equals(HttpClientThreadPool.HttpMethod.GET) | method.equals(HttpClientThreadPool.HttpMethod.DELETE)) {
-                obMap.put(s, o);
-            } else if (method.equals(HttpClientThreadPool.HttpMethod.POST)) {
-
-            } else {
-
-            }
-
+            obMap.put(s, o);
             return this;
         }
 
@@ -75,7 +65,7 @@ public abstract class HttpRequestCallable implements Callable<HttpResponse> {
         }
 
         public HttpRequestCallable build() {
-            if (method.equals(HttpClientThreadPool.HttpMethod.GET) | method.equals(HttpClientThreadPool.HttpMethod.DELETE)) {
+            if (method.equals(HttpClientThreadPool.HttpMethod.GET)) {
                 URIBuilder builder;
                 List<NameValuePair> pairs;
                 HttpGet httpGet;
@@ -90,7 +80,15 @@ public abstract class HttpRequestCallable implements Callable<HttpResponse> {
                     e.printStackTrace();
                 }
             } else if (method.equals(HttpClientThreadPool.HttpMethod.POST)) {
-
+                HttpPost post;
+                try {
+                    post = new HttpPost(url);
+                    String s = JSONObject.toJSONString(obMap.values().toArray()[0]);
+                    post.setEntity(new StringEntity(s));
+                    return new HttpPostCallable(httpClient, post);
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
             } else {
 
             }
