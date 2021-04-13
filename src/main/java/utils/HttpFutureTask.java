@@ -1,9 +1,9 @@
 package utils;
 
 import com.alibaba.fastjson.JSONArray;
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 
+import java.io.InputStream;
 import java.util.Iterator;
 import java.util.concurrent.*;
 
@@ -25,19 +25,22 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             HttpResponse httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
             if (httpResponse == null) return null;
 
-            HttpEntity entity;
-            int length;
+            int length = 0;
+            int r;
             final byte[] readBuffer = new byte[1024];
             StringBuilder stringBuilder = new StringBuilder();
-
-            entity = httpResponse.getEntity();
-            do {
-                length = entity.getContent().read(readBuffer);
-                stringBuilder.append(new String(readBuffer));
-            } while (length >= 1024);
-
+            InputStream content = httpResponse.getEntity().getContent();
+            while ((r = content.read()) != -1) {
+                if (length == 1024) {
+                    String s = new String(readBuffer, 0, length);
+                    stringBuilder.append(s);
+                    length = 0;
+                }
+                readBuffer[length ++] = (byte)r;
+            }
+            String s = new String(readBuffer, 0, length);
+            stringBuilder.append(s);
             return JSONArray.parseArray(stringBuilder.toString()).iterator();
-
         } catch (Exception e) {
             e.printStackTrace();
             return null;

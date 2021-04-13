@@ -78,7 +78,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
                  * 这里需要发送获取数据的请求 获取之后生成界面 未完善 sky
                  */
                 OrderDetailController odc = loader.getController();
-                odc.addNewRecord();
+                odc.addNewRecord(null);
 
                 if (detailStage.isShowing()){
                     detailStage.close();

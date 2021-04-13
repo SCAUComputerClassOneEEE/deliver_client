@@ -137,8 +137,8 @@ public class PackageController implements Initializable {
     private void queryPackageInformation(){
         setVisibleFalse();
         packages_package_scrollPane.setVisible(true);
-        packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
-        //addNewPage(18899715136L, 0, 5);
+        // packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
+        addNewPage(18899715136L, 0, 5);
     }
 
     private void addNewPage(long customerId, int offset, int limit) {
@@ -153,9 +153,9 @@ public class PackageController implements Initializable {
                 .addRequestContent("length", limit)
                 .build();
         HttpFutureTask futureTask = poolInstance.submitRequestTask(build);
-        int i = 20;
-        while (i -- > 0) {
-            Iterator<?> content = futureTask.getContentJSON();
+        Iterator<?> content = null;
+        while (content == null) {
+            content = futureTask.getContentJSON();
             while (content.hasNext()) {
                 JSONObject parse = JSONObject.parseObject(content.next().toString());
                 SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar(parse);

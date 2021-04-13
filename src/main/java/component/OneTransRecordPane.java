@@ -1,5 +1,6 @@
 package component;
 
+import component.beans.Transport;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
@@ -16,11 +17,11 @@ public class OneTransRecordPane extends AnchorPane {
     private Line splitLine;
     private TextArea detailMassage;
 
-    public OneTransRecordPane(){
-        orderStatus = new Label("我是状态");
-        timeOfRecord = new Label("2021-4-11 15:37:46");
+    public OneTransRecordPane(Transport t){
+        orderStatus = new Label(t.getStatus());
+        timeOfRecord = new Label(t.getInputTime().toString());
         splitLine = new Line();
-        detailMassage = new TextArea("我是详情");
+        detailMassage = new TextArea(t.getDetailMessage());
         init();
     }
 

@@ -1,6 +1,7 @@
 package controller.userController;
 
 import component.OneTransRecordPane;
+import component.beans.Transport;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -35,8 +36,8 @@ public class OrderDetailController implements Initializable {
         send2ReceivePath.setText("广州"+"->"+"阳江");
     }
 
-    public void addNewRecord(){
+    public void addNewRecord(Transport t){
 
-        parent.getChildren().add(new OneTransRecordPane());
+        parent.getChildren().add(new OneTransRecordPane(t));
     }
 }
