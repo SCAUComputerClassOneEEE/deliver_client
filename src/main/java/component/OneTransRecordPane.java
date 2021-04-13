@@ -18,12 +18,11 @@ public class OneTransRecordPane extends AnchorPane {
     private TextArea detailMassage;
 
     public OneTransRecordPane(Transport t){
-        //System.out.println(t.getDetailMessage());
         orderStatus = new Label(t.getStatus());
         timeOfRecord = new Label(t.getInputTime().toString());
         splitLine = new Line();
         detailMassage = new TextArea();
-        //if (t.getDetailMessage()!=null)detailMassage.appendText(t.getDetailMessage());
+        detailMassage.appendText(t.getDetailMessage());
         init();
     }
 
