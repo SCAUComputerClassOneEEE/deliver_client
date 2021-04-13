@@ -15,10 +15,20 @@ public class Transport {
     private long nextCarrierId;
     private String nextCarrierType;
     private String status;
-    private String detailMessage;
+    //private String detailMessage;
 
     public Transport(JSONObject parse) {
-
+        setCarrierId(parse.getLong("carrierId"));
+        setCarrierType(parse.getString("carrierType"));
+        //setDetailMessage(parse.getString("detailMessage"));
+        setTransportId(parse.getLong("transportId"));
+        setOrderId(parse.getLong("orderId"));
+        setTransportTimesOfCarrier(parse.getLong("transportTimesOfCarrier"));
+        setInputTime(parse.getTimestamp("inputTime"));
+        setOutputTime(parse.getTimestamp("outputTime"));
+        setNextCarrierId(parse.getLong("nextCarrierId"));
+        setNextCarrierType(parse.getString("nextCarrierType"));
+        setStatus(parse.getString("status"));
     }
 
     public long getTransportId() {
@@ -101,11 +111,11 @@ public class Transport {
         this.status = status;
     }
 
-    public String getDetailMessage() {
+/*    public String getDetailMessage() {
         return detailMessage;
     }
 
     public void setDetailMessage(String detailMessage) {
         this.detailMessage = detailMessage;
-    }
+    }*/
 }

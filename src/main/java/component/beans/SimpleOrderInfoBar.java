@@ -10,6 +10,8 @@ public class SimpleOrderInfoBar {
     private Timestamp orderCreateTime;
     private String receiveName;
     private String orderStatus;
+    private String sendDetailAddress;
+    private String receiveDetailAddress;
 
     public SimpleOrderInfoBar() {
 
@@ -19,6 +21,8 @@ public class SimpleOrderInfoBar {
         setOrderCreateTime(parse.getTimestamp("orderCreateTime"));
         setOrderStatus(parse.getString("orderStatus"));
         setReceiveName(parse.getString("receiveName"));
+        setSendDetailAddress(parse.getString("sendDetailAddress"));
+        setReceiveDetailAddress(parse.getString("receiveDetailAddress"));
     }
 
     public int getOrderId() {
@@ -51,5 +55,21 @@ public class SimpleOrderInfoBar {
 
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
+    }
+
+    public String getSendDetailAddress() {
+        return sendDetailAddress;
+    }
+
+    public void setSendDetailAddress(String sendAdd) {
+        this.sendDetailAddress = sendAdd;
+    }
+
+    public String getReceiveDetailAddress() {
+        return receiveDetailAddress;
+    }
+
+    public void setReceiveDetailAddress(String receiveAdd) {
+        this.receiveDetailAddress = receiveAdd;
     }
 }

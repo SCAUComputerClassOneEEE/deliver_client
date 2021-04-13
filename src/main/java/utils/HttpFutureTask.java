@@ -40,6 +40,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             }
             String s = new String(readBuffer, 0, length);
             stringBuilder.append(s);
+            System.out.println(stringBuilder);
             return JSONArray.parseArray(stringBuilder.toString()).iterator();
         } catch (Exception e) {
             e.printStackTrace();

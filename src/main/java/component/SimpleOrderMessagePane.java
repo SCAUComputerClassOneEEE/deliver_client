@@ -1,6 +1,8 @@
 package component;
 
+import com.alibaba.fastjson.JSONObject;
 import component.beans.SimpleOrderInfoBar;
+import component.beans.Transport;
 import controller.userController.OrderDetailController;
 import controller.userController.PackageController;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,11 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import service.ChangeService;
+import utils.HttpClientThreadPool;
+import utils.HttpFutureTask;
+import utils.HttpRequestCallable;
+
+import java.util.Iterator;
 
 /**
  * @Author: Sky
@@ -24,8 +31,10 @@ public class SimpleOrderMessagePane extends AnchorPane {
     private Label order_creat_time;
     private Label detail;
     private static Stage detailStage;
+    private SimpleOrderInfoBar s;
 
     public SimpleOrderMessagePane(SimpleOrderInfoBar s){
+        this.s = s;
         order_id = new Label(String.valueOf(s.getOrderId()));
         order_status = new Label(String.valueOf(s.getOrderStatus()));
         receive_name = new Label(s.getReceiveName());
@@ -77,8 +86,16 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 /*
                  * 这里需要发送获取数据的请求 获取之后生成界面 未完善 sky
                  */
+                Iterator<?> it = getTransportsOfOrder(Integer.parseInt(order_id.getText()));
+
                 OrderDetailController odc = loader.getController();
-                odc.addNewRecord(null);
+                odc.init(s.getOrderId(),s.getSendDetailAddress(),s.getReceiveDetailAddress());
+                while (it.hasNext()) {
+                    JSONObject next = (JSONObject)it.next();
+                    System.out.println(next.toString());
+                    odc.addNewRecord(new Transport(next));
+                    it.remove();
+                }
 
                 if (detailStage.isShowing()){
                     detailStage.close();
@@ -91,6 +108,17 @@ public class SimpleOrderMessagePane extends AnchorPane {
 
         this.getChildren().addAll(order_id,order_status,receive_name,order_creat_time,detail);
         this.setPrefSize(440,66);
+    }
+
+    private static Iterator<?> getTransportsOfOrder(long orderId) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/transport")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("order_id", orderId)
+                .build();
+
+        HttpFutureTask futureTask = HttpClientThreadPool.getPoolInstance().submitRequestTask(build);
+        return futureTask.getContentJSON();
     }
 
 }
