@@ -184,7 +184,6 @@ public class PackageController implements Initializable {
         setVisibleFalse();;
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
-
     }
 
     @FXML

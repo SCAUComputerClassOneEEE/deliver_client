@@ -98,10 +98,109 @@
                   </ScrollPane>
                   <ScrollPane fx:id="packages_bill_scrollPane" prefHeight="552.0" prefWidth="744.0" visible="false">
                     <content>
-                      <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="742.0" />
+                      <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="550.0" prefWidth="742.0">
+                           <children>
+                              <ScrollPane layoutX="8.0" layoutY="72.0" prefHeight="421.0" prefWidth="725.0">
+                                 <content>
+                                    <VBox prefHeight="417.0" prefWidth="719.0">
+                                       <children>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane maxHeight="74.0" maxWidth="719.0" minHeight="74.0" minWidth="719.0" prefHeight="74.0" prefWidth="719.0">
+                                             <children>
+                                                <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="664.0" layoutY="27.0" text="¥18" />
+                                                <Label layoutX="212.0" layoutY="27.0" text="订单时间:2021-2-15 15:56:54" />
+                                                <Label layoutX="445.0" layoutY="27.0" text="收件人:csy" />
+                                                <Label layoutX="552.0" layoutY="27.0" text="订单状态" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                              <ChoiceBox layoutX="35.0" layoutY="24.0" prefWidth="150.0" />
+                              <Button layoutX="630.0" layoutY="506.0" mnemonicParsing="false" text="去支付" />
+                              <CheckBox layoutX="29.0" layoutY="511.0" mnemonicParsing="false" text="全选" />
+                              <Label layoutX="287.0" layoutY="7.0" text="付款中心">
+                                 <font>
+                                    <Font size="27.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="210.0" layoutY="27.0" mnemonicParsing="false" text="Button" />
+                           </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="564.0" prefWidth="753.0">
+                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="564.0" prefWidth="753.0" visible="false">
                     <content>
                       <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="741.0" style="-fx-background-color: 000000;">
                            <children>
