@@ -9,17 +9,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="613.0" prefWidth="882.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.PackageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1068.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.PackageController">
    <top>
       <AnchorPane fx:id="user_pane_package_anchorPane" prefHeight="48.0" prefWidth="882.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="user_text_welcome" layoutX="673.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" />
-            <Text fx:id="user_text_username" fill="#2618e4" layoutX="753.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxusername" />
+            <Text fx:id="user_text_welcome" layoutX="878.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" />
+            <Text fx:id="user_text_username" fill="#2618e4" layoutX="953.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxusername" />
          </children>
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.14659090909090908" prefHeight="561.0" prefWidth="882.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.13227016885553472" prefHeight="561.0" prefWidth="882.0" BorderPane.alignment="CENTER">
          <items>
             <VBox prefHeight="544.0" prefWidth="143.0">
                <children>
@@ -57,41 +57,62 @@
                       <AnchorPane fx:id="packages_package_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="543.0" prefWidth="740.0" visible="false" />
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="553.0" prefWidth="744.0" visible="false">
+                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="725.0" prefWidth="932.0">
                      <content>
-                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="559.0" prefWidth="747.0">
+                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="709.0" prefWidth="929.0">
                            <children>
-                              <Text layoutX="33.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-------------------------------------------shipper------------------------------------------------" wrappingWidth="680.2099609375" />
-                              <Text layoutX="14.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-------------------------------------------consiggee------------------------------------------------" wrappingWidth="687.30029296875" />
+                              <Text layoutX="40.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="----------------------------------------------------------shipper-----------------------------------------------------------------" wrappingWidth="888.2099609375" />
+                              <Text layoutX="15.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="---------------------------------------------------------------consiggee------------------------------------------------------------" wrappingWidth="898.30029296875" />
                               <Text layoutX="44.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name:" />
                               <TextField layoutX="99.0" layoutY="56.0" prefHeight="29.0" prefWidth="110.0" />
                               <Text layoutX="318.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone number:" wrappingWidth="110.51513671875" />
                               <TextField layoutX="452.0" layoutY="55.0" prefHeight="23.0" prefWidth="201.0" />
-                              <Text layoutX="44.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="departure:" />
-                              <TextField layoutX="129.0" layoutY="104.0" prefHeight="23.0" prefWidth="521.0" />
-                              <Text layoutX="53.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name:" />
-                              <Text layoutX="326.0" layoutY="225.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone number:" wrappingWidth="111.51513671875" />
-                              <Text layoutX="51.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="address:" />
-                              <TextField layoutX="107.0" layoutY="204.0" prefHeight="23.0" prefWidth="112.0" />
-                              <TextField layoutX="461.0" layoutY="204.0" prefHeight="30.0" prefWidth="201.0" />
-                              <TextField layoutX="126.0" layoutY="254.0" prefHeight="28.0" prefWidth="512.0" />
-                              <Text layoutX="14.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-------------------------------------------parcel information------------------------------------------" wrappingWidth="687.181640625" />
-                              <Text layoutX="48.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="package type:" />
-                              <CheckBox layoutX="166.0" layoutY="348.0" mnemonicParsing="false" text="文件" />
-                              <CheckBox layoutX="268.0" layoutY="348.0" mnemonicParsing="false" text="电子类产品" />
-                              <CheckBox layoutX="405.0" layoutY="348.0" mnemonicParsing="false" text="生活用品" />
-                              <CheckBox layoutX="531.0" layoutY="348.0" mnemonicParsing="false" text="服饰" />
-                              <CheckBox layoutX="166.0" layoutY="387.0" mnemonicParsing="false" text="生鲜" />
-                              <CheckBox layoutX="266.0" layoutY="387.0" mnemonicParsing="false" text="食品" />
-                              <CheckBox layoutX="400.0" layoutY="387.0" mnemonicParsing="false" text="易碎品" />
-                              <CheckBox layoutX="531.0" layoutY="387.0" mnemonicParsing="false" text="化妆品" />
-                              <CheckBox layoutX="166.0" layoutY="430.0" mnemonicParsing="false" text="药品" />
-                              <CheckBox layoutX="270.0" layoutY="430.0" mnemonicParsing="false" text="其他" />
-                              <Text layoutX="339.0" layoutY="447.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <TextField layoutX="336.0" layoutY="426.0" prefHeight="18.0" prefWidth="93.0" promptText="（描述）" />
-                              <Button layoutX="662.0" layoutY="504.0" mnemonicParsing="false" text="提交" />
-                              <RadioButton layoutX="52.0" layoutY="484.0" mnemonicParsing="false" text="我已同意并接受" />
-                              <Text fill="#2618e4" layoutX="184.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="《快递服务协议》" />
+                              <Text layoutX="44.0" layoutY="162.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail departure:" />
+                              <TextField layoutX="176.0" layoutY="141.0" prefHeight="23.0" prefWidth="521.0" />
+                              <Text layoutX="51.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name:" />
+                              <Text layoutX="325.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone number:" wrappingWidth="111.51513671875" />
+                              <Text layoutX="52.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail address:" />
+                              <TextField layoutX="108.0" layoutY="236.0" prefHeight="23.0" prefWidth="112.0" />
+                              <TextField layoutX="452.0" layoutY="236.0" prefHeight="30.0" prefWidth="201.0" />
+                              <TextField layoutX="163.0" layoutY="313.0" prefHeight="28.0" prefWidth="512.0" />
+                              <Text layoutX="8.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="--------------------------------------------------------------parcel information-----------------------------------------------------" wrappingWidth="898.181640625" />
+                              <Text layoutX="46.0" layoutY="417.0" strokeType="OUTSIDE" strokeWidth="0.0" text="package type:" />
+                              <CheckBox layoutX="164.0" layoutY="401.0" mnemonicParsing="false" text="文件" />
+                              <CheckBox layoutX="266.0" layoutY="401.0" mnemonicParsing="false" text="电子类产品" />
+                              <CheckBox layoutX="403.0" layoutY="401.0" mnemonicParsing="false" text="生活用品" />
+                              <CheckBox layoutX="529.0" layoutY="401.0" mnemonicParsing="false" text="服饰" />
+                              <CheckBox layoutX="164.0" layoutY="440.0" mnemonicParsing="false" text="生鲜" />
+                              <CheckBox layoutX="264.0" layoutY="440.0" mnemonicParsing="false" text="食品" />
+                              <CheckBox layoutX="398.0" layoutY="440.0" mnemonicParsing="false" text="易碎品" />
+                              <CheckBox layoutX="529.0" layoutY="440.0" mnemonicParsing="false" text="化妆品" />
+                              <CheckBox layoutX="164.0" layoutY="483.0" mnemonicParsing="false" text="药品" />
+                              <CheckBox layoutX="268.0" layoutY="483.0" mnemonicParsing="false" text="其他" />
+                              <Text layoutX="337.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <TextField layoutX="334.0" layoutY="479.0" prefHeight="18.0" prefWidth="93.0" promptText="(描述)" />
+                              <Button layoutX="769.0" layoutY="666.0" mnemonicParsing="false" text="提交" />
+                              <RadioButton layoutX="33.0" layoutY="661.0" mnemonicParsing="false" text="我已同意并接受" />
+                              <Text fill="#2618e4" layoutX="176.0" layoutY="677.0" strokeType="OUTSIDE" strokeWidth="0.0" text="《快递服务协议》" />
+                              <Text layoutX="37.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="service type:" wrappingWidth="97.13671875" />
+                              <RadioButton layoutX="171.0" layoutY="577.0" mnemonicParsing="false" text="次日达" />
+                              <RadioButton layoutX="282.0" layoutY="577.0" mnemonicParsing="false" text="隔日达" />
+                              <Text layoutX="36.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="special package:" />
+                              <CheckBox layoutX="162.0" layoutY="531.0" mnemonicParsing="false" text="international package" />
+                              <CheckBox layoutX="369.0" layoutY="531.0" mnemonicParsing="false" text="dangerous packages" />
+                              <Text layoutX="43.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="province:" />
+                              <Text layoutX="319.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
+                              <Text layoutX="51.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="province:" />
+                              <Text layoutX="333.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
+                              <RadioButton layoutX="374.0" layoutY="577.0" mnemonicParsing="false" text="不需要以上两种服务" />
+                              <CheckBox layoutX="573.0" layoutY="531.0" mnemonicParsing="false" text="备注" />
+                              <TextField layoutX="637.0" layoutY="527.0" prefHeight="28.0" prefWidth="88.0" promptText="(描述)" />
+                              <CheckBox layoutX="759.0" layoutY="530.0" mnemonicParsing="false" text="非特殊包裹" />
+                              <Text layoutX="35.0" layoutY="632.0" strokeType="OUTSIDE" strokeWidth="0.0" text="选择支付类型：" />
+                              <RadioButton layoutX="177.0" layoutY="616.0" mnemonicParsing="false" text="立即付款" />
+                              <RadioButton layoutX="283.0" layoutY="616.0" mnemonicParsing="false" text="月付" />
+                              <ComboBox fx:id="packages_send_shipper_province" layoutX="113.0" layoutY="105.0" prefHeight="8.0" prefWidth="137.0" />
+                              <ComboBox fx:id="packages_send_shipper_city" layoutX="363.0" layoutY="105.0" prefHeight="20.0" prefWidth="143.0" />
+                              <ComboBox fx:id="packages_send_consiggee_province" layoutX="125.0" layoutY="281.0" prefHeight="8.0" prefWidth="137.0" />
+                              <ComboBox fx:id="packages_send_consiggee_city" layoutX="368.0" layoutY="281.0" prefHeight="8.0" prefWidth="137.0" />
                            </children>
                         </AnchorPane>
                      </content>

@@ -4,36 +4,112 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import component.SimpleOrderMessagePane;
 import component.beans.SimpleOrderInfoBar;
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.PerspectiveTransform;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.apache.http.impl.client.HttpClientBuilder;
 import utils.HttpClientThreadPool;
 import utils.HttpFutureTask;
 import utils.HttpRequestCallable;
 
+import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class PackageController implements Initializable {
     HttpClientThreadPool poolInstance = HttpClientThreadPool.getPoolInstance();
+
+    interface Region {
+
+    }
+
+    static class City implements Region {
+        String cityName;
+
+        City(String cityName) {
+            this.cityName = cityName;
+        }
+
+        @Override
+        public String toString() {
+            return cityName;
+        }
+    }
+
+    static class Province implements Region {
+        String provName;
+        int id;
+        List<City> cs = new ArrayList<>();
+
+        Province(String provName, int id) {
+            this.provName = provName;
+            this.id = id;
+        }
+
+        void addCity(City region) {
+            cs.add(region);
+        }
+
+        @Override
+        public String toString() {
+            return provName;
+        }
+    }
+
+    private static Province[] provs = new Province[34];
+
+    static {
+        try {
+            System.out.println(PackageController.class.getClassLoader().getResource("regionsData.txt"));
+            InputStream resourceAsStream = PackageController.class.getClassLoader().getResourceAsStream("regionsData.txt");
+            assert resourceAsStream != null;
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream));
+            String s;
+            int arrIndex = 0;
+            while ((s = bufferedReader.readLine()) != null) {
+                String[] split = s.split(",");
+                String var0 = split[0];
+                int var1 = Integer.parseInt(split[1]);
+                if (var1 == 0) provs[arrIndex++] = new Province(var0, arrIndex);
+                else provs[var1 - 1].addCity(new City(var0));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private ComboBox<Region> packages_send_consiggee_province;
+
+    @FXML
+    private ComboBox<Region> packages_send_consiggee_city;
+
+    @FXML
+    private ComboBox<Region> packages_send_shipper_province;
+
+    @FXML
+    private ComboBox<Region> packages_send_shipper_city;
 
     @FXML
     private Text user_text_welcome;
@@ -45,16 +121,16 @@ public class PackageController implements Initializable {
     private Button user_btn_package;
 
     @FXML
-    private  Button user_btn_send;
+    private Button user_btn_send;
 
     @FXML
-    private  Button user_btn_bill;
+    private Button user_btn_bill;
 
     @FXML
-    private  Button user_btn_personal;
+    private Button user_btn_personal;
 
     @FXML
-    private  Button user_btn_notes;
+    private Button user_btn_notes;
 
     @FXML
     private AnchorPane user_pane_package_anchorPane;
@@ -106,16 +182,16 @@ public class PackageController implements Initializable {
     private TextField packages_personal_textfiled_city;
 
     @FXML
-    private  TextField packages_personal_textfiled_strret;
+    private TextField packages_personal_textfiled_strret;
 
     @FXML
     private TextField packages_personal_textfiled_detailAddress;
 
     @FXML
-    private  TextField packages_personal_textfiled_account;
+    private TextField packages_personal_textfiled_account;
 
     @FXML
-    private  TextField packages_personal_textfiled_password;
+    private TextField packages_personal_textfiled_password;
 
     @FXML
     private TextField packages_personal_textfiled_againPassword;
@@ -127,18 +203,19 @@ public class PackageController implements Initializable {
     private TextField packages_personal_textfiled_customerName;
 
     @FXML
-    private  Text packages_personal_text_again;
+    private Text packages_personal_text_again;
 
     /*装订单列表的容器 --sky*/
     private static VBox packages_show_vBox = new VBox();
 
     //以下是button需要绑定的action
     @FXML
-    private void queryPackageInformation(){
+    private void queryPackageInformation() {
         setVisibleFalse();
         packages_package_scrollPane.setVisible(true);
         // packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
         addNewPage(18899715136L, 0, 5);
+
     }
 
     private void addNewPage(long customerId, int offset, int limit) {
@@ -166,29 +243,30 @@ public class PackageController implements Initializable {
         /*
         这里需要提供描述订单的类的数据数组，然后循环添加
         */
-        for (SimpleOrderMessagePane s: results){
+        for (SimpleOrderMessagePane s : results) {
             packages_show_vBox.getChildren().add(s);
         }
     }
 
 
     @FXML
-    private void sendExpress(){
+    private void sendExpress() {
         setVisibleFalse();
         packages_send_scrollPane.setVisible(true);
         packages_send_anchorPane.setVisible(true);
+
     }
 
     @FXML
-    private void queryBill(){
-        setVisibleFalse();;
+    private void queryBill() {
+        setVisibleFalse();
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
     }
 
     @FXML
-    private void modifiedPersonalInformation(){
-        setVisibleFalse();;
+    private void modifiedPersonalInformation() {
+        setVisibleFalse();
         packages_personal_scrollPane.setVisible(true);
         packages_personal_anchorPane.setVisible(true);
         packages_personal_text_again.setVisible(false);
@@ -208,15 +286,15 @@ public class PackageController implements Initializable {
     }
 
     @FXML
-    private void systemNotification(){
-        setVisibleFalse();;
+    private void systemNotification() {
+        setVisibleFalse();
         packages_notes_anchorPane.setVisible(true);
         packages_notes_anchorPane.setVisible(true);
 
     }
 
     @FXML
-    private void modifiedAction(){
+    private void modifiedAction() {
         packages_personal_btn_modify.setVisible(false);
         packages_personal_btn_save.setVisible(true);
         packages_personal_textfiled_againPassword.setVisible(true);
@@ -234,11 +312,29 @@ public class PackageController implements Initializable {
 
     }
 
+
     public void initialize(URL location, ResourceBundle resources) {
         setVisibleFalse();
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+
+        HBox hBox = new HBox(33);
+        hBox.setPadding(new Insets(10, 10, 10, 10));
+
+        packages_send_shipper_province.setItems(FXCollections.observableArrayList(provs));
+
+        packages_send_consiggee_province.setItems(FXCollections.observableArrayList(provs));
+
+        packages_send_shipper_province.getSelectionModel().selectedItemProperty().addListener((o, t, t1) -> {
+            Province province = (Province) t1;
+            packages_send_shipper_city.setItems(FXCollections.observableArrayList(provs[province.id - 1].cs));
+        });
+
+        packages_send_consiggee_province.getSelectionModel().selectedItemProperty().addListener((o, t, t1) -> {
+            Province province = (Province) t1;
+            packages_send_consiggee_city.setItems(FXCollections.observableArrayList(provs[province.id - 1].cs));
+        });
 
         Text t = new Text();
         t.setEffect(ds);
@@ -255,7 +351,7 @@ public class PackageController implements Initializable {
         this.packages_package_scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                if(packages_package_scrollPane.getVvalue()==1.0){
+                if (packages_package_scrollPane.getVvalue() == 1.0) {
                     System.out.println("你触及了我的底线！");
                     addNewPage(18899715136L, 0, 5);
                 }
@@ -292,11 +388,12 @@ public class PackageController implements Initializable {
         this.user_pane_package_anchorPane.getChildren().add(t1);*/
     }
 
-    private void setVisibleFalse(){
+    private void setVisibleFalse() {
         packages_package_scrollPane.setVisible(false);
         packages_send_scrollPane.setVisible(false);
         packages_bill_scrollPane.setVisible(false);
         packages_notes_scrollPane.setVisible(false);
         packages_personal_scrollPane.setVisible(false);
     }
+
 }
