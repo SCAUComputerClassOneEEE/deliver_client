@@ -1,4 +1,4 @@
-package utils;
+package utils.http;
 
 import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;

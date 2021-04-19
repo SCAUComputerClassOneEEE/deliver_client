@@ -12,9 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import utils.HttpClientThreadPool;
-import utils.HttpFutureTask;
-import utils.HttpRequestCallable;
+import utils.http.HttpClientThreadPool;
+import utils.http.HttpFutureTask;
+import utils.http.HttpRequestCallable;
 
 import java.util.Iterator;
 
