@@ -13,10 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.PerspectiveTransform;
 import javafx.scene.layout.AnchorPane;
@@ -182,7 +179,7 @@ public class PackageController implements Initializable {
     private TextField packages_personal_textfiled_city;
 
     @FXML
-    private TextField packages_personal_textfiled_strret;
+    private TextField packages_personal_textfiled_street;
 
     @FXML
     private TextField packages_personal_textfiled_detailAddress;
@@ -204,6 +201,89 @@ public class PackageController implements Initializable {
 
     @FXML
     private Text packages_personal_text_again;
+
+    @FXML
+    private TextField packages_send_shipper_name;
+
+    @FXML
+    private TextField packages_send_shipper_phone;
+
+    @FXML
+    private TextField packages_send_shipper_detailAddress;
+
+    @FXML
+    private TextField packages_send_consiggee_name;
+
+    @FXML
+    private TextField packages_send_consiggee_phone;
+
+    @FXML
+    private TextField packages_send_consiggee_detailAddress;
+
+    @FXML
+    private CheckBox packages_send_packageType_file;
+
+    @FXML
+    private CheckBox packages_send_packageType_electronic;
+
+    @FXML
+    private CheckBox packages_send_packageType_dailyUsing;
+
+    @FXML
+    private CheckBox packages_send_packageType_clothe;
+
+    @FXML
+    private CheckBox packages_send_packageType_fresh;
+
+    @FXML
+    private CheckBox packages_send_packageType_food;
+
+    @FXML
+    private CheckBox packages_send_packageType_fragile;
+
+    @FXML
+    private CheckBox packages_send_packageType_makeup;
+
+    @FXML
+    private CheckBox packages_send_packageType_medicine;
+
+    @FXML
+    private CheckBox packages_send_packageType_other;
+
+    @FXML
+    private  TextField packages_send_packageType_other_details;
+
+    @FXML
+    private RadioButton packages_send_serviceType_nextDay;
+
+    @FXML
+    private RadioButton packages_send_serviceType_nextNextDay;
+
+    @FXML
+    private RadioButton packages_send_serviceType_not;
+
+    @FXML
+    private  CheckBox packages_send_speacialPackage_international;
+
+    @FXML
+    private  CheckBox packages_send_speacialPackage_dangerous;
+
+    @FXML
+    private  CheckBox packages_send_speacialPackage_other;
+
+    @FXML
+    private  CheckBox packages_send_speacialPackage_not;
+
+    @FXML
+    private  TextField packages_send_speacialPackage_detial;
+
+    @FXML
+    private RadioButton packages_send_payment_now;
+
+    @FXML
+    private RadioButton packages_send_serviceType_monthly;
+
+
 
     /*装订单列表的容器 --sky*/
     private static VBox packages_show_vBox = new VBox();
@@ -274,13 +354,12 @@ public class PackageController implements Initializable {
         packages_personal_textfiled_againPassword.setVisible(false);
         packages_personal_btn_save.setVisible(false);
         packages_personal_textfiled_againPassword.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_strret.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_street.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_account.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_city.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_strret.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(241,241,241);");
 
     }
@@ -306,7 +385,7 @@ public class PackageController implements Initializable {
         packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(255,255,255);");
         packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(255,255,255);");
         packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_strret.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_street.setStyle("-fx-background-color: rgb(255,255,255);");
         packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(255,255,255);");
 
 
