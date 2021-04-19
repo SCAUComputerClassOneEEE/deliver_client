@@ -12,6 +12,7 @@ public class AfterLoginAction {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/user/Packages.fxml"));
         Parent root = loader.load();
+        ChangeService.packageController = loader.getController();
         Scene scene = new Scene(root);
         ChangeService.stage.setTitle("Package View");
         primaryStage.setScene(scene);

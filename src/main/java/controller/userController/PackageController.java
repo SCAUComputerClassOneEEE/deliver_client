@@ -2,10 +2,12 @@ package controller.userController;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
 import component.beans.SimpleOrderInfoBar;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -337,12 +339,38 @@ public class PackageController implements Initializable {
 
     }
 
+    /*************************/
+    @FXML
+    private VBox orderBillVbox;
+
+    public static SimpleObjectProperty<Integer> selectStatus = new SimpleObjectProperty<>(0);
+    @FXML
+    private CheckBox allBill;
+    @FXML
+    private void allBillAction(){
+        if (allBill.isSelected()){
+            orderBillVbox.getChildren().forEach(o-> ((OrderBillRecordPane)o).getIsSelected().setSelected(true));
+            OrderBillRecordPane.selectNum = orderBillVbox.getChildren().size();
+        }else {
+            orderBillVbox.getChildren().forEach(o-> ((OrderBillRecordPane)o).getIsSelected().setSelected(false));
+            OrderBillRecordPane.selectNum = 0;
+        }
+    }
+
+    public void synchronizeAllAction(int selectNum){
+        allBill.setSelected(selectNum == orderBillVbox.getChildren().size());
+    }
     @FXML
     private void queryBill() {
         setVisibleFalse();
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
+        orderBillVbox.getChildren().clear();
+        orderBillVbox.getChildren().add(new OrderBillRecordPane());
+        orderBillVbox.getChildren().add(new OrderBillRecordPane());
+        orderBillVbox.getChildren().add(new OrderBillRecordPane());
     }
+    /*************************/
 
     @FXML
     private void modifiedPersonalInformation() {
