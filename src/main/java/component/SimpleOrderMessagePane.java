@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONObject;
 import component.beans.SimpleOrderInfoBar;
 import component.beans.Transport;
 import controller.userController.OrderDetailController;
-import controller.userController.PackageController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,7 +12,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import service.ChangeService;
 import utils.HttpClientThreadPool;
 import utils.HttpFutureTask;
 import utils.HttpRequestCallable;
@@ -52,27 +50,36 @@ public class SimpleOrderMessagePane extends AnchorPane {
     }
 
     private void init() {
-        // order_id = new Label("我是订单号");
+        /*
+        设置位置、字体大小颜色、添加功能等
+         */
         order_id.setLayoutX(14);
         order_id.setLayoutY(23);
-        // order_status = new Label("已签收");
+
         order_status.setLayoutX(135);
         order_status.setLayoutY(9);
         order_status.setPrefSize(75,48);
         order_status.setFont(new Font(24));
         order_status.setTextFill(Paint.valueOf("RED"));
-        // receive_name = new Label("sky");
+
         receive_name.setLayoutX(244);
         receive_name.setLayoutY(23);
-        // order_creat_time = new Label("2021-4-1 17:45:37");
+
         order_creat_time.setLayoutX(336);
         order_creat_time.setLayoutY(23);
+
         detail = new Label("查看详情");
         detail.setLayoutX(361);
         detail.setLayoutY(42);
         detail.setTextFill(Paint.valueOf("BLUE"));
         detail.setUnderline(true);
+        addFun2Detail();
 
+        this.getChildren().addAll(order_id,order_status,receive_name,order_creat_time,detail);
+        this.setPrefSize(440,66);
+    }
+
+    private void addFun2Detail(){
         detail.setOnMouseClicked(event -> {
 
             try{
@@ -84,7 +91,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 detailStage.setScene(scene);
 
                 /*
-                 * 这里需要发送获取数据的请求 获取之后生成界面 未完善 sky
+                 * 这里需要发送获取数据的请求 获取之后生成界面 --sky
                  */
                 Iterator<?> it = getTransportsOfOrder(Integer.parseInt(order_id.getText()));
 
@@ -105,9 +112,6 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 e.printStackTrace();
             }
         });
-
-        this.getChildren().addAll(order_id,order_status,receive_name,order_creat_time,detail);
-        this.setPrefSize(440,66);
     }
 
     private static Iterator<?> getTransportsOfOrder(long orderId) {

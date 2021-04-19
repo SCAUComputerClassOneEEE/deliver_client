@@ -1,33 +1,27 @@
 package controller.userController;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
 import component.beans.SimpleOrderInfoBar;
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.PerspectiveTransform;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import org.apache.http.impl.client.HttpClientBuilder;
 import utils.HttpClientThreadPool;
 import utils.HttpFutureTask;
 import utils.HttpRequestCallable;
@@ -98,6 +92,62 @@ public class PackageController implements Initializable {
         }
     }
 
+    /*
+    上面的看不懂我就不整理了 --sky
+     */
+
+    /*
+    本类是client的大头，该类是主要界面的控制器，存放大量界面功能逻辑代码，具体代码可以分块阅读，互不干扰
+     */
+
+    /*
+    package按钮及其对应界面的控件与功能函数 --sky实现
+     */
+    @FXML
+    private ScrollPane packages_package_scrollPane;
+
+    // 查询用户的所有包裹简介
+    @FXML
+    private void queryPackageInformation() {
+        setAllVisibleFalse();
+        packages_package_scrollPane.setVisible(true);
+        /*
+        分页加载，一次加载五个，customerId需要输入，这里还未输入
+         */
+        loadPackage(18899715136L, 0, 5);
+    }
+
+    private void loadPackage(long customerId, int offset, int limit) {
+        ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
+        setAllVisibleFalse();
+        packages_package_scrollPane.setVisible(true);
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/list")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("customer_id", customerId)
+                .addRequestContent("offset", offset)
+                .addRequestContent("length", limit)
+                .build();
+        HttpFutureTask futureTask = poolInstance.submitRequestTask(build);
+        Iterator<?> content = null;
+        while (content == null) {
+            content = futureTask.getContentJSON();
+            while (content.hasNext()) {
+                JSONObject parse = JSONObject.parseObject(content.next().toString());
+                SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar(parse);
+                content.remove();
+                results.add(new SimpleOrderMessagePane(simpleOrderInfoBar));
+            }
+        }
+        /*
+        这里需要提供描述订单的类的数据数组，然后循环添加
+        */
+        for (SimpleOrderMessagePane s : results) {
+            packages_show_vBox.getChildren().add(s);
+        }
+    }
+
+
     @FXML
     private ComboBox<Region> packages_send_consiggee_province;
 
@@ -152,8 +202,7 @@ public class PackageController implements Initializable {
     @FXML
     private AnchorPane packages_personal_anchorPane;
 
-    @FXML
-    private ScrollPane packages_package_scrollPane;
+
 
     @FXML
     private ScrollPane packages_send_scrollPane;
@@ -286,54 +335,28 @@ public class PackageController implements Initializable {
     private RadioButton packages_send_serviceType_monthly;
 
 
+    @FXML
+    private Text protocol;
+
+    private void addClickedAction2Protocol(){
+        protocol.setOnMouseClicked(event -> {
+            Stage stage = new Stage();
+            BorderPane root = new BorderPane();
+            Scene scene = new Scene(root);
+            root.setCenter(new Text("快递丢了老卢不负责的喔！"));
+            stage.setScene(scene);
+            stage.show();
+        });
+    }
 
     /*装订单列表的容器 --sky*/
     private static VBox packages_show_vBox = new VBox();
 
-    //以下是button需要绑定的action
-    @FXML
-    private void queryPackageInformation() {
-        setVisibleFalse();
-        packages_package_scrollPane.setVisible(true);
-        // packages_show_vBox.getChildren().add(new SimpleOrderMessagePane());
-        addNewPage(18899715136L, 0, 5);
-
-    }
-
-    private void addNewPage(long customerId, int offset, int limit) {
-        ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
-        setVisibleFalse();
-        packages_package_scrollPane.setVisible(true);
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/query/list")
-                .onMethod(HttpClientThreadPool.HttpMethod.GET)
-                .addRequestContent("customer_id", customerId)
-                .addRequestContent("offset", offset)
-                .addRequestContent("length", limit)
-                .build();
-        HttpFutureTask futureTask = poolInstance.submitRequestTask(build);
-        Iterator<?> content = null;
-        while (content == null) {
-            content = futureTask.getContentJSON();
-            while (content.hasNext()) {
-                JSONObject parse = JSONObject.parseObject(content.next().toString());
-                SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar(parse);
-                content.remove();
-                results.add(new SimpleOrderMessagePane(simpleOrderInfoBar));
-            }
-        }
-        /*
-        这里需要提供描述订单的类的数据数组，然后循环添加
-        */
-        for (SimpleOrderMessagePane s : results) {
-            packages_show_vBox.getChildren().add(s);
-        }
-    }
 
 
     @FXML
     private void sendExpress() {
-        setVisibleFalse();
+        setAllVisibleFalse();
         packages_send_scrollPane.setVisible(true);
         packages_send_anchorPane.setVisible(true);
 
@@ -343,7 +366,6 @@ public class PackageController implements Initializable {
     @FXML
     private VBox orderBillVbox;
 
-    public static SimpleObjectProperty<Integer> selectStatus = new SimpleObjectProperty<>(0);
     @FXML
     private CheckBox allBill;
     @FXML
@@ -362,7 +384,7 @@ public class PackageController implements Initializable {
     }
     @FXML
     private void queryBill() {
-        setVisibleFalse();
+        setAllVisibleFalse();
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
         orderBillVbox.getChildren().clear();
@@ -374,7 +396,7 @@ public class PackageController implements Initializable {
 
     @FXML
     private void modifiedPersonalInformation() {
-        setVisibleFalse();
+        setAllVisibleFalse();
         packages_personal_scrollPane.setVisible(true);
         packages_personal_anchorPane.setVisible(true);
         packages_personal_text_again.setVisible(false);
@@ -394,7 +416,7 @@ public class PackageController implements Initializable {
 
     @FXML
     private void systemNotification() {
-        setVisibleFalse();
+        setAllVisibleFalse();
         packages_notes_anchorPane.setVisible(true);
         packages_notes_anchorPane.setVisible(true);
 
@@ -421,7 +443,7 @@ public class PackageController implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
-        setVisibleFalse();
+        setAllVisibleFalse();
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
@@ -460,10 +482,13 @@ public class PackageController implements Initializable {
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 if (packages_package_scrollPane.getVvalue() == 1.0) {
                     System.out.println("你触及了我的底线！");
-                    addNewPage(18899715136L, 0, 5);
+                    loadPackage(18899715136L, 0, 5);
                 }
             }
         });
+
+
+        addClickedAction2Protocol();
         // this.packages_package_scrollPane
         /*PerspectiveTransform pt = new PerspectiveTransform();
         pt.setUlx(10.0f);
@@ -495,7 +520,7 @@ public class PackageController implements Initializable {
         this.user_pane_package_anchorPane.getChildren().add(t1);*/
     }
 
-    private void setVisibleFalse() {
+    private void setAllVisibleFalse() {
         packages_package_scrollPane.setVisible(false);
         packages_send_scrollPane.setVisible(false);
         packages_bill_scrollPane.setVisible(false);
