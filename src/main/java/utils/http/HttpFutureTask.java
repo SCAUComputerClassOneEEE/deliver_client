@@ -10,24 +10,23 @@ import java.util.concurrent.*;
 
 public class HttpFutureTask extends FutureTask<HttpResponse> {
     private final HttpRequestCallable callable;
+    private HttpResponse httpResponse;
 
     public HttpFutureTask(HttpRequestCallable callable) {
         super(callable);
         this.callable = callable;
     }
 
-    public boolean getHttpStatus() {
-        HttpResponse httpResponse;
-        if ((httpResponse = getResponse(0)) == null)
-            return false;
-        return httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
-    }
-
-    private HttpResponse getResponse(long mills) {
+    public HttpResponse getResponse(long mills) {
         if (mills < 0) mills = 0;
         try {
-            HttpResponse httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
-            if (httpResponse == null) return null;
+            if (httpResponse == null) {
+                httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
+                if (httpResponse == null)
+                    return null;
+                if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
+                    return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -41,7 +40,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
     public Iterator<?> getContentJSON(long mills) {
         if (mills < 0) mills = 0;
         try {
-            HttpResponse httpResponse;
+            final HttpResponse httpResponse;
             if ((httpResponse = getResponse(mills)) == null)
                 return null;
 
