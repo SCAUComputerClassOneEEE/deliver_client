@@ -2,6 +2,7 @@ package utils.http;
 
 import com.alibaba.fastjson.JSONArray;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 
 import java.io.InputStream;
 import java.util.Iterator;
@@ -15,6 +16,24 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         this.callable = callable;
     }
 
+    public boolean getHttpStatus() {
+        HttpResponse httpResponse;
+        if ((httpResponse = getResponse(0)) == null)
+            return false;
+        return httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
+    }
+
+    private HttpResponse getResponse(long mills) {
+        if (mills < 0) mills = 0;
+        try {
+            HttpResponse httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
+            if (httpResponse == null) return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public Iterator<?> getContentJSON() {
         return getContentJSON(0);
     }
@@ -22,8 +41,9 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
     public Iterator<?> getContentJSON(long mills) {
         if (mills < 0) mills = 0;
         try {
-            HttpResponse httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
-            if (httpResponse == null) return null;
+            HttpResponse httpResponse;
+            if ((httpResponse = getResponse(mills)) == null)
+                return null;
 
             int length = 0;
             int r;
