@@ -57,7 +57,7 @@
                         <VBox fx:id="packages_show_vBox" prefHeight="565.0" prefWidth="749.0" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="725.0" prefWidth="932.0">
+                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="725.0" prefWidth="932.0" visible="false">
                      <content>
                       <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="709.0" prefWidth="929.0">
                            <children>
@@ -194,9 +194,20 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="562.0" prefWidth="750.0" visible="false">
+                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0">
                      <content>
-                        <AnchorPane fx:id="packages_notes_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="551.0" prefWidth="741.0" />
+                        <VBox prefHeight="721.0" prefWidth="926.0">
+                           <children>
+                              <AnchorPane maxHeight="94.0" maxWidth="926.0" minHeight="94.0" minWidth="926.0" prefHeight="94.0" prefWidth="926.0">
+                                 <children>
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="22.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="53.0" />
+                                    <Label layoutX="770.0" layoutY="60.0" text="2021/4/20 14:59" />
+                                    <Label layoutX="112.0" layoutY="27.0" text="欢迎使用老卢快递，寄快递，找老卢！" />
+                                    <Circle fill="RED" layoutX="888.0" layoutY="27.0" radius="6.0" stroke="RED" strokeType="INSIDE" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </VBox>
                      </content>
                   </ScrollPane>
                </children>

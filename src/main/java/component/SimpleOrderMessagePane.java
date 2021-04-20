@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utils.http.HttpClientThreadPool;
 import utils.http.HttpFutureTask;
@@ -107,6 +108,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 if (detailStage.isShowing()){
                     detailStage.close();
                 }
+                detailStage.initModality(Modality.APPLICATION_MODAL);
                 detailStage.show();
             } catch (Exception e) {
                 e.printStackTrace();
