@@ -6,10 +6,14 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 import javax.imageio.ImageIO;
+import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
 
 public class QRCodeUtil {
@@ -85,5 +89,17 @@ public class QRCodeUtil {
 
     public static BufferedImage encode(String content, String insertLOGOImgPath, boolean needCompress) throws Exception {
         return QRCodeUtil.createImage(content, insertLOGOImgPath, needCompress);
+    }
+
+    public static javafx.scene.image.Image encode2FXImage(String content, String insertLOGOImgPath, boolean needCompress) {
+        try {
+            BufferedImage i_love_chentreeee = QRCodeUtil.encode(content, insertLOGOImgPath, needCompress);
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ImageIO.write(i_love_chentreeee, FORMAT_NAME, byteArrayOutputStream);
+            return new javafx.scene.image.Image(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

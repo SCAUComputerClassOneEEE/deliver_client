@@ -12,6 +12,7 @@ public class SignInAction {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/user/UserLogin.fxml"));
         Parent root = loader.load();
+        ChangeService.userLoginController=loader.getController();
         Scene scene = new Scene(root);
         ChangeService.stage.setTitle("User login");
         primaryStage.setScene(scene);

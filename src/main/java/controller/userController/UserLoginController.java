@@ -14,7 +14,7 @@ public class UserLoginController {
     private TextField user_text_phone;
 
     public long getCustomerId() {
-        return Long.getLong(user_text_phone.getText());
+        return Long.valueOf(user_text_phone.getText());
     }
 
     @FXML
@@ -35,17 +35,19 @@ public class UserLoginController {
             AfterLoginAction.PackageShow();
         else {
             user_text_password.setText("");
+
         }
     }
 
     private static boolean wLoginBool(String phone, String passwd) {
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+        return /*httpFutureTask.getHttpStatus()*/ true;
+       /* HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
                 .addRequestContent("phone", phone)
                 .addRequestContent("passwd", passwd).build();
         HttpFutureTask httpFutureTask = HttpClientThreadPool.getPoolInstance().submitRequestTask(build);
-        return httpFutureTask.getHttpStatus();
+        return httpFutureTask.getHttpStatus();*/
     }
 
     @FXML

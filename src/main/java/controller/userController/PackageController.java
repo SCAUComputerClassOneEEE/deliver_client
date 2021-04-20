@@ -3,6 +3,7 @@ package controller.userController;
 import com.alibaba.fastjson.JSONObject;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
+import component.beans.PackOrderBillInsertInfo;
 import component.beans.SimpleOrderInfoBar;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,6 +14,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -21,13 +24,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import service.ChangeService;
 import utils.http.HttpClientThreadPool;
 import utils.http.HttpFutureTask;
 import utils.http.HttpRequestCallable;
+import utils.image.QRCodeUtil;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.*;
 
 public class PackageController implements Initializable {
@@ -251,7 +261,133 @@ public class PackageController implements Initializable {
         });
     }
 
-    // 发送按钮
+    private void pacTypeOnlyOne(){
+        if(packages_send_packageType_file.isSelected()){
+            packages_send_packageType_electronic.setSelected(false);
+            packages_send_packageType_dailyUsing.setSelected(false);
+            packages_send_packageType_clothe.setSelected(false);
+            packages_send_packageType_fresh.setSelected(false);
+            packages_send_packageType_food.setSelected(false);
+            packages_send_packageType_fragile.setSelected(false);
+            packages_send_packageType_makeup.setSelected(false);
+            packages_send_packageType_medicine.setSelected(false);
+        }
+        else if (packages_send_packageType_electronic.isSelected()){
+
+        }
+
+    }
+
+    //提交按钮
+    @FXML
+    private  void addClickedActionSend() {
+
+        PackOrderBillInsertInfo packOrderBillInsertInfo = new PackOrderBillInsertInfo();
+            //发件人
+        packOrderBillInsertInfo.setsName(packages_send_shipper_name.getText().trim());
+        packOrderBillInsertInfo.setsPhoneNumber((packages_send_shipper_phone.getText().trim()));
+        packOrderBillInsertInfo.setDeparture((
+                packages_send_shipper_province.getValue().toString() +';'+packages_send_shipper_city.getValue().toString()+";"
+                            +packages_send_shipper_detailAddress.getText().trim()));
+
+            //发件人
+        packOrderBillInsertInfo.setcName(packages_send_consiggee_name.getText().trim());
+        packOrderBillInsertInfo.setcPhoneNumber(packages_send_consiggee_phone.getText().trim());
+        packOrderBillInsertInfo.setAddress(
+                    packages_send_consiggee_province.getValue().toString()+";"+packages_send_consiggee_city.getValue().toString()+";"
+                            +packages_send_consiggee_detailAddress.getText().trim());
+
+
+        int days = packages_send_serviceType_nextDay.isSelected() ? 1 :(packages_send_serviceType_nextNextDay.isSelected() ? 2 : 3);
+        Timestamp timestamp = new Timestamp(new Date().getTime() + days * 24 * 60 * 60 * 1000);
+
+        packOrderBillInsertInfo.setCommitArriveTime(timestamp);
+
+        //package info
+        {
+            if(packages_send_packageType_file.isSelected()){
+                packOrderBillInsertInfo.setPackType("file");
+
+            }else if(packages_send_packageType_electronic.isSelected()){
+                packOrderBillInsertInfo.setPackType("electronic");
+            }else if(packages_send_packageType_dailyUsing.isSelected()){
+                packOrderBillInsertInfo.setPackType("dailyUsing");
+
+            }else if(packages_send_packageType_clothe.isSelected()){
+                packOrderBillInsertInfo.setPackType("clothe");
+
+            }else if(packages_send_packageType_fresh.isSelected()){
+                packOrderBillInsertInfo.setPackType("fresh");
+
+            }else if (packages_send_packageType_food.isSelected()){
+                packOrderBillInsertInfo.setPackType("food");
+
+            }else if(packages_send_packageType_fragile.isSelected()){
+                packOrderBillInsertInfo.setPackType("fragile");
+
+            }else if(packages_send_packageType_makeup.isSelected()){
+                packOrderBillInsertInfo.setPackType("makeup");
+
+            }else if (packages_send_packageType_medicine.isSelected()){
+                packOrderBillInsertInfo.setPackType("makeup");
+
+            }else{
+                packOrderBillInsertInfo.setPackType("null");
+            }
+        }
+
+
+
+        packOrderBillInsertInfo.setDetailMess(packages_send_speacialPackage_detial.getText().trim());
+        packOrderBillInsertInfo.setDangerous(packages_send_speacialPackage_dangerous.isSelected());
+        packOrderBillInsertInfo.setInter(packages_send_speacialPackage_international.isSelected());
+        packOrderBillInsertInfo.setPackWeight(1.0);
+
+                //承诺到达
+        if(packages_send_serviceType_nextDay.isSelected()){
+            packOrderBillInsertInfo.setPackType("次日达");
+        }else if (packages_send_serviceType_nextNextDay.isSelected()){
+            packOrderBillInsertInfo.setPackType("后日达");
+        }else{
+            packOrderBillInsertInfo.setPackType("不需要特殊服务");
+        }
+                //bill info
+        //费用
+        if(packages_send_consiggee_province.getValue().toString().equals("广东省")){
+            packOrderBillInsertInfo.setCharge(8);
+        }else {
+            packOrderBillInsertInfo.setCharge(12);
+        }
+        //id
+        packOrderBillInsertInfo.setCustomerId( ChangeService.userLoginController.getCustomerId());///要用户名
+
+        Stage stage = new Stage();
+        BorderPane root = new BorderPane();
+        Scene scene = new Scene(root);
+        //立刻http请求
+        if(packages_send_payment_now.isSelected()){
+            packOrderBillInsertInfo.setPackType("pay now");
+            Image fxImage = QRCodeUtil.encode2FXImage("i love chenchtree.", null, true);
+
+            if (fxImage != null) {
+                root.setCenter(new ImageView(fxImage));
+            } else {
+                root.setCenter(new TextField("error qr."));
+            }
+        }else{
+            packOrderBillInsertInfo.setPackType("pay monthly");
+            root.setCenter(new TextField("进入待支付"));
+        }
+
+        System.out.println(packOrderBillInsertInfo);
+
+        stage.setScene(scene);
+        stage.show();
+        stage.setAlwaysOnTop(true);
+        stage.setResizable(false);
+    }
+
+  // 发送按钮
     @FXML
     private void sendExpress() {
         setAllInvisible();
@@ -262,6 +398,51 @@ public class PackageController implements Initializable {
     private void initSend(){
         addProvinceFun();
         addClickedAction2Protocol();
+        setAllSelectTrue();
+        ToggleGroup group = new ToggleGroup(); // 创建一个按钮小组
+        packages_send_serviceType_nextDay.setToggleGroup(group); // 把单选按钮1加入到按钮小组
+        packages_send_serviceType_nextNextDay.setToggleGroup(group); // 把单选按钮2加入到按钮小组
+        packages_send_serviceType_not.setToggleGroup(group); // 把单选按钮3加入到按钮小组
+
+        ToggleGroup group1 = new ToggleGroup(); // 创建一个按钮小组
+        packages_send_payment_monthly.setToggleGroup(group1); // 把单选按钮1加入到按钮小组
+        packages_send_payment_now.setToggleGroup(group1); // 把单选按钮2加入到按钮小组
+
+        ArrayList<CheckBox> checkBoxes1=new ArrayList<>();
+        Collections.addAll(checkBoxes1,packages_send_packageType_file,packages_send_packageType_electronic,packages_send_packageType_dailyUsing,
+                packages_send_packageType_clothe,packages_send_packageType_fragile,packages_send_packageType_fresh,packages_send_packageType_food,
+                packages_send_packageType_makeup,packages_send_packageType_medicine);
+        我来露一手(checkBoxes1);
+
+        ArrayList<CheckBox> checkBoxes2=new ArrayList<>();
+        Collections.addAll(checkBoxes2,packages_send_speacialPackage_international,packages_send_speacialPackage_dangerous,packages_send_speacialPackage_not);
+        我来露一手(checkBoxes2);
+
+
+
+
+
+
+    }
+
+    private void 我来露一手(ArrayList<CheckBox> checkBoxes){
+        checkBoxes.forEach(e->{
+            e.setOnMouseClicked(event -> {
+                if (e.isSelected()) { //未被选择的情况
+                    checkBoxes.forEach(o -> {
+                        o.setSelected(false);
+                        o.setDisable(true);
+                    });
+                    e.setSelected(true);
+                    e.setDisable(false);
+                }else {
+                    checkBoxes.forEach(o -> {
+                        o.setSelected(false);
+                        o.setDisable(false);
+                    });
+                }
+            });
+        });
     }
 
     /**
@@ -327,6 +508,16 @@ public class PackageController implements Initializable {
         packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(241,241,241);");
+
+
+        packages_personal_textfiled_againPassword.setEditable(false);
+        packages_personal_textfiled_street.setEditable(false);
+        packages_personal_textfiled_account.setEditable(false);
+        packages_personal_textfiled_city.setEditable(false);
+        packages_personal_textfiled_customerName.setEditable(false);
+        packages_personal_textfiled_customerPhone.setEditable(false);
+        packages_personal_textfiled_detailAddress.setEditable(false);
+        packages_personal_textfiled_password.setEditable(false);
     }
 
     @FXML
@@ -351,6 +542,24 @@ public class PackageController implements Initializable {
         packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(255,255,255);");
         packages_personal_textfiled_street.setStyle("-fx-background-color: rgb(255,255,255);");
         packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(255,255,255);");
+
+        packages_personal_textfiled_againPassword.setEditable(true);
+        packages_personal_textfiled_street.setEditable(true);
+        packages_personal_textfiled_account.setEditable(true);
+        packages_personal_textfiled_city.setEditable(true);
+        packages_personal_textfiled_customerName.setEditable(true);
+        packages_personal_textfiled_customerPhone.setEditable(true);
+        packages_personal_textfiled_detailAddress.setEditable(true);
+        packages_personal_textfiled_password.setEditable(true);
+    }
+
+    @FXML
+    private void uploadAction(){
+        packages_personal_btn_upload.setOnMouseClicked(event -> {
+            FileChooser fileChooser = new FileChooser();
+                FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
+                        "jpg files (*.jpg)","*.jpg","*.png","");
+        });
     }
 
     private void initPersonal(){
@@ -368,15 +577,45 @@ public class PackageController implements Initializable {
 
     }
 
+
+
     /**
      * 将所有界面调至不可见
      */
+
+
+
     private void setAllInvisible() {
         packages_package_scrollPane.setVisible(false);
         packages_send_scrollPane.setVisible(false);
         packages_bill_scrollPane.setVisible(false);
         packages_notes_scrollPane.setVisible(false);
         packages_personal_scrollPane.setVisible(false);
+    }
+
+    private  void  setAllSelectedFalse(){
+        packages_send_packageType_file.setDisable(true);
+        packages_send_packageType_electronic.setDisable(true);
+        packages_send_packageType_dailyUsing.setDisable(true);
+        packages_send_packageType_clothe.setDisable(true);
+        packages_send_packageType_fresh.setDisable(true);
+        packages_send_packageType_food.setDisable(true);
+        packages_send_packageType_fragile.setDisable(true);
+        packages_send_packageType_makeup.setDisable(true);
+        packages_send_packageType_medicine.setDisable(true);
+    }
+
+    private void setAllSelectTrue(){
+        packages_send_packageType_file.setDisable(false);
+        packages_send_packageType_electronic.setDisable(false);
+        packages_send_packageType_dailyUsing.setDisable(false);
+        packages_send_packageType_clothe.setDisable(false);
+        packages_send_packageType_fresh.setDisable(false);
+        packages_send_packageType_food.setDisable(false);
+        packages_send_packageType_fragile.setDisable(false);
+        packages_send_packageType_makeup.setDisable(false);
+        packages_send_packageType_medicine.setDisable(false);
+
     }
 
     /**
@@ -487,8 +726,6 @@ public class PackageController implements Initializable {
     @FXML
     private CheckBox packages_send_packageType_medicine;
 
-    @FXML
-    private CheckBox packages_send_packageType_other;
 
     @FXML
     private  TextField packages_send_packageType_other_details;
@@ -530,7 +767,14 @@ public class PackageController implements Initializable {
     private RadioButton packages_send_payment_now;
 
     @FXML
-    private RadioButton packages_send_serviceType_monthly;
+    private RadioButton packages_send_payment_monthly;
+
+    /*
+    提交订单
+     */
+
+    @FXML
+    private Button packages_send_btn_send;
 
     /*
     服务协议

@@ -57,7 +57,7 @@
                         <VBox fx:id="packages_show_vBox" prefHeight="565.0" prefWidth="749.0" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="725.0" prefWidth="932.0" visible="false">
+                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="725.0" prefWidth="932.0">
                      <content>
                       <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="709.0" prefWidth="929.0">
                            <children>
@@ -86,10 +86,8 @@
                               <CheckBox fx:id="packages_send_packageType_fragile" layoutX="398.0" layoutY="440.0" mnemonicParsing="false" text="易碎品" />
                               <CheckBox fx:id="packages_send_packageType_makeup" layoutX="529.0" layoutY="440.0" mnemonicParsing="false" text="化妆品" />
                               <CheckBox fx:id="packages_send_packageType_medicine" layoutX="164.0" layoutY="483.0" mnemonicParsing="false" text="药品" />
-                              <CheckBox fx:id="packages_send_packageType_other" layoutX="268.0" layoutY="483.0" mnemonicParsing="false" text="其他" />
                               <Text layoutX="337.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <TextField fx:id="packages_send_packageType_other_details" layoutX="334.0" layoutY="479.0" prefHeight="18.0" prefWidth="93.0" promptText="(描述)" />
-                              <Button layoutX="769.0" layoutY="666.0" mnemonicParsing="false" text="提交" />
+                              <Button fx:id="packages_send_btn_send" layoutX="769.0" layoutY="666.0" mnemonicParsing="false" onAction="#addClickedActionSend" text="提交" />
                               <RadioButton layoutX="33.0" layoutY="661.0" mnemonicParsing="false" text="我已同意并接受" />
                               <Text fx:id="protocol" fill="#2618e4" layoutX="176.0" layoutY="677.0" strokeType="OUTSIDE" strokeWidth="0.0" text="《快递服务协议》" underline="true" />
                               <Text layoutX="37.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="service type:" wrappingWidth="97.13671875" />
@@ -103,12 +101,11 @@
                               <Text layoutX="51.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="province:" />
                               <Text layoutX="333.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
                               <RadioButton fx:id="packages_send_serviceType_not" layoutX="374.0" layoutY="577.0" mnemonicParsing="false" text="不需要以上两种服务" />
-                              <CheckBox fx:id="packages_send_speacialPackage_other" layoutX="573.0" layoutY="531.0" mnemonicParsing="false" text="备注" />
-                              <TextField fx:id="packages_send_speacialPackage_detial" layoutX="637.0" layoutY="527.0" prefHeight="28.0" prefWidth="88.0" promptText="(描述)" />
-                              <CheckBox fx:id="packages_send_speacialPackage_not" layoutX="759.0" layoutY="530.0" mnemonicParsing="false" text="非特殊包裹" />
+                              <TextField fx:id="packages_send_speacialPackage_detial" layoutX="575.0" layoutY="527.0" prefHeight="27.0" prefWidth="142.0" promptText="(以上两项的描述)" />
+                              <CheckBox fx:id="packages_send_speacialPackage_not" layoutX="743.0" layoutY="532.0" mnemonicParsing="false" text="非特殊包裹" />
                               <Text layoutX="35.0" layoutY="632.0" strokeType="OUTSIDE" strokeWidth="0.0" text="payment：" />
                               <RadioButton fx:id="packages_send_payment_now" layoutX="177.0" layoutY="616.0" mnemonicParsing="false" text="now" />
-                              <RadioButton fx:id="packages_send_serviceType_monthly" layoutX="283.0" layoutY="616.0" mnemonicParsing="false" text="monthly" />
+                              <RadioButton fx:id="packages_send_payment_monthly" layoutX="283.0" layoutY="616.0" mnemonicParsing="false" text="monthly" />
                               <ComboBox fx:id="packages_send_shipper_province" layoutX="113.0" layoutY="105.0" prefHeight="8.0" prefWidth="137.0" />
                               <ComboBox fx:id="packages_send_shipper_city" layoutX="363.0" layoutY="105.0" prefHeight="20.0" prefWidth="143.0" />
                               <ComboBox fx:id="packages_send_consiggee_province" layoutX="125.0" layoutY="281.0" prefHeight="8.0" prefWidth="137.0" />
@@ -151,9 +148,9 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="564.0" prefWidth="753.0" visible="false">
+                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0" visible="false">
                     <content>
-                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="741.0" style="-fx-background-color: 000000;">
+                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="930.0" style="-fx-background-color: 000000;" visible="false">
                            <children>
                               <ImageView fitHeight="126.0" fitWidth="124.0" layoutX="36.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -194,11 +191,11 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0">
+                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0" visible="false">
                      <content>
                         <VBox prefHeight="721.0" prefWidth="926.0">
                            <children>
-                              <AnchorPane maxHeight="94.0" maxWidth="926.0" minHeight="94.0" minWidth="926.0" prefHeight="94.0" prefWidth="926.0">
+                              <AnchorPane maxHeight="94.0" maxWidth="926.0" minHeight="94.0" minWidth="926.0" prefHeight="94.0" prefWidth="926.0" visible="false">
                                  <children>
                                     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="55.0" layoutX="22.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="53.0" />
                                     <Label layoutX="770.0" layoutY="60.0" text="2021/4/20 14:59" />
