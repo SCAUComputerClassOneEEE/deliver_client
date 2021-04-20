@@ -41,6 +41,8 @@ import java.sql.Timestamp;
 import java.util.*;
 
 public class PackageController implements Initializable {
+    private ArrayList<CheckBox> checkBoxes1 = new ArrayList<>();
+    private ArrayList<CheckBox> checkBoxes2 = new ArrayList<>();
     HttpClientThreadPool poolInstance = HttpClientThreadPool.getPoolInstance();
 
     interface Region {
@@ -104,6 +106,7 @@ public class PackageController implements Initializable {
 
     /**
      * 自动初始化函数
+     *
      * @param location
      * @param resources
      */
@@ -127,15 +130,16 @@ public class PackageController implements Initializable {
     /*
     本类是client的大头，该类是主要界面的控制器，存放大量界面功能逻辑代码，具体代码可以分块阅读，互不干扰
      */
+
     /**
      * 第零个功能
      * 属于整个大的面板的控件
      */
-    private void get0(){
+    private void get0() {
         getBigPaneFXML();
     }
 
-    private void initBigPane(){
+    private void initBigPane() {
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
         ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
@@ -158,7 +162,7 @@ public class PackageController implements Initializable {
      * 第一个功能
      * package按钮及其对应界面的控件与功能函数 --sky实现
      */
-    private void get1(){
+    private void get1() {
         getPackageFXML();
     }
 
@@ -205,7 +209,7 @@ public class PackageController implements Initializable {
     }
 
     // 给查询包裹的Scroll添加滑动到底部的监听器
-    private void addAction2Scroll(){
+    private void addAction2Scroll() {
         /*将订单列表容器加到anchor中 --sky*/
         this.packages_package_scrollPane.vvalueProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -219,7 +223,7 @@ public class PackageController implements Initializable {
         });
     }
 
-    private void initPackage(){
+    private void initPackage() {
         addAction2Scroll();
     }
 
@@ -227,13 +231,13 @@ public class PackageController implements Initializable {
      * 第二个功能
      * send --csy实现
      */
-    private void get2(){
+    private void get2() {
         getSendFXML();
     }
     /* send 模块功能函数 */
 
     // 省部下拉级联
-    private void addProvinceFun(){
+    private void addProvinceFun() {
         packages_send_shipper_province.setItems(FXCollections.observableArrayList(provs));
 
         packages_send_consiggee_province.setItems(FXCollections.observableArrayList(provs));
@@ -250,7 +254,7 @@ public class PackageController implements Initializable {
     }
 
     // 老卢丢了不负责
-    private void addClickedAction2Protocol(){
+    private void addClickedAction2Protocol() {
         protocol.setOnMouseClicked(event -> {
             Stage stage = new Stage();
             BorderPane root = new BorderPane();
@@ -261,8 +265,8 @@ public class PackageController implements Initializable {
         });
     }
 
-    private void pacTypeOnlyOne(){
-        if(packages_send_packageType_file.isSelected()){
+    private void pacTypeOnlyOne() {
+        if (packages_send_packageType_file.isSelected()) {
             packages_send_packageType_electronic.setSelected(false);
             packages_send_packageType_dailyUsing.setSelected(false);
             packages_send_packageType_clothe.setSelected(false);
@@ -271,8 +275,7 @@ public class PackageController implements Initializable {
             packages_send_packageType_fragile.setSelected(false);
             packages_send_packageType_makeup.setSelected(false);
             packages_send_packageType_medicine.setSelected(false);
-        }
-        else if (packages_send_packageType_electronic.isSelected()){
+        } else if (packages_send_packageType_electronic.isSelected()) {
 
         }
 
@@ -280,62 +283,43 @@ public class PackageController implements Initializable {
 
     //提交按钮
     @FXML
-    private  void addClickedActionSend() {
+    private void addClickedActionSend() {
 
         PackOrderBillInsertInfo packOrderBillInsertInfo = new PackOrderBillInsertInfo();
-            //发件人
+        //发件人
         packOrderBillInsertInfo.setsName(packages_send_shipper_name.getText().trim());
         packOrderBillInsertInfo.setsPhoneNumber((packages_send_shipper_phone.getText().trim()));
         packOrderBillInsertInfo.setDeparture((
-                packages_send_shipper_province.getValue().toString() +';'+packages_send_shipper_city.getValue().toString()+";"
-                            +packages_send_shipper_detailAddress.getText().trim()));
+                packages_send_shipper_province.getValue().toString() + ';' + packages_send_shipper_city.getValue().toString() + ";"
+                        + packages_send_shipper_detailAddress.getText().trim()));
 
-            //发件人
+        //发件人
         packOrderBillInsertInfo.setcName(packages_send_consiggee_name.getText().trim());
         packOrderBillInsertInfo.setcPhoneNumber(packages_send_consiggee_phone.getText().trim());
         packOrderBillInsertInfo.setAddress(
-                    packages_send_consiggee_province.getValue().toString()+";"+packages_send_consiggee_city.getValue().toString()+";"
-                            +packages_send_consiggee_detailAddress.getText().trim());
+                packages_send_consiggee_province.getValue().toString() + ";" + packages_send_consiggee_city.getValue().toString() + ";"
+                        + packages_send_consiggee_detailAddress.getText().trim());
 
 
-        int days = packages_send_serviceType_nextDay.isSelected() ? 1 :(packages_send_serviceType_nextNextDay.isSelected() ? 2 : 3);
+        int days = packages_send_serviceType_nextDay.isSelected() ? 1 : (packages_send_serviceType_nextNextDay.isSelected() ? 2 : 3);
         Timestamp timestamp = new Timestamp(new Date().getTime() + days * 24 * 60 * 60 * 1000);
 
         packOrderBillInsertInfo.setCommitArriveTime(timestamp);
 
         //package info
-        {
-            if(packages_send_packageType_file.isSelected()){
-                packOrderBillInsertInfo.setPackType("file");
-
-            }else if(packages_send_packageType_electronic.isSelected()){
-                packOrderBillInsertInfo.setPackType("electronic");
-            }else if(packages_send_packageType_dailyUsing.isSelected()){
-                packOrderBillInsertInfo.setPackType("dailyUsing");
-
-            }else if(packages_send_packageType_clothe.isSelected()){
-                packOrderBillInsertInfo.setPackType("clothe");
-
-            }else if(packages_send_packageType_fresh.isSelected()){
-                packOrderBillInsertInfo.setPackType("fresh");
-
-            }else if (packages_send_packageType_food.isSelected()){
-                packOrderBillInsertInfo.setPackType("food");
-
-            }else if(packages_send_packageType_fragile.isSelected()){
-                packOrderBillInsertInfo.setPackType("fragile");
-
-            }else if(packages_send_packageType_makeup.isSelected()){
-                packOrderBillInsertInfo.setPackType("makeup");
-
-            }else if (packages_send_packageType_medicine.isSelected()){
-                packOrderBillInsertInfo.setPackType("makeup");
-
-            }else{
-                packOrderBillInsertInfo.setPackType("null");
+        //传是哪一种包裹类型
+        boolean flag = false;
+        for (CheckBox e : checkBoxes1) {
+            if (e.isSelected()) {
+                packOrderBillInsertInfo.setPackType(e.getText());
+                flag = true;
+                break;
             }
         }
 
+        if (!flag) {
+            packOrderBillInsertInfo.setPackType("null");
+        }
 
 
         packOrderBillInsertInfo.setDetailMess(packages_send_speacialPackage_detial.getText().trim());
@@ -343,29 +327,29 @@ public class PackageController implements Initializable {
         packOrderBillInsertInfo.setInter(packages_send_speacialPackage_international.isSelected());
         packOrderBillInsertInfo.setPackWeight(1.0);
 
-                //承诺到达
-        if(packages_send_serviceType_nextDay.isSelected()){
+        //承诺到达
+        if (packages_send_serviceType_nextDay.isSelected()) {
             packOrderBillInsertInfo.setPackType("次日达");
-        }else if (packages_send_serviceType_nextNextDay.isSelected()){
+        } else if (packages_send_serviceType_nextNextDay.isSelected()) {
             packOrderBillInsertInfo.setPackType("后日达");
-        }else{
+        } else {
             packOrderBillInsertInfo.setPackType("不需要特殊服务");
         }
-                //bill info
+        //bill info
         //费用
-        if(packages_send_consiggee_province.getValue().toString().equals("广东省")){
+        if (packages_send_consiggee_province.getValue().toString().equals("广东省")) {
             packOrderBillInsertInfo.setCharge(8);
-        }else {
+        } else {
             packOrderBillInsertInfo.setCharge(12);
         }
         //id
-        packOrderBillInsertInfo.setCustomerId( ChangeService.userLoginController.getCustomerId());///要用户名
+        packOrderBillInsertInfo.setCustomerId(ChangeService.userLoginController.getCustomerId());///要用户名
 
         Stage stage = new Stage();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root);
         //立刻http请求
-        if(packages_send_payment_now.isSelected()){
+        if (packages_send_payment_now.isSelected()) {
             packOrderBillInsertInfo.setPackType("pay now");
             Image fxImage = QRCodeUtil.encode2FXImage("i love chenchtree.", null, true);
 
@@ -374,7 +358,7 @@ public class PackageController implements Initializable {
             } else {
                 root.setCenter(new TextField("error qr."));
             }
-        }else{
+        } else {
             packOrderBillInsertInfo.setPackType("pay monthly");
             root.setCenter(new TextField("进入待支付"));
         }
@@ -387,7 +371,7 @@ public class PackageController implements Initializable {
         stage.setResizable(false);
     }
 
-  // 发送按钮
+    // 发送按钮
     @FXML
     private void sendExpress() {
         setAllInvisible();
@@ -395,7 +379,7 @@ public class PackageController implements Initializable {
         packages_send_anchorPane.setVisible(true);
     }
 
-    private void initSend(){
+    private void initSend() {
         addProvinceFun();
         addClickedAction2Protocol();
         setAllSelectTrue();
@@ -408,25 +392,21 @@ public class PackageController implements Initializable {
         packages_send_payment_monthly.setToggleGroup(group1); // 把单选按钮1加入到按钮小组
         packages_send_payment_now.setToggleGroup(group1); // 把单选按钮2加入到按钮小组
 
-        ArrayList<CheckBox> checkBoxes1=new ArrayList<>();
-        Collections.addAll(checkBoxes1,packages_send_packageType_file,packages_send_packageType_electronic,packages_send_packageType_dailyUsing,
-                packages_send_packageType_clothe,packages_send_packageType_fragile,packages_send_packageType_fresh,packages_send_packageType_food,
-                packages_send_packageType_makeup,packages_send_packageType_medicine);
+
+        Collections.addAll(checkBoxes1, packages_send_packageType_file, packages_send_packageType_electronic, packages_send_packageType_dailyUsing,
+                packages_send_packageType_clothe, packages_send_packageType_fragile, packages_send_packageType_fresh, packages_send_packageType_food,
+                packages_send_packageType_makeup, packages_send_packageType_medicine);
         我来露一手(checkBoxes1);
 
-        ArrayList<CheckBox> checkBoxes2=new ArrayList<>();
-        Collections.addAll(checkBoxes2,packages_send_speacialPackage_international,packages_send_speacialPackage_dangerous,packages_send_speacialPackage_not);
+
+        Collections.addAll(checkBoxes2, packages_send_speacialPackage_international, packages_send_speacialPackage_dangerous, packages_send_speacialPackage_not);
         我来露一手(checkBoxes2);
-
-
-
-
 
 
     }
 
-    private void 我来露一手(ArrayList<CheckBox> checkBoxes){
-        checkBoxes.forEach(e->{
+    private void 我来露一手(ArrayList<CheckBox> checkBoxes) {
+        checkBoxes.forEach(e -> {
             e.setOnMouseClicked(event -> {
                 if (e.isSelected()) { //未被选择的情况
                     checkBoxes.forEach(o -> {
@@ -435,7 +415,7 @@ public class PackageController implements Initializable {
                     });
                     e.setSelected(true);
                     e.setDisable(false);
-                }else {
+                } else {
                     checkBoxes.forEach(o -> {
                         o.setSelected(false);
                         o.setDisable(false);
@@ -449,25 +429,27 @@ public class PackageController implements Initializable {
      * 第三个功能
      * bill --sky实现
      */
-    private void get3(){
+    private void get3() {
         getBillFXML();
     }
+
     // 全选按钮的功能
     @FXML
-    private void allBillAction(){
-        if (allBill.isSelected()){
-            orderBillVbox.getChildren().forEach(o-> ((OrderBillRecordPane)o).getIsSelected().setSelected(true));
+    private void allBillAction() {
+        if (allBill.isSelected()) {
+            orderBillVbox.getChildren().forEach(o -> ((OrderBillRecordPane) o).getIsSelected().setSelected(true));
             OrderBillRecordPane.selectNum = orderBillVbox.getChildren().size();
-        }else {
-            orderBillVbox.getChildren().forEach(o-> ((OrderBillRecordPane)o).getIsSelected().setSelected(false));
+        } else {
+            orderBillVbox.getChildren().forEach(o -> ((OrderBillRecordPane) o).getIsSelected().setSelected(false));
             OrderBillRecordPane.selectNum = 0;
         }
     }
 
     // 同步全选按钮
-    public void synchronizeAllAction(int selectNum){
+    public void synchronizeAllAction(int selectNum) {
         allBill.setSelected(selectNum == orderBillVbox.getChildren().size());
     }
+
     @FXML
     private void queryBill() {
         setAllInvisible();
@@ -479,7 +461,7 @@ public class PackageController implements Initializable {
         orderBillVbox.getChildren().add(new OrderBillRecordPane());
     }
 
-    private void initBill(){
+    private void initBill() {
 
     }
 
@@ -487,7 +469,7 @@ public class PackageController implements Initializable {
      * 第四个功能
      * personal --csy实现
      */
-    private void get4(){
+    private void get4() {
         getPersonalFXML();
     }
 
@@ -502,7 +484,6 @@ public class PackageController implements Initializable {
         packages_personal_btn_save.setVisible(false);
         packages_personal_textfiled_againPassword.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_street.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_account.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_city.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(241,241,241);");
         packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(241,241,241);");
@@ -554,35 +535,34 @@ public class PackageController implements Initializable {
     }
 
     @FXML
-    private void uploadAction(){
+    private void uploadAction() {
         packages_personal_btn_upload.setOnMouseClicked(event -> {
             FileChooser fileChooser = new FileChooser();
-                FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
-                        "jpg files (*.jpg)","*.jpg","*.png","");
+            FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
+                    "jpg files (*.jpg)", "*.jpg", "*.png", "");
         });
     }
 
-    private void initPersonal(){
+    private void initPersonal() {
 
     }
+
     /**
      * 第五个功能
      * note --未实现
      */
-    private void get5(){
+    private void get5() {
         getNoteFXML();
     }
 
-    private void initNote(){
+    private void initNote() {
 
     }
-
 
 
     /**
      * 将所有界面调至不可见
      */
-
 
 
     private void setAllInvisible() {
@@ -593,7 +573,7 @@ public class PackageController implements Initializable {
         packages_personal_scrollPane.setVisible(false);
     }
 
-    private  void  setAllSelectedFalse(){
+    private void setAllSelectedFalse() {
         packages_send_packageType_file.setDisable(true);
         packages_send_packageType_electronic.setDisable(true);
         packages_send_packageType_dailyUsing.setDisable(true);
@@ -605,7 +585,7 @@ public class PackageController implements Initializable {
         packages_send_packageType_medicine.setDisable(true);
     }
 
-    private void setAllSelectTrue(){
+    private void setAllSelectTrue() {
         packages_send_packageType_file.setDisable(false);
         packages_send_packageType_electronic.setDisable(false);
         packages_send_packageType_dailyUsing.setDisable(false);
@@ -623,7 +603,9 @@ public class PackageController implements Initializable {
      */
 
     // 0
-    private void getBigPaneFXML(){}
+    private void getBigPaneFXML() {
+    }
+
     @FXML
     private Text user_text_welcome;
 
@@ -635,7 +617,9 @@ public class PackageController implements Initializable {
 
 
     // 1
-    private void getPackageFXML(){}
+    private void getPackageFXML() {
+    }
+
     @FXML
     private Button user_btn_package;
 
@@ -651,7 +635,9 @@ public class PackageController implements Initializable {
     private VBox packages_show_vBox;
 
     // 2
-    private void getSendFXML(){}
+    private void getSendFXML() {
+    }
+
     @FXML
     private AnchorPane packages_send_anchorPane;
 
@@ -728,25 +714,25 @@ public class PackageController implements Initializable {
 
 
     @FXML
-    private  TextField packages_send_packageType_other_details;
+    private TextField packages_send_packageType_other_details;
 
     /*
     有关包裹特殊性的描述
      */
     @FXML
-    private  CheckBox packages_send_speacialPackage_international;
+    private CheckBox packages_send_speacialPackage_international;
 
     @FXML
-    private  CheckBox packages_send_speacialPackage_dangerous;
+    private CheckBox packages_send_speacialPackage_dangerous;
 
     @FXML
-    private  CheckBox packages_send_speacialPackage_other;
+    private CheckBox packages_send_speacialPackage_other;
 
     @FXML
-    private  CheckBox packages_send_speacialPackage_not;
+    private CheckBox packages_send_speacialPackage_not;
 
     @FXML
-    private  TextField packages_send_speacialPackage_detial;
+    private TextField packages_send_speacialPackage_detial;
 
     /*
     有关包裹时间限制的描述
@@ -783,7 +769,9 @@ public class PackageController implements Initializable {
     private Text protocol;
 
     // 3
-    private void getBillFXML(){}
+    private void getBillFXML() {
+    }
+
     @FXML
     private ScrollPane packages_bill_scrollPane;
 
@@ -800,7 +788,9 @@ public class PackageController implements Initializable {
     private CheckBox allBill;
 
     // 4
-    private void getPersonalFXML(){}
+    private void getPersonalFXML() {
+    }
+
     // 面板
     @FXML
     private ScrollPane packages_personal_scrollPane;
@@ -848,7 +838,9 @@ public class PackageController implements Initializable {
     private Text packages_personal_text_again;
 
     // 5
-    private void getNoteFXML(){}
+    private void getNoteFXML() {
+    }
+
     @FXML
     private AnchorPane packages_notes_anchorPane;
 
