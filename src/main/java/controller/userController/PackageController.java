@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import component.NoteSimpleRecordPane;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
+import component.beans.Customer;
 import component.beans.PackOrderBillInsertInfo;
 import component.beans.SimpleOrderInfoBar;
 import javafx.beans.value.ChangeListener;
@@ -26,8 +27,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.ChangeService;
+import sun.misc.BASE64Encoder;
 import utils.http.HttpClientThreadPool;
 import utils.http.HttpFutureTask;
 import utils.http.HttpRequestCallable;
@@ -35,6 +38,8 @@ import utils.image.QRCodeUtil;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.ByteBuffer;
+import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -283,6 +288,7 @@ public class PackageController implements Initializable {
     @FXML
     private void addClickedActionSend() {
 
+
         PackOrderBillInsertInfo packOrderBillInsertInfo = new PackOrderBillInsertInfo();
         //发件人
         packOrderBillInsertInfo.setsName(packages_send_shipper_name.getText().trim());
@@ -346,7 +352,8 @@ public class PackageController implements Initializable {
         Stage stage = new Stage();
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root);
-        //立刻http请求
+
+
         if (packages_send_payment_now.isSelected()) {
             packOrderBillInsertInfo.setPackType("pay now");
             Image fxImage = QRCodeUtil.encode2FXImage("i love chenchtree.", null, true);
@@ -360,6 +367,14 @@ public class PackageController implements Initializable {
             packOrderBillInsertInfo.setPackType("pay monthly");
             root.setCenter(new TextField("进入待支付"));
         }
+
+        /*
+         *
+         *
+         * http
+         *
+         *
+         * */
 
         System.out.println(packOrderBillInsertInfo);
 
@@ -530,12 +545,58 @@ public class PackageController implements Initializable {
     private void uploadAction() {
         packages_personal_btn_upload.setOnMouseClicked(event -> {
             FileChooser fileChooser = new FileChooser();
-            FileChooser.ExtensionFilter imageFilter = new FileChooser.ExtensionFilter(
-                    "jpg files (*.jpg)", "*.jpg", "*.png", "");
+            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images" ,"."),
+                    new FileChooser.ExtensionFilter("JPG","*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG","*.png"));
+            fileChooser.setInitialDirectory(new File(System.getProperty("C:/Users/Public/Desktop")));
+            Stage stage = new Stage();
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            File file = fileChooser.showOpenDialog(stage);
+            try {
+                FileInputStream fileInputStream = new FileInputStream(file);
+                byte[] fileBytes = new byte[(int)file.length()];
+                fileInputStream.read(fileBytes);
+                String avatar = Base64.getEncoder().encodeToString(fileBytes);
+                ChangeService.userLoginController.getCustomer().setAvatar(avatar);
+
+                /*
+                *
+                *
+                * http
+                *
+                *
+                * */
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         });
     }
 
+    //初始化客户的信息
     private void initPersonal() {
+
+        Customer customer = ChangeService.userLoginController.getCustomer();
+        if (customer != null) {
+            packages_personal_textfiled_customerName.setText(customer.getCustomerName());
+            packages_personal_textfiled_city.setText(customer.getCity());
+            packages_personal_textfiled_street.setText(customer.getStreet());
+            packages_personal_textfiled_detailAddress.setText(customer.getDetailAddress());
+            packages_personal_textfiled_customerPhone.setText(customer.getCustomerPhoneNumber().toString());
+            packages_personal_textfiled_account.setText(customer.getAccount());
+            packages_personal_textfiled_password.setText(customer.getCustomerPassword());
+            String avatar = customer.getAvatar();
+            if (avatar != null && avatar.equals("")) {
+                byte[] decode = Base64.getDecoder().decode(avatar);
+                ByteArrayInputStream inputStream = new ByteArrayInputStream(decode);
+                packages_personal_avatar.setImage(new Image(inputStream));
+            } else {
+                packages_personal_avatar.setImage(
+                        new Image(PackageController.class.getResourceAsStream("picture/头像1.jpg")));
+            }
+        }
 
     }
 
@@ -831,6 +892,9 @@ public class PackageController implements Initializable {
 
     @FXML
     private TextField packages_personal_textfiled_customerName;
+
+    @FXML
+    private ImageView packages_personal_avatar;
 
     @FXML
     private Text packages_personal_text_again;

@@ -33,14 +33,14 @@ public class UserLoginController {
     private void userLogin() throws Exception {
         String userPhone=user_text_phone.getText();
         String userPassword=user_text_password.getText();
-
-        customer = wLoginBool(userPhone, userPassword);
-        if (customer != null)
-            AfterLoginAction.PackageShow();
-        else {
-            user_text_password.setText("");
-
-        }
+        AfterLoginAction.PackageShow();
+//        customer = wLoginBool(userPhone, userPassword);
+//        if (customer != null)
+//            AfterLoginAction.PackageShow();
+//        else {
+//            user_text_password.setText("");
+//
+//        }
     }
 
     public long getCustomerId() {

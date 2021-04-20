@@ -11,9 +11,18 @@ public class Customer {
     private String street;
     private String detailAddress;
     private String account;
+    private String avatar;
 
     public Customer(JSONObject parse) {
 
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public Long getCustomerId() {
