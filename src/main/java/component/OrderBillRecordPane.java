@@ -25,7 +25,7 @@ public class OrderBillRecordPane extends AnchorPane {
         orderCreateTime = new Label("2018-10-15 12:45:67");
         receiver = new Label("陈思宇");
         orderStatus = new Label("已签收");
-        paidType = new Label("月付");
+        //paidType = new Label("月付"); 这个应该不用了如果只有月付的话
         charge = new Label("12");
         init();
     }
