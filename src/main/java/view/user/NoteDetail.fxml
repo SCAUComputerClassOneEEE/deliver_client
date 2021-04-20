@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.NoteDetailController">
+   <content>
+      <VBox fx:id="parent" prefHeight="221.0" prefWidth="481.0">
+         <children>
+            <AnchorPane prefHeight="225.0" prefWidth="481.0">
+               <children>
+                  <Line endX="455.0" layoutY="56.0" />
+                  <Label layoutX="183.0" layoutY="6.0" prefHeight="36.0" prefWidth="115.0" text="通知详情" textFill="#030303">
+                     <font>
+                        <Font size="27.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="orderId" layoutX="14.0" layoutY="67.0" text="运单号：1568848457745" />
+                  <Label fx:id="send2ReceivePath" layoutX="20.0" layoutY="106.0" text="你的包裹出事了" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

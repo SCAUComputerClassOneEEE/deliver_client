@@ -1,6 +1,7 @@
 package controller.userController;
 
 import com.alibaba.fastjson.JSONObject;
+import component.NoteSimpleRecordPane;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
 import component.beans.PackOrderBillInsertInfo;
@@ -25,7 +26,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.ChangeService;
 import utils.http.HttpClientThreadPool;
@@ -33,8 +33,6 @@ import utils.http.HttpFutureTask;
 import utils.http.HttpRequestCallable;
 import utils.image.QRCodeUtil;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.sql.Timestamp;
@@ -396,16 +394,16 @@ public class PackageController implements Initializable {
         Collections.addAll(checkBoxes1, packages_send_packageType_file, packages_send_packageType_electronic, packages_send_packageType_dailyUsing,
                 packages_send_packageType_clothe, packages_send_packageType_fragile, packages_send_packageType_fresh, packages_send_packageType_food,
                 packages_send_packageType_makeup, packages_send_packageType_medicine);
-        我来露一手(checkBoxes1);
+        addListener2Checkbox(checkBoxes1);
 
 
         Collections.addAll(checkBoxes2, packages_send_speacialPackage_international, packages_send_speacialPackage_dangerous, packages_send_speacialPackage_not);
-        我来露一手(checkBoxes2);
+        addListener2Checkbox(checkBoxes2);
 
 
     }
 
-    private void 我来露一手(ArrayList<CheckBox> checkBoxes) {
+    private void addListener2Checkbox(ArrayList<CheckBox> checkBoxes) {
         checkBoxes.forEach(e -> {
             e.setOnMouseClicked(event -> {
                 if (e.isSelected()) { //未被选择的情况
@@ -501,12 +499,6 @@ public class PackageController implements Initializable {
         packages_personal_textfiled_password.setEditable(false);
     }
 
-    @FXML
-    private void systemNotification() {
-        setAllInvisible();
-        packages_notes_anchorPane.setVisible(true);
-        packages_notes_anchorPane.setVisible(true);
-    }
 
     @FXML
     private void modifiedAction() {
@@ -559,6 +551,12 @@ public class PackageController implements Initializable {
 
     }
 
+    @FXML
+    private void systemNotification() {
+        setAllInvisible();
+        packages_notes_scrollPane.setVisible(true);
+        noteVbox.getChildren().add(new NoteSimpleRecordPane());
+    }
 
     /**
      * 将所有界面调至不可见
@@ -842,7 +840,7 @@ public class PackageController implements Initializable {
     }
 
     @FXML
-    private AnchorPane packages_notes_anchorPane;
+    private VBox noteVbox;
 
     @FXML
     private ScrollPane packages_notes_scrollPane;
