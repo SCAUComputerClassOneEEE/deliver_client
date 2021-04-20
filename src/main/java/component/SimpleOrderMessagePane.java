@@ -94,7 +94,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 /*
                  * 这里需要发送获取数据的请求 获取之后生成界面 --sky
                  */
-                Iterator<?> it = getTransportsOfOrder(Integer.parseInt(order_id.getText()));
+                Iterator<?> it = getTransportsOfOrder(Long.parseLong(order_id.getText()));
 
                 OrderDetailController odc = loader.getController();
                 odc.init(s.getOrderId(),s.getSendDetailAddress(),s.getReceiveDetailAddress());

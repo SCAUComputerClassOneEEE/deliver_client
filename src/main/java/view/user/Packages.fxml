@@ -52,7 +52,7 @@
             </VBox>
             <AnchorPane fx:id="packages_anchorPane" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ScrollPane fx:id="packages_package_scrollPane" layoutX="4.0" prefHeight="563.0" prefWidth="751.0" visible="false">
+                  <ScrollPane fx:id="packages_package_scrollPane" layoutX="4.0" prefHeight="650.0" prefWidth="922.0">
                      <content>
                         <VBox fx:id="packages_show_vBox" prefHeight="565.0" prefWidth="749.0" />
                      </content>
@@ -148,7 +148,7 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0">
+                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0" visible="false">
                     <content>
                       <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="930.0" style="-fx-background-color: 000000;">
                            <children>

@@ -20,7 +20,7 @@ public class Transport {
     public Transport(JSONObject parse) {
         setCarrierId(parse.getLong("carrierId"));
         setCarrierType(parse.getString("carrierType"));
-        setDetailMessage(parse.getString("detailMessage"));
+        setDetailMessage(parse.getString("transDetailMessage"));
         setTransportId(parse.getLong("transportId"));
         setOrderId(parse.getLong("orderId"));
         setTransportTimesOfCarrier(parse.getLong("transportTimesOfCarrier"));

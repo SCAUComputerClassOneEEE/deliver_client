@@ -33,7 +33,7 @@ public class OrderDetailController implements Initializable {
     public void init(int order_id,String sendAdd,String receiveAdd){
         // "1157843878343"、"广州"、"阳江"这三个字段需要数据填充
         orderId.setText("运单编号:"+order_id);
-        send2ReceivePath.setText(sendAdd.substring(0,4)+"->"+receiveAdd.substring(0,4));
+        send2ReceivePath.setText(sendAdd+"->"+receiveAdd);
     }
 
     public void addNewRecord(Transport t){

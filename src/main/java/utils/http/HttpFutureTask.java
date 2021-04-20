@@ -26,6 +26,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
                     return null;
                 if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
                     return null;
+                return httpResponse;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,8 +42,10 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         if (mills < 0) mills = 0;
         try {
             final HttpResponse httpResponse;
-            if ((httpResponse = getResponse(mills)) == null)
+            if ((httpResponse = getResponse(mills)) == null) {
                 return null;
+            }
+
 
             int length = 0;
             int r;
@@ -59,6 +62,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             }
             String s = new String(readBuffer, 0, length);
             stringBuilder.append(s);
+            System.out.println(stringBuilder);
             return JSONArray.parseArray(stringBuilder.toString()).iterator();
         } catch (Exception e) {
             e.printStackTrace();
