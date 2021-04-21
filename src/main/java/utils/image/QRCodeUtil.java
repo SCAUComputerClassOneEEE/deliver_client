@@ -93,9 +93,9 @@ public class QRCodeUtil {
 
     public static javafx.scene.image.Image encode2FXImage(String content, String insertLOGOImgPath, boolean needCompress) {
         try {
-            BufferedImage i_love_chentreeee = QRCodeUtil.encode(content, insertLOGOImgPath, needCompress);
+            BufferedImage i_love_chenthreeee = QRCodeUtil.encode(content, insertLOGOImgPath, needCompress);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            ImageIO.write(i_love_chentreeee, FORMAT_NAME, byteArrayOutputStream);
+            ImageIO.write(i_love_chenthreeee, FORMAT_NAME, byteArrayOutputStream);
             return new javafx.scene.image.Image(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
         } catch (Exception e) {
             e.printStackTrace();

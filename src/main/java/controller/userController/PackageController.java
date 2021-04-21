@@ -1,12 +1,10 @@
 package controller.userController;
 
-import com.alibaba.fastjson.JSONObject;
 import component.NoteSimpleRecordPane;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
 import component.beans.Customer;
 import component.beans.PackOrderBillInsertInfo;
-import component.beans.SimpleOrderInfoBar;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -30,27 +28,19 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.ChangeService;
-import sun.misc.BASE64Encoder;
-import utils.http.HttpClientThreadPool;
-import utils.http.HttpFutureTask;
-import utils.http.HttpRequestCallable;
+import utils.http.AllHttpComUtils;
 import utils.image.QRCodeUtil;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.ByteBuffer;
-import java.nio.file.Files;
 import java.sql.Timestamp;
 import java.util.*;
 
 public class PackageController implements Initializable {
     private ArrayList<CheckBox> checkBoxes1 = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes2 = new ArrayList<>();
-    HttpClientThreadPool poolInstance = HttpClientThreadPool.getPoolInstance();
 
-    interface Region {
-
-    }
+    interface Region { }
 
     static class City implements Region {
         String cityName;
@@ -87,6 +77,9 @@ public class PackageController implements Initializable {
 
     private static Province[] provs = new Province[34];
 
+    /*
+    * 文件加载静态块
+    * */
     static {
         try {
             System.out.println(PackageController.class.getClassLoader().getResource("regionsData.txt"));
@@ -182,27 +175,11 @@ public class PackageController implements Initializable {
 
     // 加载一次记录
     private void loadPackage(long customerId, int offset, int limit) {
-        ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
+        final ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/query/list")
-                .onMethod(HttpClientThreadPool.HttpMethod.GET)
-                .addRequestContent("customer_id", customerId)
-                .addRequestContent("offset", offset)
-                .addRequestContent("length", limit)
-                .build();
-        HttpFutureTask futureTask = poolInstance.submitRequestTask(build);
-        Iterator<?> content = null;
-        while (content == null) {
-            content = futureTask.getContentJSON();
-            while (content.hasNext()) {
-                JSONObject parse = JSONObject.parseObject(content.next().toString());
-                SimpleOrderInfoBar simpleOrderInfoBar = new SimpleOrderInfoBar(parse);
-                content.remove();
-                results.add(new SimpleOrderMessagePane(simpleOrderInfoBar));
-            }
-        }
+        AllHttpComUtils.getSimpleOrderInfoBarPage(customerId, offset, limit)
+                .forEach((s) -> results.add(new SimpleOrderMessagePane(s)));
         /*
         这里需要提供描述订单的类的数据数组，然后循环添加
         */
@@ -353,10 +330,13 @@ public class PackageController implements Initializable {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root);
 
+        long billId = AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
+
 
         if (packages_send_payment_now.isSelected()) {
             packOrderBillInsertInfo.setPackType("pay now");
-            Image fxImage = QRCodeUtil.encode2FXImage("i love chenchtree.", null, true);
+            final String url = AllHttpComUtils.qr_pay_url;
+            Image fxImage = QRCodeUtil.encode2FXImage(url + "/id=" + billId, null, true);
 
             if (fxImage != null) {
                 root.setCenter(new ImageView(fxImage));
@@ -584,7 +564,7 @@ public class PackageController implements Initializable {
             packages_personal_textfiled_city.setText(customer.getCity());
             packages_personal_textfiled_street.setText(customer.getStreet());
             packages_personal_textfiled_detailAddress.setText(customer.getDetailAddress());
-            packages_personal_textfiled_customerPhone.setText(customer.getCustomerPhoneNumber().toString());
+            packages_personal_textfiled_customerPhone.setText(customer.getCustomerId().toString());
             packages_personal_textfiled_account.setText(customer.getAccount());
             packages_personal_textfiled_password.setText(customer.getCustomerPassword());
             String avatar = customer.getAvatar();

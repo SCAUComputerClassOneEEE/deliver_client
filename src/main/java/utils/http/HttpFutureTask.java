@@ -17,6 +17,10 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         this.callable = callable;
     }
 
+    public boolean getStatusOK() {
+        return getResponse(0).getStatusLine().getStatusCode() == HttpStatus.SC_OK;
+    }
+
     public HttpResponse getResponse(long mills) {
         if (mills < 0) mills = 0;
         try {
@@ -45,8 +49,6 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             if ((httpResponse = getResponse(mills)) == null) {
                 return null;
             }
-
-
             int length = 0;
             int r;
             final byte[] readBuffer = new byte[1024];

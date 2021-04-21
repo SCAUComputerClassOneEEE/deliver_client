@@ -1,10 +1,13 @@
 package component.beans;
 
 import com.alibaba.fastjson.JSONObject;
+import javafx.scene.image.Image;
+
+import java.io.ByteArrayInputStream;
+import java.util.Base64;
 
 public class Customer {
     private Long customerId;
-    private Long customerPhoneNumber;
     private String customerPassword;
     private String customerName;
     private String city;
@@ -14,7 +17,24 @@ public class Customer {
     private String avatar;
 
     public Customer(JSONObject parse) {
+        customerId = parse.getLong("");
+        customerPassword = parse.getString("");
+        customerName = parse.getString("");
+        city = parse.getString("");
+        street = parse.getString("");
+        detailAddress = parse.getString("");
+        account = parse.getString("");
+        avatar = parse.getString("");
+    }
 
+    public Image getCustomerAvatarImg() {
+        return new Image(
+                new ByteArrayInputStream(
+                        Base64.getDecoder().decode(
+                                avatar
+                        )
+                )
+        );
     }
 
     public String getAvatar() {
@@ -31,14 +51,6 @@ public class Customer {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
-    }
-
-    public Long getCustomerPhoneNumber() {
-        return customerPhoneNumber;
-    }
-
-    public void setCustomerPhoneNumber(Long customerPhoneNumber) {
-        this.customerPhoneNumber = customerPhoneNumber;
     }
 
     public String getCustomerPassword() {

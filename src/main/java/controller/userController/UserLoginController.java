@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import utils.http.AllHttpComUtils;
 import utils.http.HttpClientThreadPool;
 import utils.http.HttpFutureTask;
 import utils.http.HttpRequestCallable;
@@ -34,13 +35,12 @@ public class UserLoginController {
         String userPhone=user_text_phone.getText();
         String userPassword=user_text_password.getText();
         AfterLoginAction.PackageShow();
-//        customer = wLoginBool(userPhone, userPassword);
-//        if (customer != null)
-//            AfterLoginAction.PackageShow();
-//        else {
-//            user_text_password.setText("");
-//
-//        }
+        customer = AllHttpComUtils.login(userPhone, userPassword, true);
+        if (customer != null)
+            AfterLoginAction.PackageShow();
+        else {
+            user_text_password.setText("");
+        }
     }
 
     public long getCustomerId() {
@@ -50,20 +50,6 @@ public class UserLoginController {
     public static Customer getCustomer() { return customer; }
 
     public static void setCustomer(Customer newCustomer) { customer = newCustomer; }
-
-    private static Customer wLoginBool(String phone, String passwd) {
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/user/login")
-                .onMethod(HttpClientThreadPool.HttpMethod.GET)
-                .addRequestContent("phone_number", phone)
-                .addRequestContent("password", passwd)
-                .addRequestContent("type", 1)
-                .build();
-        HttpFutureTask httpFutureTask = HttpClientThreadPool.getPoolInstance().submitRequestTask(build);
-        Iterator<?> contentJSON = httpFutureTask.getContentJSON();
-        if (contentJSON == null) return null;
-        return new Customer(JSONObject.parseObject(contentJSON.next().toString()));
-    }
 
     @FXML
     private void userClear(){
