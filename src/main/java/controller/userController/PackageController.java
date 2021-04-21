@@ -330,20 +330,25 @@ public class PackageController implements Initializable {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root);
 
-        long billId = AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
-
 
         if (packages_send_payment_now.isSelected()) {
             packOrderBillInsertInfo.setPackType("pay now");
             final String url = AllHttpComUtils.qr_pay_url;
-            Image fxImage = QRCodeUtil.encode2FXImage(url + "/id=" + billId, null, true);
+            long billId = AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
 
+            Image fxImage = QRCodeUtil
+                    .encode2FXImage(
+                            url + "/id=" + billId,
+                            null,
+                            true
+                    );
             if (fxImage != null) {
                 root.setCenter(new ImageView(fxImage));
             } else {
                 root.setCenter(new TextField("error qr."));
             }
         } else {
+            AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
             packOrderBillInsertInfo.setPackType("pay monthly");
             root.setCenter(new TextField("进入待支付"));
         }
