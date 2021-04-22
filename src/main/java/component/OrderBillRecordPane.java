@@ -1,5 +1,6 @@
 package component;
 
+import component.beans.Bill;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -19,10 +20,10 @@ public class OrderBillRecordPane extends AnchorPane {
     private Label paidType;
     private Label charge;
 
-    public OrderBillRecordPane() {
+    public OrderBillRecordPane(Bill bill) {
         isSelected = new CheckBox();
-        orderId = new Label("141645113443");
-        orderCreateTime = new Label("2018-10-15 12:45:67");
+        orderId = new Label(bill.getOrderId().toString());
+        orderCreateTime = new Label();
         receiver = new Label("陈思宇");
         orderStatus = new Label("已签收");
         //paidType = new Label("月付"); 这个应该不用了如果只有月付的话
@@ -47,13 +48,13 @@ public class OrderBillRecordPane extends AnchorPane {
         receiver.setLayoutY(27);
         orderStatus.setLayoutX(532);
         orderStatus.setLayoutY(27);
-        paidType.setLayoutX(612);
-        paidType.setLayoutY(27);
+        /*paidType.setLayoutX(612);
+        paidType.setLayoutY(27);*/
         charge.setLayoutX(664);
         charge.setLayoutY(27);
         this.setMinSize(719,74);
         this.setMaxSize(719,74);
-        this.getChildren().addAll(isSelected,orderId,orderCreateTime,receiver,orderStatus,paidType,charge);
+        this.getChildren().addAll(isSelected,orderId,orderCreateTime,receiver,orderStatus,charge);
     }
 
     public CheckBox getIsSelected(){

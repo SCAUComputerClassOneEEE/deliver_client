@@ -11,7 +11,12 @@ public class Bill {
     private Boolean isPaid;
 
     public Bill(JSONObject parse) {
-
+        orderId = parse.getLong("orderId");
+        customerId = parse.getLong("customerId");
+        charge = parse.getInteger("charge");
+        batchNumber = parse.getInteger("batchNumber");
+        payType = parse.getString("payType");
+        isPaid = parse.getBoolean("isPaid");
     }
 
     public Long getOrderId() {

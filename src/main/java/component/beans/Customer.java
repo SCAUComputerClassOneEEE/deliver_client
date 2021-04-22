@@ -21,14 +21,14 @@ public class Customer {
     }
 
     public Customer(JSONObject parse) {
-        customerId = parse.getLong("");
-        customerPassword = parse.getString("");
-        customerName = parse.getString("");
-        city = parse.getString("");
-        street = parse.getString("");
-        detailAddress = parse.getString("");
-        account = parse.getString("");
-        avatar = parse.getString("");
+        customerId = parse.getLong("customerId");
+        customerPassword = parse.getString("customerPassword");
+        customerName = parse.getString("customerName");
+        city = parse.getString("city");
+        street = parse.getString("street");
+        detailAddress = parse.getString("detailAddress");
+        account = parse.getString("account");
+        avatar = parse.getString("avatar");
     }
 
     public Image getCustomerAvatarImg() {
