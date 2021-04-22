@@ -40,6 +40,9 @@ public class PackageController implements Initializable {
     private ArrayList<CheckBox> checkBoxes1 = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes2 = new ArrayList<>();
 
+    private String gray="-fx-background-color: rgb(241,241,241);";
+    private String white="-fx-background-color: rgb(255,255,255);";
+
     interface Region { }
 
     static class City implements Region {
@@ -480,13 +483,13 @@ public class PackageController implements Initializable {
         packages_personal_btn_modify.setVisible(true);
         packages_personal_textfiled_againPassword.setVisible(false);
         packages_personal_btn_save.setVisible(false);
-        packages_personal_textfiled_againPassword.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_street.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_city.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(241,241,241);");
-        packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(241,241,241);");
+        packages_personal_textfiled_againPassword.setStyle(gray);
+        packages_personal_textfiled_street.setStyle(gray);
+        packages_personal_textfiled_city.setStyle(gray);
+        packages_personal_textfiled_customerName.setStyle(gray);
+        packages_personal_textfiled_customerPhone.setStyle(gray);
+        packages_personal_textfiled_detailAddress.setStyle(gray);
+        packages_personal_textfiled_password.setStyle(gray);
 
 
         packages_personal_textfiled_againPassword.setEditable(false);
@@ -500,6 +503,8 @@ public class PackageController implements Initializable {
     }
 
 
+
+
     @FXML
     private void modifiedAction() {
         packages_personal_btn_modify.setVisible(false);
@@ -507,14 +512,14 @@ public class PackageController implements Initializable {
         packages_personal_textfiled_againPassword.setVisible(true);
         packages_personal_text_again.setVisible(true);
 
-        packages_personal_textfiled_againPassword.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_account.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_city.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_customerName.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_customerPhone.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_detailAddress.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_street.setStyle("-fx-background-color: rgb(255,255,255);");
-        packages_personal_textfiled_password.setStyle("-fx-background-color: rgb(255,255,255);");
+        packages_personal_textfiled_againPassword.setStyle(white);
+        packages_personal_textfiled_account.setStyle(white);
+        packages_personal_textfiled_city.setStyle(white);
+        packages_personal_textfiled_customerName.setStyle(white);
+        packages_personal_textfiled_customerPhone.setStyle(white);
+        packages_personal_textfiled_detailAddress.setStyle(white);
+        packages_personal_textfiled_street.setStyle(white);
+        packages_personal_textfiled_password.setStyle(white);
 
         packages_personal_textfiled_againPassword.setEditable(true);
         packages_personal_textfiled_street.setEditable(true);
@@ -527,31 +532,66 @@ public class PackageController implements Initializable {
     }
 
     @FXML
+    private void savePersoanlInfromationAction(){
+        String pass =packages_personal_textfiled_password.getText();
+        String again=packages_personal_textfiled_againPassword.getText();
+        Stage stage = new Stage();
+        BorderPane root = new BorderPane();
+
+        if (!pass.equals(again)){
+
+
+            root.setCenter(new Text("两次密码输入不一致，请重新输入！"));
+
+        }
+        else {
+            Customer newCus=ChangeService.userLoginController.getCustomer();
+            newCus.setCity(packages_personal_textfiled_city.getText());
+            newCus.setStreet(packages_personal_textfiled_street.getText());
+            newCus.setDetailAddress(packages_personal_textfiled_detailAddress.getText());
+            newCus.setCustomerId(Long.parseLong(packages_personal_textfiled_customerPhone.getText()));
+            newCus.setCustomerPassword(pass);
+            packages_personal_textfiled_customerID.setText(packages_personal_textfiled_customerPhone.getText());
+
+            root.setCenter(new Text("保存成功！"));
+            packages_personal_textfiled_againPassword.setStyle(gray);
+            packages_personal_textfiled_street.setStyle(gray);
+            packages_personal_textfiled_city.setStyle(gray);
+            packages_personal_textfiled_customerName.setStyle(gray);
+            packages_personal_textfiled_customerPhone.setStyle(gray);
+            packages_personal_textfiled_detailAddress.setStyle(gray);
+            packages_personal_textfiled_password.setStyle(gray);
+            packages_personal_textfiled_account.setStyle(gray);
+            packages_personal_textfiled_againPassword.setVisible(false);
+            packages_personal_btn_modify.setVisible(true);
+
+
+        }
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+
+
+    }
+
+    @FXML
     private void uploadAction() {
         packages_personal_btn_upload.setOnMouseClicked(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images" ,"."),
                     new FileChooser.ExtensionFilter("JPG","*.jpg"),
                     new FileChooser.ExtensionFilter("PNG","*.png"));
-            fileChooser.setInitialDirectory(new File(System.getProperty("C:/Users/Public/Desktop")));
+            //fileChooser.setInitialDirectory(new File(System.getProperty("")));
             Stage stage = new Stage();
 
             stage.initModality(Modality.APPLICATION_MODAL);
             File file = fileChooser.showOpenDialog(stage);
             try {
-                FileInputStream fileInputStream = new FileInputStream(file);
-                byte[] fileBytes = new byte[(int)file.length()];
-                fileInputStream.read(fileBytes);
-                String avatar = Base64.getEncoder().encodeToString(fileBytes);
-                ChangeService.userLoginController.getCustomer().setAvatar(avatar);
+                ChangeService.userLoginController.getCustomer().setAvatar(file);
 
-                /*
-                *
-                *
-                * http
-                *
-                *
-                * */
+                packages_personal_avatar.setImage(new Image(new FileInputStream(file)));
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -847,6 +887,9 @@ public class PackageController implements Initializable {
     // 控件
     @FXML
     private Button packages_personal_btn_upload;
+
+    @FXML
+    private Text packages_personal_textfiled_customerID;
 
     @FXML
     private Button packages_personal_btn_modify;

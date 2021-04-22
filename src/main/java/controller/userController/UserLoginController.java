@@ -41,6 +41,7 @@ public class UserLoginController {
         else {
             user_text_password.setText("");
         }
+        customer = new Customer();
     }
 
     public long getCustomerId() {

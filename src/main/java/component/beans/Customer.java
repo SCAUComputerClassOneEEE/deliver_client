@@ -3,7 +3,7 @@ package component.beans;
 import com.alibaba.fastjson.JSONObject;
 import javafx.scene.image.Image;
 
-import java.io.ByteArrayInputStream;
+import java.io.*;
 import java.util.Base64;
 
 public class Customer {
@@ -15,6 +15,10 @@ public class Customer {
     private String detailAddress;
     private String account;
     private String avatar;
+
+    public Customer() {
+
+    }
 
     public Customer(JSONObject parse) {
         customerId = parse.getLong("");
@@ -39,6 +43,14 @@ public class Customer {
 
     public String getAvatar() {
         return avatar;
+    }
+
+    public void setAvatar(File file) throws IOException {
+        FileInputStream fileInputStream = new FileInputStream(file);
+        byte[] fileBytes = new byte[(int)file.length()];
+        fileInputStream.read(fileBytes);
+        String avatar = Base64.getEncoder().encodeToString(fileBytes);
+        setAvatar(avatar);
     }
 
     public void setAvatar(String avatar) {
