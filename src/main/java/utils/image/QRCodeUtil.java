@@ -102,4 +102,11 @@ public class QRCodeUtil {
         }
         return null;
     }
+
+    public static javafx.scene.image.Image encode2FXImage(java.util.List<Long> orderIds, String insertLOGOImgPath, boolean needCompress) {
+        StringBuilder stringBuilder = new StringBuilder();
+        orderIds.forEach(oid -> stringBuilder.append(oid.toString()).append(","));
+        stringBuilder.delete(stringBuilder.length() - 1, stringBuilder.length());
+        return encode2FXImage(stringBuilder.toString(), insertLOGOImgPath, needCompress);
+    }
 }

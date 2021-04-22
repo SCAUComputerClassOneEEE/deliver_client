@@ -2,9 +2,7 @@ package utils.http;
 
 import com.alibaba.fastjson.JSONObject;
 import component.SimpleOrderMessagePane;
-import component.beans.Customer;
-import component.beans.PackOrderBillInsertInfo;
-import component.beans.SimpleOrderInfoBar;
+import component.beans.*;
 import org.apache.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -17,26 +15,24 @@ public class AllHttpComUtils {
     public static final String qr_pay_url =
             HttpRequestCallable.HttpRequestCallableBuilder.URL + "/payBill/QRPay";
 
-/*    public static boolean payQR(List<Long> billIds) {
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/payBill/QRPay")
-                .onMethod(HttpClientThreadPool.HttpMethod.POST)
-                .addRequestContent("billIds", billIds)
-                .build();
-        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
-        return httpFutureTask.getStatusOK();
-    }*/
-
     public static long createP_O_BInsertInfo(PackOrderBillInsertInfo packOrderBillInsertInfo) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/user/login")
+                .addURL("/insert/order")
                 .onMethod(HttpClientThreadPool.HttpMethod.POST)
                 .addRequestContent("packOrderBillInsertInfo", packOrderBillInsertInfo)
                 .build();
         HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
-        Iterator<?> contentJSON = httpFutureTask.getContentJSON();
-        if (contentJSON == null) return 0;
-        return JSONObject.parseObject(contentJSON.next().toString()).getLong("billId");
+
+        return httpFutureTask.getContentLong();
+    }
+
+    public static void updateCustomer(Customer customer) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/user/customer")
+                .onMethod(HttpClientThreadPool.HttpMethod.POST)
+                .addRequestContent("customer", customer)
+                .build();
+        pool.submitRequestTask(build)/*.getStatusOK()*/;
     }
 
     public static Customer login(String name, String passwd, boolean cusOrAd) {
@@ -48,14 +44,17 @@ public class AllHttpComUtils {
                 .addRequestContent("type", cusOrAd ? 1 : 0)
                 .build();
         HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
-        Iterator<?> contentJSON = httpFutureTask.getContentJSON();
-        if (contentJSON == null) return null;
-        return new Customer(JSONObject.parseObject(contentJSON.next().toString()));
+        return getT(Customer.class, httpFutureTask);
     }
 
+    /**
+     *
+     * @param customerId phone number
+     * @param offset page offset
+     * @param limit page size
+     * @return List<SimpleOrderInfoBar>
+     */
     public static List<SimpleOrderInfoBar> getSimpleOrderInfoBarPage(long customerId, int offset, int limit) {
-        List<SimpleOrderInfoBar> res = new ArrayList<>();
-
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/list")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
@@ -64,15 +63,51 @@ public class AllHttpComUtils {
                 .addRequestContent("length", limit)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        Iterator<?> content = null;
-        while (content == null) {
-            content = futureTask.getContentJSON();
-            while (content.hasNext()) {
-                JSONObject parse = JSONObject.parseObject(content.next().toString());
-                res.add(new SimpleOrderInfoBar(parse));
-                content.remove();
-            }
+
+        return getTList(SimpleOrderInfoBar.class, futureTask);
+    }
+
+    public static List<Bill> getAllBills(long customerId) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/bills")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("customer_id", customerId)
+                .build();
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getTList(Bill.class, futureTask);
+    }
+
+    private static List<Transport> getTransportsOfOrder(long orderId) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/transport")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("order_id", orderId)
+                .build();
+
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getTList(Transport.class, futureTask);
+    }
+
+    private static <T> List<T> getTList(Class<T> tClass, HttpFutureTask futureTask) {
+        Iterator<?> contentJSON = futureTask.getContentJSON();
+        if (contentJSON == null) return null;
+        if (!contentJSON.hasNext()) return null;
+        if (!(contentJSON.next().getClass().equals(tClass))) return null;
+        ArrayList<T> ts = new ArrayList<>();
+        while (contentJSON.hasNext()) {
+            Object next = contentJSON.next();
+            T t = (T)next;
+            ts.add(t);
+            contentJSON.remove();
         }
-        return res;
+        return ts;
+    }
+
+    private static <T> T getT(Class<T> tClass, HttpFutureTask futureTask) {
+        Iterator<?> contentJSON = futureTask.getContentJSON();
+        if (contentJSON == null) return null;
+        if (!contentJSON.hasNext()) return null;
+        if (!(contentJSON.next().getClass().equals(tClass))) return null;
+        return (T)contentJSON.next();
     }
 }
