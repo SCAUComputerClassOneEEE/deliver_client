@@ -146,7 +146,7 @@ public class PackageController implements Initializable {
         HBox hBox = new HBox(33);
         hBox.setPadding(new Insets(10, 10, 10, 10));
 
-       // packages_personal_textfiled_customerID.setText(""+ChangeService.userLoginController.getCustomerId());
+        packages_personal_textfiled_customerID.setText(""+ChangeService.userLoginController.getCustomer().getCustomerId());
 
         Text t = new Text();
         t.setEffect(ds);
@@ -516,7 +516,6 @@ public class PackageController implements Initializable {
         packages_personal_btn_save.setVisible(true);
         packages_personal_textfiled_againPassword.setVisible(true);
         packages_personal_text_again.setVisible(true);
-
         packages_personal_textfiled_againPassword.setStyle(white);
         packages_personal_textfiled_account.setStyle(white);
         packages_personal_textfiled_city.setStyle(white);
@@ -569,6 +568,7 @@ public class PackageController implements Initializable {
             packages_personal_textfiled_account.setStyle(gray);
             packages_personal_textfiled_againPassword.setVisible(false);
             packages_personal_btn_modify.setVisible(true);
+            packages_personal_text_again.setVisible(false);
 
 
         }
@@ -618,6 +618,7 @@ public class PackageController implements Initializable {
             packages_personal_textfiled_customerPhone.setText(customer.getCustomerId().toString());
             packages_personal_textfiled_account.setText(customer.getAccount());
             packages_personal_textfiled_password.setText(customer.getCustomerPassword());
+            packages_personal_textfiled_againPassword.setText(customer.getCustomerPassword());
             String avatar = customer.getAvatar();
             if (avatar != null && avatar.equals("")) {
                 byte[] decode = Base64.getDecoder().decode(avatar);
@@ -625,7 +626,7 @@ public class PackageController implements Initializable {
                 packages_personal_avatar.setImage(new Image(inputStream));
             } else {
                 packages_personal_avatar.setImage(
-                        new Image(PackageController.class.getResourceAsStream("picture/头像1.jpg")));
+                        new Image(PackageController.class.getResourceAsStream("/picture/头像1.jpg")));
             }
         }
 
