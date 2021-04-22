@@ -17,17 +17,15 @@ public class OrderBillRecordPane extends AnchorPane {
     private Label orderCreateTime;
     private Label receiver;
     private Label orderStatus;
-    private Label paidType;
     private Label charge;
 
     public OrderBillRecordPane(Bill bill) {
         isSelected = new CheckBox();
         orderId = new Label(bill.getOrderId().toString());
-        orderCreateTime = new Label();
-        receiver = new Label("陈思宇");
-        orderStatus = new Label("已签收");
-        //paidType = new Label("月付"); 这个应该不用了如果只有月付的话
-        charge = new Label("12");
+        orderCreateTime = new Label("时间没有传过来啊！");
+        receiver = new Label("收件人没有传过来啊！");
+        orderStatus = new Label("状态没有传过来啊！");
+        charge = new Label(bill.getCharge().toString());
         init();
     }
 

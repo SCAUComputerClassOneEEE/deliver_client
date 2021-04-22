@@ -173,6 +173,7 @@ public class PackageController implements Initializable {
     private void queryPackageInformation() {
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
+        packages_show_vBox.getChildren().clear();
         /*
         分页加载，一次加载五个，customerId需要输入，这里还未输入
          */
@@ -459,12 +460,13 @@ public class PackageController implements Initializable {
 
     @FXML
     private void queryBill() {
+        orderBillVbox.getChildren().clear();
         setAllInvisible();
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
         orderBillVbox.getChildren().clear();
         List<Bill> allBills = AllHttpComUtils.getAllBills(ChangeService.userLoginController.getCustomerId());
-
+        allBills.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
     }
 
     private void initBill() {
