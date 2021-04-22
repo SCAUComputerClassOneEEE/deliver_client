@@ -38,6 +38,7 @@ public class OneTransRecordPane extends AnchorPane {
         splitLine.setLayoutY(0);
         splitLine.setEndX(0);
         splitLine.setEndY(120);
+        splitLine.getStrokeDashArray().addAll(4d);
 
         detailMassage.setLayoutX(114);
         detailMassage.setLayoutY(34);
