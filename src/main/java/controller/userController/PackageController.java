@@ -146,6 +146,8 @@ public class PackageController implements Initializable {
         HBox hBox = new HBox(33);
         hBox.setPadding(new Insets(10, 10, 10, 10));
 
+       // packages_personal_textfiled_customerID.setText(""+ChangeService.userLoginController.getCustomerId());
+
         Text t = new Text();
         t.setEffect(ds);
         t.setCache(true);
@@ -243,6 +245,7 @@ public class PackageController implements Initializable {
             BorderPane root = new BorderPane();
             Scene scene = new Scene(root);
             root.setCenter(new Text("快递丢了老卢不负责的喔！"));
+            stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.show();
         });
@@ -331,6 +334,7 @@ public class PackageController implements Initializable {
 
         Stage stage = new Stage();
         BorderPane root = new BorderPane();
+
         Scene scene = new Scene(root);
 
 
@@ -367,6 +371,7 @@ public class PackageController implements Initializable {
         System.out.println(packOrderBillInsertInfo);
 
         stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();
         stage.setAlwaysOnTop(true);
         stage.setResizable(false);
@@ -569,6 +574,7 @@ public class PackageController implements Initializable {
         }
 
         Scene scene = new Scene(root);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.setScene(scene);
         stage.show();
 
