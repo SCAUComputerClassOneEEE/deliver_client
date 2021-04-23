@@ -30,8 +30,10 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
                 httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
                 if (httpResponse == null)
                     return null;
-                if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK)
+                if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK){
                     return null;
+                }
+
                 return httpResponse;
             }
         } catch (Exception e) {
@@ -53,12 +55,12 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             int read = content.read(longBytes);
             if (read > 9) throw new IOException("long read: " + read);
             int i = 0;
-            System.out.println(Arrays.toString(longBytes));
+            //System.out.println(Arrays.toString(longBytes));
             byte[] _longBytes = new byte[9];
             while(i < read) {
                 _longBytes[8 - i ++] = longBytes[read - i];
             }
-            System.out.println(Arrays.toString(_longBytes));
+            //System.out.println(Arrays.toString(_longBytes));
 
             for (byte b : _longBytes) {
                 longLong *= 10;
@@ -97,7 +99,10 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             final byte[] readBuffer = new byte[1024];
             StringBuilder stringBuilder = new StringBuilder();
             InputStream content = getContentInputStream(mills);
-            if (content == null) return null;
+            if (content == null) {
+                //System.err.println("getContentInputStream(mills) = null");
+                return null;
+            }
 
             while ((r = content.read()) != -1) {
                 if (length == 1024) {
@@ -109,7 +114,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             }
             String s = new String(readBuffer, 0, length);
             stringBuilder.append(s);
-            System.out.println(stringBuilder);
+            //System.out.println(stringBuilder);
             return JSONArray.parseArray(stringBuilder.toString()).iterator();
         } catch (Exception e) {
             e.printStackTrace();

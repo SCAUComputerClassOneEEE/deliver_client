@@ -3,7 +3,7 @@ package controller.userController;
 import component.NoteSimpleRecordPane;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
-import component.beans.Bill;
+import component.beans.BillView;
 import component.beans.Customer;
 import component.beans.PackOrderBillInsertInfo;
 import javafx.beans.value.ChangeListener;
@@ -465,8 +465,8 @@ public class PackageController implements Initializable {
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
         orderBillVbox.getChildren().clear();
-        List<Bill> allBills = AllHttpComUtils.getAllBills(ChangeService.userLoginController.getCustomerId());
-        allBills.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+        List<BillView> allBillViews = AllHttpComUtils.getAllBills(ChangeService.userLoginController.getCustomerId());
+        allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
     }
 
     private void initBill() {

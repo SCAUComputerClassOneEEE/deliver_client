@@ -33,7 +33,7 @@
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <Button fx:id="user_btn_bill" mnemonicParsing="false" onAction="#queryBill" prefHeight="52.0" prefWidth="138.0" text="bill" textAlignment="CENTER">
+                  <Button fx:id="user_btn_bill" mnemonicParsing="false" onAction="#queryBill" prefHeight="52.0" prefWidth="138.0" text="billView" textAlignment="CENTER">
                      <font>
                         <Font size="19.0" />
                      </font>

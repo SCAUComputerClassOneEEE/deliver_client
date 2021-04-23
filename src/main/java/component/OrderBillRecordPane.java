@@ -1,6 +1,6 @@
 package component;
 
-import component.beans.Bill;
+import component.beans.BillView;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -19,13 +19,13 @@ public class OrderBillRecordPane extends AnchorPane {
     private Label orderStatus;
     private Label charge;
 
-    public OrderBillRecordPane(Bill bill) {
+    public OrderBillRecordPane(BillView billView) {
         isSelected = new CheckBox();
-        orderId = new Label(bill.getOrderId().toString());
-        orderCreateTime = new Label("时间没有传过来啊！");
-        receiver = new Label("收件人没有传过来啊！");
-        orderStatus = new Label("状态没有传过来啊！");
-        charge = new Label(bill.getCharge().toString());
+        orderId = new Label(String.valueOf(billView.getOrderId()));
+        orderCreateTime = new Label(billView.getOrderCreateTime().toString());
+        receiver = new Label(billView.getReceiver());
+        orderStatus = new Label(billView.getOrderStatus());
+        charge = new Label(String.valueOf(billView.getCharge()));
         init();
     }
 
