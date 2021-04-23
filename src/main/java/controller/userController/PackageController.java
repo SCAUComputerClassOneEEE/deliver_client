@@ -465,8 +465,10 @@ public class PackageController implements Initializable {
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
         orderBillVbox.getChildren().clear();
-        List<BillView> allBillViews = AllHttpComUtils.getAllBills(ChangeService.userLoginController.getCustomerId());
-        allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+        List<BillView> allBillViews = AllHttpComUtils.getAllBills(18899715136L);
+        if(allBillViews!=null){
+            allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+        }
     }
 
     private void initBill() {
