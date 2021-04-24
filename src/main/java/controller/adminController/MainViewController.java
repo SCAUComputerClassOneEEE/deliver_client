@@ -1,13 +1,15 @@
 package controller.adminController;
 
+import component.SimpleOrderMessagePane;
+import component.admin.PackageNumQueryPane;
+import component.admin.StreetQueryPane;
+import component.admin.ChargeQueryPane;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,61 +22,53 @@ import java.util.ResourceBundle;
  */
 public class MainViewController implements Initializable {
 
-    @FXML
-    private AnchorPane anchorPane1;
+    private Stage addDamageStage;
 
     @FXML
-    private Button admin_btn_addDamage;
+    private VBox vBox1;
 
     @FXML
-    private Button submit;
+    private VBox vBox2;
 
     @FXML
-    private TextField carrier_id;
+    private VBox vBox3;
 
     @FXML
-    private TextField carrier_type;
-
-    @FXML
-    private TextField damage_record_time;
-
-    @FXML
-    private void submitDamage(){
-        Stage stage = new Stage();
-        BorderPane root = new BorderPane();
-        Scene scene = new Scene(root);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        if (carrier_id.getText().equals("")||carrier_type.getText().equals("")||damage_record_time.getText().equals("")){
-            root.setCenter(new Text("填完啊亲！"));
-            stage.show();
-        }else {
-            int carrier_id_int;
-            int damage_record_time_int;
-            try {
-                carrier_id_int = Integer.parseInt(carrier_id.getText());
-                damage_record_time_int = Integer.parseInt(damage_record_time.getText());
-                root.setCenter(new Text("ok"));
-            }catch (Exception e){
-                root.setCenter(new Text("叼你啊，1、3填数字啊"));
-            }finally {
-                stage.show();
-            }
-
+    private void button1Fun(){
+        try{
+            addDamageStage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/AddDamageView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            addDamageStage.setScene(scene);
+            addDamageStage.initModality(Modality.APPLICATION_MODAL);
+            addDamageStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @FXML
-    private void addDamage(){
-        setAllInVisible();
-        anchorPane1.setVisible(true);
+    private void button2Fun(){
+
+    }
+    @FXML
+    private void button3Fun(){
+
+    }
+    @FXML
+    private void button4Fun(){
+
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setAllInVisible();
+        init();
     }
 
-    private void setAllInVisible(){
-        anchorPane1.setVisible(false);
+    private void init(){
+        vBox1.getChildren().add(new StreetQueryPane());
+        vBox2.getChildren().add(new ChargeQueryPane());
+        vBox3.getChildren().add(new PackageNumQueryPane());
     }
 }
