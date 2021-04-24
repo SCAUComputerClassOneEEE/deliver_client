@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding" addBOMForNewFiles="with NO BOM" />
+  <component name="Encoding">
+    <file url="file://G:/0计算机科学与技术/大三下学期/数据库课程设计/deliver_server/src/main/java" charset="UTF-8" />
+    <file url="file://G:/0计算机科学与技术/大三下学期/数据库课程设计/deliver_server/src/main/resources" charset="UTF-8" />
+  </component>
 </project>
