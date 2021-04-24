@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.myJudge.DigitJudge;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -28,7 +29,7 @@ public class QueryUserController implements Initializable {
     private void search(){
         System.out.println("搜索"+customer_id.getText()+"用户");
         try{
-            if (isNumeric(customer_id.getText())){
+            if (DigitJudge.isNumeric(customer_id.getText())){
                 stage = new Stage();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/csynagekou.fxml"));
@@ -52,13 +53,5 @@ public class QueryUserController implements Initializable {
 
     }
 
-    public static boolean isNumeric(String str){
-        for (int i = 0; i < str.length(); i++){
-            System.out.println(str.charAt(i));
-            if (!Character.isDigit(str.charAt(i))){
-                return false;
-            }
-        }
-        return true;
-    }
+
 }
