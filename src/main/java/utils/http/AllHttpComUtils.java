@@ -69,6 +69,16 @@ public class AllHttpComUtils {
         return tList;
     }
 
+    public static BillOfLastMonth getBillOfLastMonth(long customerId) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/consumption")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("customer_id", customerId)
+                .build();
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getT(BillOfLastMonth.class, futureTask);
+    }
+
     public static List<BillView> getAllBills(long customerId) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/bills")

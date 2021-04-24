@@ -3,6 +3,7 @@ package controller.userController;
 import component.NoteSimpleRecordPane;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
+import component.beans.BillOfLastMonth;
 import component.beans.BillView;
 import component.beans.Customer;
 import component.beans.PackOrderBillInsertInfo;
@@ -441,6 +442,14 @@ public class PackageController implements Initializable {
         getBillFXML();
     }
 
+    private List<BillView> allBillViews;
+
+    @FXML
+    private Label billMessage1;
+    @FXML
+    private Label billMessage2;
+    @FXML
+    private Label billMessage3;
     // 全选按钮的功能
     @FXML
     private void allBillAction() {
@@ -465,14 +474,38 @@ public class PackageController implements Initializable {
         packages_bill_scrollPane.setVisible(true);
         packages_bill_anchorPane.setVisible(true);
         orderBillVbox.getChildren().clear();
-        List<BillView> allBillViews = AllHttpComUtils.getAllBills(18899715136L);
+        System.out.println("正在查询");
+        allBillViews = AllHttpComUtils.getAllBills(18899715136L);
         if(allBillViews!=null){
             allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
         }
+        BillOfLastMonth billOfLastMonth = AllHttpComUtils.getBillOfLastMonth(18899715136L);
+        int 上个月寄件数 = billOfLastMonth.getSendPacksCount();
+        double 上个月消费数 = billOfLastMonth.getMoneyNumber();
+        double 上个月欠款数 = billOfLastMonth.getLastMonthArrears();
+        billMessage1.setText("上个月寄件数:"+上个月寄件数);
+        billMessage2.setText("上个月消费数:"+上个月消费数);
+        billMessage3.setText("上个月欠款数:"+上个月欠款数);
     }
 
     private void initBill() {
 
+    }
+
+    @FXML
+    private void queryAllBill(){
+        orderBillVbox.getChildren().clear();
+        allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+    }
+
+    @FXML
+    private void queryUnpaidBill(){
+        orderBillVbox.getChildren().clear();
+        allBillViews.forEach(o->{
+            if (!o.isPaid()){
+                orderBillVbox.getChildren().add(new OrderBillRecordPane(o));
+            }
+        });
     }
 
     /**

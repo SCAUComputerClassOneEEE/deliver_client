@@ -17,6 +17,7 @@ public class OrderBillRecordPane extends AnchorPane {
     private Label orderCreateTime;
     private Label receiver;
     private Label orderStatus;
+    private Label isPaid;
     private Label charge;
 
     public OrderBillRecordPane(BillView billView) {
@@ -25,6 +26,7 @@ public class OrderBillRecordPane extends AnchorPane {
         orderCreateTime = new Label(billView.getOrderCreateTime().toString());
         receiver = new Label(billView.getReceiver());
         orderStatus = new Label(billView.getOrderStatus());
+        isPaid = new Label(billView.isPaid()?"已支付":"未支付");
         charge = new Label(String.valueOf(billView.getCharge()));
         init();
     }
@@ -40,18 +42,20 @@ public class OrderBillRecordPane extends AnchorPane {
 
         orderId.setLayoutX(49);
         orderId.setLayoutY(27);
-        orderCreateTime.setLayoutX(212);
+        orderCreateTime.setLayoutX(260);
         orderCreateTime.setLayoutY(27);
-        receiver.setLayoutX(445);
+        receiver.setLayoutX(516);
         receiver.setLayoutY(27);
-        orderStatus.setLayoutX(532);
+        orderStatus.setLayoutX(625);
         orderStatus.setLayoutY(27);
-        /*paidType.setLayoutX(612);
-        paidType.setLayoutY(27);*/
-        charge.setLayoutX(664);
+
+        isPaid.setLayoutX(725);
+        isPaid.setLayoutY(27);
+
+        charge.setLayoutX(803);
         charge.setLayoutY(27);
-        this.setMinSize(719,74);
-        this.setMaxSize(719,74);
+        this.setMinSize(882,74);
+        this.setMaxSize(882,74);
         this.getChildren().addAll(isSelected,orderId,orderCreateTime,receiver,orderStatus,charge);
     }
 

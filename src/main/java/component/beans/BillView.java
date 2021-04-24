@@ -11,13 +11,24 @@ public class BillView {
     private String receiver;
     private String orderStatus;
     private double charge;
+    private boolean isPaid;
 
     public BillView(JSONObject parse) {
+        System.out.println(parse.toString());
         orderId = parse.getLong("orderId");
         orderCreateTime = parse.getTimestamp("orderCreateTime");
         receiver = parse.getString("receiver");
         orderStatus = parse.getString("orderStatus");
         charge = parse.getDouble("charge");
+        isPaid = parse.getBoolean("paid");
+    }
+
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public void setPaid(boolean paid) {
+        isPaid = paid;
     }
 
     public long getOrderId() {
