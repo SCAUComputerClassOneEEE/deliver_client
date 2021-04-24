@@ -59,7 +59,7 @@
                   </ScrollPane>
                   <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0" visible="false">
                      <content>
-                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="930.0" style="-fx-background-color: #edecf4;" visible="false">
+                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
                            <children>
                               <Text layoutX="76.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="shipper:" wrappingWidth="63.2099609375" />
                               <Text layoutX="69.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="consiggee:" wrappingWidth="88.30029296875" />
@@ -71,22 +71,22 @@
                               <TextField fx:id="packages_send_shipper_detailAddress" layoutX="225.0" layoutY="168.0" prefHeight="23.0" prefWidth="521.0" />
                               <Text layoutX="85.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="name:" />
                               <Text layoutX="359.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone number:" wrappingWidth="111.51513671875" />
-                              <Text layoutX="86.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail address:" />
+                              <Text layoutX="84.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail address:" />
                               <TextField fx:id="packages_send_consiggee_name" layoutX="142.0" layoutY="256.0" prefHeight="23.0" prefWidth="112.0" />
                               <TextField fx:id="packages_send_consiggee_phone" layoutX="486.0" layoutY="256.0" prefHeight="30.0" prefWidth="201.0" />
-                              <TextField fx:id="packages_send_consiggee_detailAddress" layoutX="197.0" layoutY="333.0" prefHeight="28.0" prefWidth="512.0" />
-                              <Text layoutX="77.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="parcel:" wrappingWidth="58.181640625" />
+                              <TextField fx:id="packages_send_consiggee_detailAddress" layoutX="195.0" layoutY="340.0" prefHeight="28.0" prefWidth="512.0" />
+                              <Text layoutX="84.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="parcel:" wrappingWidth="58.181640625" />
                               <Text layoutX="41.0" layoutY="452.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <CheckBox fx:id="packages_send_packageType_file" layoutX="86.0" layoutY="435.0" mnemonicParsing="false" text="文件" />
-                              <CheckBox fx:id="packages_send_packageType_electronic" layoutX="188.0" layoutY="435.0" mnemonicParsing="false" text="电子类产品" />
-                              <CheckBox fx:id="packages_send_packageType_dailyUsing" layoutX="325.0" layoutY="435.0" mnemonicParsing="false" text="生活用品" />
-                              <CheckBox fx:id="packages_send_packageType_clothe" layoutX="451.0" layoutY="435.0" mnemonicParsing="false" text="服饰" />
-                              <CheckBox fx:id="packages_send_packageType_fresh" layoutX="86.0" layoutY="474.0" mnemonicParsing="false" text="生鲜" />
-                              <CheckBox fx:id="packages_send_packageType_food" layoutX="186.0" layoutY="474.0" mnemonicParsing="false" text="食品" />
-                              <CheckBox fx:id="packages_send_packageType_fragile" layoutX="320.0" layoutY="474.0" mnemonicParsing="false" text="易碎品" />
-                              <CheckBox fx:id="packages_send_packageType_makeup" layoutX="451.0" layoutY="474.0" mnemonicParsing="false" text="化妆品" />
-                              <CheckBox fx:id="packages_send_packageType_medicine" layoutX="86.0" layoutY="517.0" mnemonicParsing="false" text="药品" />
-                              <Text layoutX="259.0" layoutY="534.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <CheckBox fx:id="packages_send_packageType_file" layoutX="85.0" layoutY="425.0" mnemonicParsing="false" text="文件" />
+                              <CheckBox fx:id="packages_send_packageType_electronic" layoutX="187.0" layoutY="425.0" mnemonicParsing="false" text="电子类产品" />
+                              <CheckBox fx:id="packages_send_packageType_dailyUsing" layoutX="324.0" layoutY="425.0" mnemonicParsing="false" text="生活用品" />
+                              <CheckBox fx:id="packages_send_packageType_clothe" layoutX="450.0" layoutY="425.0" mnemonicParsing="false" text="服饰" />
+                              <CheckBox fx:id="packages_send_packageType_fresh" layoutX="85.0" layoutY="464.0" mnemonicParsing="false" text="生鲜" />
+                              <CheckBox fx:id="packages_send_packageType_food" layoutX="185.0" layoutY="464.0" mnemonicParsing="false" text="食品" />
+                              <CheckBox fx:id="packages_send_packageType_fragile" layoutX="319.0" layoutY="464.0" mnemonicParsing="false" text="易碎品" />
+                              <CheckBox fx:id="packages_send_packageType_makeup" layoutX="450.0" layoutY="464.0" mnemonicParsing="false" text="化妆品" />
+                              <CheckBox fx:id="packages_send_packageType_medicine" layoutX="85.0" layoutY="507.0" mnemonicParsing="false" text="药品" />
+                              <Text layoutX="258.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                               <Button fx:id="packages_send_btn_send" layoutX="770.0" layoutY="659.0" mnemonicParsing="false" onAction="#addClickedActionSend" style="-fx-background-color: #DCDDD8;" text="send">
                                  <graphic>
                                     <ImageView fitHeight="35.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
@@ -127,7 +127,7 @@
                                     <Image url="@../picture/cosigge.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fitHeight="36.0" fitWidth="40.0" layoutX="23.0" layoutY="386.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="36.0" fitWidth="40.0" layoutX="30.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../picture/package.png" />
                                  </image>
@@ -174,16 +174,23 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0" visible="false">
+                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0" style="-fx-background-color: #edecf4;">
                     <content>
-                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="930.0" style="-fx-background-color: 000000;">
+                      <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
                            <children>
                               <ImageView fx:id="packages_personal_avatar" fitHeight="126.0" fitWidth="124.0" layoutX="36.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../picture/头像1.jpg" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="packages_personal_btn_upload" layoutX="63.0" layoutY="154.0" mnemonicParsing="false" onAction="#uploadAction" text="upload" />
+                              <Button fx:id="packages_personal_btn_upload" layoutX="63.0" layoutY="154.0" mnemonicParsing="false" onAction="#uploadAction" style="-fx-background-color: edecf4;" text="upload">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/upload.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                               <Text fx:id="packages_personal_textfiled_customerID" fill="#655a5a" layoutX="300.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
                               <Text fill="#655a5a" layoutX="192.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
                               <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="490.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
@@ -192,28 +199,83 @@
                                  </image>
                               </ImageView>
                               <Text fill="#655a5a" layoutX="192.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
-                              <Text layoutX="81.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city" />
-                              <Text layoutX="348.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street" />
-                              <Text layoutX="78.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_address" />
-                              <Text layoutX="70.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bank number" />
-                              <Text layoutX="72.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
-                              <TextField fx:id="packages_personal_textfiled_city" editable="false" layoutX="131.0" layoutY="245.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
-                              <TextField fx:id="packages_personal_textfiled_street" layoutX="405.0" layoutY="245.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
-                              <Text layoutX="36.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="------------------------------------------------------------------------------------------------------------------------------" wrappingWidth="846.30029296875" />
-                              <TextField fx:id="packages_personal_textfiled_detailAddress" layoutX="191.0" layoutY="291.0" prefHeight="33.0" prefWidth="342.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
-                              <TextField fx:id="packages_personal_textfiled_account" layoutX="180.0" layoutY="381.0" style="-fx-background-color: F1F1F1;" text="我是银行卡号~~~~~~~~~~~~~" />
-                              <PasswordField fx:id="packages_personal_textfiled_password" layoutX="166.0" layoutY="422.0" style="-fx-background-color: F1F1F1;" text="666666666" />
-                              <Text fx:id="packages_personal_text_again" layoutX="74.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="again" />
-                              <PasswordField fx:id="packages_personal_textfiled_againPassword" layoutX="160.0" layoutY="464.0" style="-fx-background-color: F1F1F1;" text="666666666" />
-                              <Text layoutX="75.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
-                              <TextField fx:id="packages_personal_textfiled_customerPhone" layoutX="141.0" layoutY="334.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
-                              <Button fx:id="packages_personal_btn_modify" layoutX="581.0" layoutY="581.0" mnemonicParsing="false" onAction="#modifiedAction" text="modify" />
-                              <Button fx:id="packages_personal_btn_save" layoutX="692.0" layoutY="581.0" mnemonicParsing="false" onAction="#savePersoanlInfromationAction" text="save" />
+                              <Text layoutX="134.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city" />
+                              <Text layoutX="401.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street" />
+                              <Text layoutX="131.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_address" />
+                              <Text layoutX="134.0" layoutY="515.0" strokeType="OUTSIDE" strokeWidth="0.0" text="bank number" />
+                              <Text layoutX="135.0" layoutY="591.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+                              <TextField fx:id="packages_personal_textfiled_city" editable="false" layoutX="184.0" layoutY="257.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
+                              <TextField fx:id="packages_personal_textfiled_street" layoutX="458.0" layoutY="257.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
+                              <TextField fx:id="packages_personal_textfiled_detailAddress" layoutX="244.0" layoutY="303.0" prefHeight="33.0" prefWidth="342.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
+                              <TextField fx:id="packages_personal_textfiled_account" layoutX="244.0" layoutY="494.0" style="-fx-background-color: F1F1F1;" text="我是银行卡号~~~~~~~~~~~~~" />
+                              <PasswordField fx:id="packages_personal_textfiled_password" layoutX="229.0" layoutY="570.0" style="-fx-background-color: F1F1F1;" text="666666666" />
+                              <Text fx:id="packages_personal_text_again" layoutX="137.0" layoutY="633.0" strokeType="OUTSIDE" strokeWidth="0.0" text="again" />
+                              <PasswordField fx:id="packages_personal_textfiled_againPassword" layoutX="223.0" layoutY="612.0" style="-fx-background-color: F1F1F1;" text="666666666" />
+                              <Text layoutX="135.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
+                              <TextField fx:id="packages_personal_textfiled_customerPhone" layoutX="201.0" layoutY="414.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
+                              <Button fx:id="packages_personal_btn_modify" layoutX="655.0" layoutY="642.0" mnemonicParsing="false" onAction="#modifiedAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #edecf4;" text="modify">
+                                 <graphic>
+                                    <ImageView fitHeight="59.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/modify.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button fx:id="packages_personal_btn_save" layoutX="775.0" layoutY="642.0" mnemonicParsing="false" onAction="#savePersoanlInfromationAction" style="-fx-background-color: #edecf4;" text="save">
+                                 <graphic>
+                                    <ImageView fitHeight="47.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/save.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                               <TextField fx:id="packages_personal_textfiled_customerName" layoutX="273.0" layoutY="64.0" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: F1F1F1;" text="老卢">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
                               </TextField>
+                              <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="42.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../picture/place.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="78.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <Line endX="720.0" layoutX="131.0" layoutY="210.0" startX="-100.0" strokeWidth="2.5" />
+                              <Line endX="720.0" layoutX="120.0" layoutY="375.0" startX="-100.0" strokeWidth="2.5" />
+                              <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="48.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../picture/phone.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="75.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="26.0" fitWidth="32.0" layoutX="48.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../picture/bank.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="75.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="2.77734375">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
+                              <ImageView fitHeight="30.0" fitWidth="21.0" layoutX="55.0" layoutY="550.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../picture/psssword.png" />
+                                 </image>
+                              </ImageView>
+                              <Text layoutX="83.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>

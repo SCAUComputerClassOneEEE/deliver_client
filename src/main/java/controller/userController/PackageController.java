@@ -142,25 +142,9 @@ public class PackageController implements Initializable {
     }
 
     private void initBigPane() {
-        DropShadow ds = new DropShadow();
-        ds.setOffsetY(3.0f);
-        ds.setColor(Color.valueOf("#EDECF4"));
-
-
-        HBox hBox = new HBox(33);
-        hBox.setPadding(new Insets(10, 10, 10, 10));
 
         packages_personal_textfiled_customerID.setText(""+ChangeService.userLoginController.getCustomer().getCustomerId());
 
-        Text t = new Text();
-        t.setEffect(ds);
-        t.setCache(true);
-        t.setX(10.0f);
-        t.setY(40.0f);
-        t.setFill(Color.valueOf("#EDECF4"));
-        t.setText("Epress View");
-        t.setFont(Font.font(null, FontWeight.BOLD, 42));
-        this.user_pane_package_anchorPane.getChildren().add(t);
     }
 
     /**
@@ -527,6 +511,7 @@ public class PackageController implements Initializable {
         packages_personal_btn_modify.setVisible(true);
         packages_personal_textfiled_againPassword.setVisible(false);
         packages_personal_btn_save.setVisible(false);
+        packages_personal_textfiled_account.setStyle(gray);
         packages_personal_textfiled_againPassword.setStyle(gray);
         packages_personal_textfiled_street.setStyle(gray);
         packages_personal_textfiled_city.setStyle(gray);
