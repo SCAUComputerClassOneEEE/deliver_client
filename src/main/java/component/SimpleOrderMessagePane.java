@@ -13,11 +13,13 @@ import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.http.AllHttpComUtils;
 import utils.http.HttpClientThreadPool;
 import utils.http.HttpFutureTask;
 import utils.http.HttpRequestCallable;
 
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * @Author: Sky
@@ -94,16 +96,12 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 /*
                  * 这里需要发送获取数据的请求 获取之后生成界面 --sky
                  */
-                Iterator<?> it = getTransportsOfOrder(Long.parseLong(order_id.getText()));
-
                 OrderDetailController odc = loader.getController();
                 odc.init(s.getOrderId(),s.getSendDetailAddress(),s.getReceiveDetailAddress());
-                while (it.hasNext()) {
-                    JSONObject next = (JSONObject)it.next();
-                    System.out.println(next.toString());
-                    odc.addNewRecord(new Transport(next));
-                    it.remove();
-                }
+
+                AllHttpComUtils
+                        .getTransportsOfOrder(Long.parseLong(order_id.getText()))
+                        .forEach(odc::addNewRecord);
 
                 if (detailStage.isShowing()){
                     detailStage.close();
@@ -114,17 +112,6 @@ public class SimpleOrderMessagePane extends AnchorPane {
                 e.printStackTrace();
             }
         });
-    }
-
-    private static Iterator<?> getTransportsOfOrder(long orderId) {
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/query/transport")
-                .onMethod(HttpClientThreadPool.HttpMethod.GET)
-                .addRequestContent("order_id", orderId)
-                .build();
-
-        HttpFutureTask futureTask = HttpClientThreadPool.getPoolInstance().submitRequestTask(build);
-        return futureTask.getContentJSON();
     }
 
 }

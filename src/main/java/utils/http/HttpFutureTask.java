@@ -1,6 +1,7 @@
 package utils.http;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 
@@ -42,8 +43,53 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         return null;
     }
 
-    public Iterator<?> getContentJSON() {
-        return getContentJSON(0);
+    public Object getContent() {
+        return getContent(0);
+    }
+
+    public Object getContent(long mills) {
+        return JSONObject.parse(getContentString(mills));
+    }
+
+    public String getContentString(long mills) {
+        if (mills < 0) mills = 0;
+        try {
+            int length = 0;
+            int r;
+            final byte[] readBuffer = new byte[1024];
+            StringBuilder stringBuilder = new StringBuilder();
+            InputStream content = getContentInputStream(mills);
+            if (content == null) {
+                //System.err.println("getContentInputStream(mills) = null");
+                return null;
+            }
+
+            while ((r = content.read()) != -1) {
+                if (length == 1024) {
+                    String s = new String(readBuffer, 0, length);
+                    stringBuilder.append(s);
+                    length = 0;
+                }
+                readBuffer[length ++] = (byte)r;
+            }
+            String s = new String(readBuffer, 0, length);
+            stringBuilder.append(s);
+            System.out.println(stringBuilder);
+            return stringBuilder.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                callable.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public Iterator<?> getContentJSONArray() {
+        return getContentJSONArray(0);
     }
 
     public long getContentLong() {
@@ -91,40 +137,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         return httpResponse.getEntity().getContent();
     }
 
-    public Iterator<?> getContentJSON(long mills) {
-        if (mills < 0) mills = 0;
-        try {
-            int length = 0;
-            int r;
-            final byte[] readBuffer = new byte[1024];
-            StringBuilder stringBuilder = new StringBuilder();
-            InputStream content = getContentInputStream(mills);
-            if (content == null) {
-                //System.err.println("getContentInputStream(mills) = null");
-                return null;
-            }
-
-            while ((r = content.read()) != -1) {
-                if (length == 1024) {
-                    String s = new String(readBuffer, 0, length);
-                    stringBuilder.append(s);
-                    length = 0;
-                }
-                readBuffer[length ++] = (byte)r;
-            }
-            String s = new String(readBuffer, 0, length);
-            stringBuilder.append(s);
-            //System.out.println(stringBuilder);
-            return JSONArray.parseArray(stringBuilder.toString()).iterator();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        } finally {
-            try {
-                callable.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+    public Iterator<?> getContentJSONArray(long mills) {
+        return JSONArray.parseArray(getContentString(mills)).iterator();
     }
 }

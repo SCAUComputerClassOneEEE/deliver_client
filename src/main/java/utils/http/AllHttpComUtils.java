@@ -65,7 +65,7 @@ public class AllHttpComUtils {
         HttpFutureTask futureTask = pool.submitRequestTask(build);
         List<SimpleOrderInfoBar> tList = getTList(SimpleOrderInfoBar.class, futureTask);
         assert tList != null;
-        tList.forEach((s)->System.out.println(s.toString()));
+        // tList.forEach((s)->System.out.println(s.toString()));
         return tList;
     }
 
@@ -89,7 +89,7 @@ public class AllHttpComUtils {
         return getTList(BillView.class, futureTask);
     }
 
-    private static List<Transport> getTransportsOfOrder(long orderId) {
+    public static List<Transport> getTransportsOfOrder(long orderId) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/transport")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
@@ -105,13 +105,11 @@ public class AllHttpComUtils {
 
         try {
             Constructor<T> t = tClass.getConstructor(JSONObject.class);
-            Iterator<?> contentJSON = futureTask.getContentJSON();
+            Iterator<?> contentJSON = futureTask.getContentJSONArray();
             if (contentJSON == null) {
-                System.err.println("contentJSON == null");
                 return null;
             }
             if (!contentJSON.hasNext()) {
-                System.err.println("!contentJSON.hasNext()");
                 return null;
             }
 
@@ -130,12 +128,11 @@ public class AllHttpComUtils {
     private static <T> T getT(Class<T> tClass, HttpFutureTask futureTask) {
         T t = null;
 
-        Iterator<?> contentJSON = futureTask.getContentJSON();
-        if (contentJSON == null) return null;
-        if (!contentJSON.hasNext()) return null;
+        Object content = futureTask.getContent();
+        if (content == null) return null;
 
         try {
-            JSONObject next = (JSONObject)contentJSON.next();
+            JSONObject next = (JSONObject)content;
             Constructor<T> tc = tClass.getConstructor(JSONObject.class);
             t = tc.newInstance(next);
         } catch (Exception e) {
@@ -143,4 +140,5 @@ public class AllHttpComUtils {
         }
         return t;
     }
+
 }

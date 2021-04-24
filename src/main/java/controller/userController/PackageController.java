@@ -3,10 +3,7 @@ package controller.userController;
 import component.NoteSimpleRecordPane;
 import component.OrderBillRecordPane;
 import component.SimpleOrderMessagePane;
-import component.beans.BillOfLastMonth;
-import component.beans.BillView;
-import component.beans.Customer;
-import component.beans.PackOrderBillInsertInfo;
+import component.beans.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -155,16 +152,21 @@ public class PackageController implements Initializable {
         getPackageFXML();
     }
 
+    private int offset = 0;
+    //private int lastCount = 0;
+    private final int size  = 5;
     // 查询用户的所有包裹简介
     @FXML
     private void queryPackageInformation() {
+        offset = 0;
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
+        packages_show_vBox.setVisible(true);
         packages_show_vBox.getChildren().clear();
         /*
         分页加载，一次加载五个，customerId需要输入，这里还未输入
          */
-        loadPackage(18899715136L, 0, 5);
+        loadPackage(18899715136L, offset, size);
     }
 
     // 加载一次记录
@@ -172,12 +174,15 @@ public class PackageController implements Initializable {
         final ArrayList<SimpleOrderMessagePane> results = new ArrayList<>();
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
-        AllHttpComUtils.getSimpleOrderInfoBarPage(customerId, offset, limit)
-                .forEach((s) -> results.add(new SimpleOrderMessagePane(s)));
+        List<SimpleOrderInfoBar> simpleOrderInfoBarPage = AllHttpComUtils.getSimpleOrderInfoBarPage(customerId, offset, limit);
+        if (simpleOrderInfoBarPage == null) return;
+        simpleOrderInfoBarPage.forEach((s) -> results.add(new SimpleOrderMessagePane(s)));
         /*
         这里需要提供描述订单的类的数据数组，然后循环添加
         */
+        this.offset+=results.size();
         for (SimpleOrderMessagePane s : results) {
+            System.out.println(",,");
             packages_show_vBox.getChildren().add(s);
         }
     }
@@ -191,7 +196,7 @@ public class PackageController implements Initializable {
                 if (packages_package_scrollPane.getVvalue() == 1.0) {
                     System.out.println("你触及了我的底线！");
                     // 18899需要获取动态账号
-                    loadPackage(18899715136L, 0, 5);
+                    loadPackage(18899715136L, offset, size);
                 }
             }
         });
@@ -466,6 +471,7 @@ public class PackageController implements Initializable {
             allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
         }
         BillOfLastMonth billOfLastMonth = AllHttpComUtils.getBillOfLastMonth(18899715136L);
+        System.out.println(billOfLastMonth);
         int 上个月寄件数 = billOfLastMonth.getSendPacksCount();
         double 上个月消费数 = billOfLastMonth.getMoneyNumber();
         double 上个月欠款数 = billOfLastMonth.getLastMonthArrears();
@@ -480,12 +486,16 @@ public class PackageController implements Initializable {
 
     @FXML
     private void queryAllBill(){
+        OrderBillRecordPane.selectNum=0;
+        allBill.setSelected(false);
         orderBillVbox.getChildren().clear();
         allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
     }
 
     @FXML
     private void queryUnpaidBill(){
+        OrderBillRecordPane.selectNum=0;
+        allBill.setSelected(false);
         orderBillVbox.getChildren().clear();
         allBillViews.forEach(o->{
             if (!o.isPaid()){
