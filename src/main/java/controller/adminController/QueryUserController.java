@@ -32,8 +32,10 @@ public class QueryUserController implements Initializable {
             if (DigitJudge.isNumeric(customer_id.getText())){
                 stage = new Stage();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/csynagekou.fxml"));
-                ((csynagekouController)loader.getController()).setCustomer_id(Long.parseLong(customer_id.getText()));
+                loader.setLocation(QueryUserController.class.getResource("/admin/csynagekou.fxml"));
+                csynagekouController csynagekouController = loader.getController();
+                System.out.println("11"+(csynagekouController==null));
+                //csynagekouController.setCustomer_id(Long.parseLong(customer_id.getText()));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);

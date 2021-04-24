@@ -89,6 +89,16 @@ public class AllHttpComUtils {
         return getTList(BillView.class, futureTask);
     }
 
+    public static PackOrderBillInsertInfo getPackOrderBillInsertInfo(long order_id) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/query/pob")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("order_id", order_id)
+                .build();
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getT(PackOrderBillInsertInfo.class, futureTask);
+    }
+
     public static List<Transport> getTransportsOfOrder(long orderId) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/transport")

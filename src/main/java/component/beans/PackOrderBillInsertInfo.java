@@ -23,6 +23,7 @@ public class PackOrderBillInsertInfo {
     private int charge; // 计算得出的费用
     private long customerId; // 支付的人的id
 
+
     @Override
     public String toString() {
         return "PackOrderBillInsertInfo{" +
