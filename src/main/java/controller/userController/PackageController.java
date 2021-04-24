@@ -30,6 +30,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import service.ChangeService;
+import utils.alert.AlertStage;
 import utils.http.AllHttpComUtils;
 import utils.image.QRCodeUtil;
 
@@ -248,7 +249,7 @@ public class PackageController implements Initializable {
             Stage stage = new Stage();
             BorderPane root = new BorderPane();
             Scene scene = new Scene(root);
-            root.setCenter(new Text("快递丢了老卢不负责的喔！"));
+            AlertStage.createAlertStage("快递丢了老卢不负责的喔！");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.show();
@@ -581,10 +582,7 @@ public class PackageController implements Initializable {
         BorderPane root = new BorderPane();
 
         if (!pass.equals(again)){
-
-
-            root.setCenter(new Text("两次密码输入不一致，请重新输入！"));
-
+            AlertStage.createAlertStage("两次密码输入不一致，请重新输入！").show();
         }
         else {
             Customer newCus=ChangeService.userLoginController.getCustomer();
@@ -595,7 +593,8 @@ public class PackageController implements Initializable {
             newCus.setCustomerPassword(pass);
             packages_personal_textfiled_customerID.setText(packages_personal_textfiled_customerPhone.getText());
 
-            root.setCenter(new Text("保存成功！"));
+            AlertStage.createAlertStage("保存成功！").show();
+
             packages_personal_textfiled_againPassword.setStyle(gray);
             packages_personal_textfiled_street.setStyle(gray);
             packages_personal_textfiled_city.setStyle(gray);

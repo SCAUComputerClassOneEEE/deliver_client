@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
  */
 public class MainViewController implements Initializable {
 
-    private Stage addDamageStage;
+    private Stage stage;
 
     @FXML
     private VBox vBox1;
@@ -36,14 +36,14 @@ public class MainViewController implements Initializable {
     @FXML
     private void button1Fun(){
         try{
-            addDamageStage = new Stage();
+            stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/AddDamageView.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            addDamageStage.setScene(scene);
-            addDamageStage.initModality(Modality.APPLICATION_MODAL);
-            addDamageStage.show();
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,11 +51,33 @@ public class MainViewController implements Initializable {
 
     @FXML
     private void button2Fun(){
-
+        try{
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/AddCarrierView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     private void button3Fun(){
-
+        try{
+            stage = new Stage();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/QueryUserView.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     private void button4Fun(){

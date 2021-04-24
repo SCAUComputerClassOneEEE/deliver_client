@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.alert.AlertStage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -33,27 +34,18 @@ public class AddDamageController implements Initializable {
 
     @FXML
     private void submitDamage(){
-        Stage stage = new Stage();
-        BorderPane root = new BorderPane();
-        Scene scene = new Scene(root);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
         if (carrier_id.getText().equals("")||carrier_type.getText().equals("")||damage_record_time.getText().equals("")){
-            root.setCenter(new Text("填完啊亲！"));
-            stage.show();
+            AlertStage.createAlertStage("填完啊亲！").show();
         }else {
             int carrier_id_int;
             int damage_record_time_int;
             try {
                 carrier_id_int = Integer.parseInt(carrier_id.getText());
                 damage_record_time_int = Integer.parseInt(damage_record_time.getText());
-                root.setCenter(new Text("ok"));
+                AlertStage.createAlertStage("ok").show();
             }catch (Exception e){
-                root.setCenter(new Text("叼你啊，1、3填数字啊"));
-            }finally {
-                stage.show();
+                AlertStage.createAlertStage("叼你啊，1、3填数字啊").show();
             }
-
         }
     }
 

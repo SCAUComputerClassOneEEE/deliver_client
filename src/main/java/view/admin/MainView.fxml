@@ -52,12 +52,11 @@
                </children>
             </VBox>
             <Label layoutX="147.0" layoutY="37.0" text="街道前十" />
-            <Label layoutX="475.0" layoutY="37.0" text="消费前十" />
+            <Label layoutX="489.0" layoutY="37.0" text="消费前十" />
             <Label layoutX="834.0" layoutY="37.0" text="寄件前十" />
-            <Button layoutX="124.0" layoutY="563.0" mnemonicParsing="false" onAction="#button1Fun" text="新增出事载体" />
-            <Button layoutX="310.0" layoutY="563.0" mnemonicParsing="false" text="修改载体表格" />
-            <Button layoutX="479.0" layoutY="563.0" mnemonicParsing="false" text="权限控制" />
-            <Button layoutX="637.0" layoutY="563.0" mnemonicParsing="false" text="查询用户情况" />
+            <Button layoutX="159.0" layoutY="578.0" mnemonicParsing="false" onAction="#button1Fun" text="新增出事载体" />
+            <Button layoutX="492.0" layoutY="578.0" mnemonicParsing="false" onAction="#button2Fun" text="修改载体表格" />
+            <Button layoutX="821.0" layoutY="578.0" mnemonicParsing="false" onAction="#button3Fun" text="查看用户信息" />
          </children>
       </AnchorPane>
    </center>
