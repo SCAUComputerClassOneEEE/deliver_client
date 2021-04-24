@@ -42,8 +42,8 @@ public class PackageController implements Initializable {
     private ArrayList<CheckBox> checkBoxes1 = new ArrayList<>();
     private ArrayList<CheckBox> checkBoxes2 = new ArrayList<>();
 
-    private String gray="-fx-background-color: rgb(241,241,241);";
-    private String white="-fx-background-color: rgb(255,255,255);";
+    private String gray="-fx-background-color: rgb(237,236,244);";
+    private String white="-fx-background-color: rgb(255，255,255)";
 
     interface Region { }
 
