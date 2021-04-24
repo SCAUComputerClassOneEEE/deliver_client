@@ -19,7 +19,7 @@
       </AnchorPane>
    </top>
    <center>
-      <SplitPane dividerPositions="0.13227016885553472" prefHeight="722.0" prefWidth="1063.0" style="-fx-background-color: #393939;" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.11913696060037524" prefHeight="722.0" prefWidth="1063.0" style="-fx-background-color: #393939; -fx-padding: 0 1 0 1; -fx-border-insets: 0;" BorderPane.alignment="CENTER">
          <items>
             <VBox prefHeight="718.0" prefWidth="123.0">
                <children>
@@ -57,9 +57,9 @@
                         <VBox fx:id="packages_show_vBox" prefHeight="718.0" prefWidth="936.0" style="-fx-background-color: #edecf4;" visible="false" />
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0">
+                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0" visible="false">
                      <content>
-                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
+                      <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="930.0" style="-fx-background-color: #edecf4;" visible="false">
                            <children>
                               <Text layoutX="76.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="shipper:" wrappingWidth="63.2099609375" />
                               <Text layoutX="69.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="consiggee:" wrappingWidth="88.30029296875" />

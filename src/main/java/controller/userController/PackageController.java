@@ -143,7 +143,8 @@ public class PackageController implements Initializable {
     private void initBigPane() {
         DropShadow ds = new DropShadow();
         ds.setOffsetY(3.0f);
-        ds.setColor(Color.color(0.4f, 0.4f, 0.4f));
+        ds.setColor(Color.valueOf("#EDECF4"));
+
 
         HBox hBox = new HBox(33);
         hBox.setPadding(new Insets(10, 10, 10, 10));
@@ -155,7 +156,7 @@ public class PackageController implements Initializable {
         t.setCache(true);
         t.setX(10.0f);
         t.setY(40.0f);
-        t.setFill(Color.RED);
+        t.setFill(Color.valueOf("#EDECF4"));
         t.setText("Epress View");
         t.setFont(Font.font(null, FontWeight.BOLD, 42));
         this.user_pane_package_anchorPane.getChildren().add(t);
