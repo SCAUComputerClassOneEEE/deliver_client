@@ -22,6 +22,8 @@
                   </Label>
                   <Label fx:id="orderId" layoutX="14.0" layoutY="67.0" text="运单号：1568848457745" />
                   <Label fx:id="send2ReceivePath" layoutX="20.0" layoutY="106.0" text="你的包裹出事了" />
+                  <Label layoutX="23.0" layoutY="147.0" text="出事时载体" />
+                  <Label layoutX="23.0" layoutY="178.0" text="出事时间" />
                </children>
             </AnchorPane>
          </children>

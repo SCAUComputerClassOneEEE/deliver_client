@@ -2,6 +2,7 @@ package controller.userController;
 
 import action.SignInAction;
 import component.SimpleOrderMessagePane;
+import component.beans.PackOrderBillInsertInfo;
 import component.beans.Transport;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -40,17 +41,18 @@ public class QueryTrackingController {
         try{
             Stage detailStage = new Stage();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/OrderDetail.fxml"));
+            loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/DetailMessage.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             detailStage.setScene(scene);
 
-            OrderDetailController odc = loader.getController();
-            odc.init(trackingNo,"广东省;广州市;154","广东省;阳江市;154");
+            DetailMessageController dmc = loader.getController();
 
-            AllHttpComUtils
-                    .getTransportsOfOrder(trackingNo)
-                    .forEach(odc::addNewRecord);
+            PackOrderBillInsertInfo packOrderBillInsertInfo = AllHttpComUtils.getPackOrderBillInsertInfo(trackingNo);
+
+            dmc.setOrder_id(trackingNo);
+            dmc.fillData(packOrderBillInsertInfo);
+
 
             if (detailStage.isShowing()){
                 detailStage.close();

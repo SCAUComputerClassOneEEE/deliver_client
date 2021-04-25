@@ -16,7 +16,7 @@ public class Transport {
     private Long nextCarrierId;
     private String nextCarrierType;
     private String status;
-    private String detailMessage;
+    private String transDetailMessage;
 
     public Transport(JSONObject parse) {
         System.out.println(parse.toString());
@@ -34,6 +34,23 @@ public class Transport {
             e.printStackTrace();
         }
         System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Transport{" +
+                "transportId=" + transportId +
+                ", orderId=" + orderId +
+                ", carrierId=" + carrierId +
+                ", carrierType='" + carrierType + '\'' +
+                ", transportTimesOfCarrier=" + transportTimesOfCarrier +
+                ", inputTime=" + inputTime +
+                ", outputTime=" + outputTime +
+                ", nextCarrierId=" + nextCarrierId +
+                ", nextCarrierType='" + nextCarrierType + '\'' +
+                ", status='" + status + '\'' +
+                ", detailMessage='" + transDetailMessage + '\'' +
+                '}';
     }
 
     public long getTransportId() {
@@ -116,11 +133,11 @@ public class Transport {
         this.status = status;
     }
 
-    public String getDetailMessage() {
-        return detailMessage;
+    public String getTransDetailMessage() {
+        return transDetailMessage;
     }
 
-    public void setDetailMessage(String detailMessage) {
-        this.detailMessage = detailMessage;
+    public void setTransDetailMessage(String transDetailMessage) {
+        this.transDetailMessage = transDetailMessage;
     }
 }

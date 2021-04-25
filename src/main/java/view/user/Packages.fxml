@@ -43,7 +43,7 @@
                         <Font size="19.0" />
                      </font>
                   </Button>
-                  <Button fx:id="user_btn_notes" mnemonicParsing="false" onAction="#systemNotification" prefHeight="52.0" prefWidth="138.0" style="-fx-background-color: #631C23; -fx-border-color: #393939;" text="notes" textAlignment="CENTER" textFill="#edecf4">
+                  <Button fx:id="user_btn_notes" mnemonicParsing="false" onAction="#queryNote" prefHeight="52.0" prefWidth="138.0" style="-fx-background-color: #631C23; -fx-border-color: #393939;" text="notes" textAlignment="CENTER" textFill="#edecf4">
                      <font>
                         <Font size="19.0" />
                      </font>
@@ -302,7 +302,7 @@
                   </ScrollPane>
                   <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0" visible="false">
                      <content>
-                        <VBox prefHeight="721.0" prefWidth="926.0">
+                        <VBox fx:id="noteVbox" prefHeight="721.0" prefWidth="926.0">
                            <children>
                               <AnchorPane maxHeight="94.0" maxWidth="926.0" minHeight="94.0" minWidth="926.0" prefHeight="94.0" prefWidth="926.0" visible="false">
                                  <children>

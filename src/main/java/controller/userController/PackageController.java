@@ -670,7 +670,7 @@ public class PackageController implements Initializable {
 
     /**
      * 第五个功能
-     * note --未实现
+     * note --sky
      */
     private void get5() {
         getNoteFXML();
@@ -681,7 +681,7 @@ public class PackageController implements Initializable {
     }
 
     @FXML
-    private void systemNotification() {
+    private void queryNote() {
         setAllInvisible();
         packages_notes_scrollPane.setVisible(true);
         noteVbox.getChildren().add(new NoteSimpleRecordPane());

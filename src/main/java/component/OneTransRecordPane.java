@@ -22,7 +22,7 @@ public class OneTransRecordPane extends AnchorPane {
         timeOfRecord = new Label(t.getInputTime().toString());
         splitLine = new Line();
         detailMassage = new TextArea();
-        detailMassage.appendText(t.getDetailMessage());
+        detailMassage.appendText(t.getTransDetailMessage());
         init();
     }
 
