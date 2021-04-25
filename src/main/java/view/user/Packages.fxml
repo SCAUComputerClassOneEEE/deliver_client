@@ -52,29 +52,44 @@
             </VBox>
             <AnchorPane fx:id="packages_anchorPane" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ScrollPane fx:id="packages_package_scrollPane" layoutX="3.0" prefHeight="726.0" prefWidth="929.0" style="-fx-background-color: #edecf4;" visible="false">
+                  <ScrollPane fx:id="packages_package_scrollPane" layoutX="3.0" prefHeight="726.0" prefWidth="929.0" style="-fx-background-color: #edecf4;">
                      <content>
-                        <VBox fx:id="packages_show_vBox" prefHeight="717.0" prefWidth="917.0" style="-fx-background-color: #edecf4;">
+                        <VBox fx:id="packages_show_vBox" prefHeight="718.0" prefWidth="927.0" style="-fx-background-color: #edecf4;">
                            <children>
                               <AnchorPane prefHeight="70.0" prefWidth="917.0">
                                  <children>
-                                    <Label layoutX="348.0" layoutY="13.0" text="包裹简要信息">
+                                    <Label layoutX="365.0" layoutY="12.0" text="历史包裹" textFill="#631c23">
                                        <font>
                                           <Font size="34.0" />
                                        </font>
                                     </Label>
-                                    <Line endX="917.0" layoutY="60.0" />
+                                    <Line endX="917.0" layoutY="60.0" stroke="#631c23" />
+                                    <ImageView fitHeight="42.0" fitWidth="44.0" layoutX="317.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/package.png" />
+                                       </image>
+                                    </ImageView>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="85.0" prefWidth="917.0">
+                              <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="85.0" prefWidth="917.0" style="-fx-background-color: #a39391;">
                                  <children>
-                                    <Label layoutX="32.0" layoutY="33.0" text="订单编号：12332154865476" />
-                                    <Label layoutX="256.0" layoutY="33.0" text="订单状态：已签收" />
-                                    <Label layoutX="427.0" layoutY="33.0" text="收件人：卢运喜" />
-                                    <Label layoutX="572.0" layoutY="33.0" text="订单创建时间：2021-03-29 15:59:51.0" />
-                                    <Label layoutX="855.0" layoutY="33.0" text="查看详情" textFill="#2600ff" underline="true" />
+                                    <Label layoutX="32.0" layoutY="33.0" text="订单编号：12332154865476" textFill="#631c23" />
+                                    <Label layoutX="256.0" layoutY="33.0" text="订单状态：已签收" textFill="#631c23" />
+                                    <Label layoutX="407.0" layoutY="33.0" text="收件人：卢运喜" textFill="#631c23" />
+                                    <Label layoutX="533.0" layoutY="33.0" text="订单创建时间：2021-03-29 15:59:51.0" textFill="#631c23" />
+                                    <Label layoutX="820.0" layoutY="33.0" text="查看详情" textFill="#fce8d8" underline="true" />
                                  </children>
                               </AnchorPane>
+                              <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="85.0" prefWidth="917.0" style="-fx-background-color: #EDECF4;">
+                                 <children>
+                                    <Label layoutX="32.0" layoutY="33.0" text="订单编号：12332154865476" textFill="#631c23" />
+                                    <Label layoutX="256.0" layoutY="33.0" text="订单状态：已签收" textFill="#631c23" />
+                                    <Label layoutX="407.0" layoutY="33.0" text="收件人：卢运喜" textFill="#631c23" />
+                                    <Label layoutX="533.0" layoutY="33.0" text="订单创建时间：2021-03-29 15:59:51.0" textFill="#631c23" />
+                                    <Label layoutX="820.0" layoutY="33.0" text="查看详情" textFill="#263859" underline="true" />
+                                 </children>
+                              </AnchorPane>
+                              <TextArea prefHeight="200.0" prefWidth="200.0" text="这边也得是两条信息颜色相间的。&#10;后面那个查看详情的颜色就得变成是：#263859。&#10;颜色别搞错" />
                            </children></VBox>
                      </content>
                   </ScrollPane>
@@ -157,21 +172,21 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_bill_scrollPane" prefHeight="727.0" prefWidth="935.0">
+                  <ScrollPane fx:id="packages_bill_scrollPane" prefHeight="727.0" prefWidth="935.0" visible="false">
                     <content>
-                      <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="724.0" prefWidth="933.0">
+                      <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="724.0" prefWidth="933.0" style="-fx-background-color: #EDECF4;">
                            <children>
                               <ScrollPane layoutX="8.0" layoutY="163.0" prefHeight="483.0" prefWidth="913.0">
                                  <content>
-                                    <VBox fx:id="orderBillVbox" prefHeight="478.0" prefWidth="906.0">
+                                    <VBox fx:id="orderBillVbox" prefHeight="478.0" prefWidth="906.0" style="-fx-background-color: #EDECF4;">
                                        <children>
-                                          <AnchorPane prefHeight="74.0" prefWidth="910.0">
+                                          <AnchorPane prefHeight="74.0" prefWidth="910.0" style="-fx-background-color: #a39391;">
                                              <children>
                                                 <CheckBox layoutX="21.0" layoutY="26.0" mnemonicParsing="false" />
-                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" />
+                                                <Label layoutX="49.0" layoutY="27.0" text="订单号:15768448615" textFill="#381f21" />
                                                 <Label layoutX="846.0" layoutY="27.0" text="¥18" />
-                                                <Label layoutX="229.0" layoutY="27.0" text="创建时间:2021-2-15 15:56:54" />
-                                                <Label layoutX="474.0" layoutY="27.0" text="收件人:陈思宇" />
+                                                <Label layoutX="229.0" layoutY="27.0" text="创建时间:2021-2-15 15:56:54" textFill="#381f21" />
+                                                <Label layoutX="474.0" layoutY="27.0" text="收件人:陈思宇" textFill="#381f21" />
                                                 <Label layoutX="605.0" layoutY="27.0" text="订单状态：运输中" />
                                                 <Label layoutX="749.0" layoutY="27.0" text="订单未支付" />
                                              </children>
@@ -180,18 +195,39 @@
                                     </VBox>
                                  </content>
                               </ScrollPane>
-                              <Button layoutX="825.0" layoutY="666.0" mnemonicParsing="false" onAction="#pay" text="去支付" />
+                              <Button layoutX="786.0" layoutY="658.0" mnemonicParsing="false" onAction="#pay" style="-fx-background-color: #EDECF4; -fx-border-color: #AEB8C3;" text="pay">
+                                 <graphic>
+                                    <ImageView fitHeight="36.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/pay.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                               <CheckBox fx:id="allBill" layoutX="29.0" layoutY="670.0" mnemonicParsing="false" onAction="#allBillAction" text="全选" />
-                              <Label layoutX="384.0" layoutY="14.0" text="订单支付中心">
+                              <Label layoutX="346.0" layoutY="14.0" text="订单支付中心" textFill="#381f21">
                                  <font>
                                     <Font size="27.0" />
                                  </font>
                               </Label>
-                              <Button layoutX="29.0" layoutY="118.0" mnemonicParsing="false" onAction="#queryAllBill" text="全部订单" />
-                              <Button layoutX="120.0" layoutY="118.0" mnemonicParsing="false" onAction="#queryUnpaidBill" text="未支付订单" />
-                              <Label fx:id="billMessage2" layoutX="681.0" layoutY="103.0" text="上个月总消费：" />
-                              <Label fx:id="billMessage3" layoutX="681.0" layoutY="128.0" text="上个月总欠费：" />
-                              <Label fx:id="billMessage1" layoutX="681.0" layoutY="76.0" text="上个月寄件数：" />
+                              <Button layoutX="35.0" layoutY="113.0" mnemonicParsing="false" onAction="#queryAllBill" prefHeight="32.0" prefWidth="124.0" style="-fx-background-color: #EDECF4; -fx-border-color: #AEB8C3;" text="全部订单" textFill="#381f21">
+                                 <graphic>
+                                    <ImageView fitHeight="38.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/bill.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button layoutX="175.0" layoutY="112.0" mnemonicParsing="false" onAction="#queryUnpaidBill" prefHeight="44.0" prefWidth="128.0" style="-fx-border-color: #AEB8C3; -fx-background-color: #EDECF4;" text="未支付订单" textFill="#381f21">
+                                 <graphic>
+                                    <ImageView fitHeight="32.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../picture/no%20pay.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label fx:id="billMessage2" layoutX="681.0" layoutY="103.0" text="上个月总消费：" textFill="#381f21" />
+                              <Label fx:id="billMessage3" layoutX="681.0" layoutY="128.0" text="上个月总欠费：" textFill="#381f21" />
+                              <Label fx:id="billMessage1" layoutX="681.0" layoutY="76.0" text="上个月寄件数：" textFill="#381f21" />
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>

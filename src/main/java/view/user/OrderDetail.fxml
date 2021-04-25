@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,33 +9,44 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.OrderDetailController">
-   <content>
-      <VBox fx:id="parent" prefHeight="641.0" prefWidth="459.0">
-         <children>
-            <AnchorPane prefHeight="134.0" prefWidth="460.0">
-               <children>
-                  <Line endX="455.0" layoutY="56.0" />
-                  <Label layoutX="183.0" layoutY="6.0" prefHeight="36.0" prefWidth="115.0" text="运单详情" textFill="#030303">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="orderId" layoutX="14.0" layoutY="67.0" text="运单号：1568848457745" />
-                  <Label fx:id="send2ReceivePath" layoutX="20.0" layoutY="106.0" text="广州→阳江" />
-
-               </children>
-
-            </AnchorPane>
-         </children>
-         <AnchorPane prefHeight="111.0" prefWidth="475.0">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="475.0" style="-fx-background-color: #EDECF4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.OrderDetailController">
+    <content>
+        <VBox fx:id="parent" prefHeight="641.0" prefWidth="474.0" style="-fx-background-color: #EDECF4;">
             <children>
-               <Label layoutX="25.0" layoutY="14.0" text="运送中" />
-               <Line endY="120.0" layoutX="100.0" />
-               <Label layoutX="114.0" layoutY="14.0" text="2021-4-10 5:25:36" />
-               <TextArea editable="false" layoutX="126.0" layoutY="50.0" prefHeight="63.0" prefWidth="307.0" text="包裹已到达华南农业大学泰山快递站，&#10;正在为您安排快递员！&#10;" />
+            <Pane prefHeight="101.0" prefWidth="474.0" style="-fx-background-color: #631C23;">
+               <children>
+                        <Label layoutX="180.0" layoutY="14.0" prefHeight="36.0" prefWidth="115.0" text="运单详情" textFill="#edecf4">
+                            <font>
+                                <Font size="27.0" />
+                            </font>
+                        </Label>
+                  <Line endX="220.0" layoutX="237.0" layoutY="68.0" startX="-220.0" stroke="#edecf4" />
+               </children>
+            </Pane>
+                <AnchorPane prefHeight="69.0" prefWidth="474.0" style="-fx-background-color: #edecf4;">
+                    <children>
+                        <Label fx:id="orderId" layoutX="14.0" layoutY="14.0" text="运单号：1568848457745" textFill="#381f21" />
+                        <Label fx:id="send2ReceivePath" layoutX="14.0" layoutY="45.0" text="广州→阳江" textFill="#381f21" />
+
+                                </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="111.0" prefWidth="475.0" style="-fx-background-color: #a39391;">
+                    <children>
+                        <Label layoutX="32.0" layoutY="14.0" text="运送中" textFill="#381f21" />
+                        <Line endY="120.0" layoutX="100.0" stroke="#edecf4" />
+                        <Label layoutX="114.0" layoutY="14.0" text="2021-4-10 5:25:36" textFill="#381f21" />
+                        <TextArea editable="false" layoutX="126.0" layoutY="50.0" prefHeight="63.0" prefWidth="307.0" style="-fx-background-color: #4E0E2E;" text="包裹已到达华南农业大学泰山快递站，&#10;正在为您安排快递员！&#10;" />
+                  <ImageView fitHeight="38.0" fitWidth="38.0" layoutX="36.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/car.png" />
+                     </image>
+                  </ImageView>
+                    </children>
+                </AnchorPane>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="467.0" />
+            <TextArea prefHeight="200.0" prefWidth="200.0" text="下一个的底色需要和上一个不一样，&#10;比如上面这个的底色是： #a39391  &#10;那下一个的底色就得是： #EDECF4。&#10;&#10;那些字的颜色 还有textfile的边框颜色是： #4E0E2E&#10;汽车是picture文件夹下的 car.png&#10;直升飞机是：helicopter.png&#10;最后到达时：ok.png&#10;快递员在派送是：deliver.png" />
+
             </children>
-         </AnchorPane>
-      </VBox>
-   </content>
+        </VBox>
+    </content>
 </ScrollPane>
