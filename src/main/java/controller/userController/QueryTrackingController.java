@@ -49,6 +49,7 @@ public class QueryTrackingController {
             DetailMessageController dmc = loader.getController();
 
             PackOrderBillInsertInfo packOrderBillInsertInfo = AllHttpComUtils.getPackOrderBillInsertInfo(trackingNo);
+            System.out.println(packOrderBillInsertInfo);
 
             dmc.setOrder_id(trackingNo);
             dmc.fillData(packOrderBillInsertInfo);
