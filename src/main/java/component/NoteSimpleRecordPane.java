@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Modality;
@@ -25,7 +26,10 @@ public class NoteSimpleRecordPane extends AnchorPane {
 
     private Stage noteDetailStage;
 
-    public NoteSimpleRecordPane(NoteSimpleRecord ns){
+    private int color;
+
+    public NoteSimpleRecordPane(NoteSimpleRecord ns,int color){
+        this.color = color;
         this.ns = ns;
         photo = new Rectangle(55,55);
         message = new Label(ns.getMessage());
@@ -34,7 +38,8 @@ public class NoteSimpleRecordPane extends AnchorPane {
         init();
     }
 
-    public NoteSimpleRecordPane(){
+    public NoteSimpleRecordPane(int color){
+        this.color = color;
         this.ns = new NoteSimpleRecord("你的快递丢了","2021/4/20 16:02",false);
         photo = new Rectangle(55,55);
         message = new Label(ns.getMessage());
@@ -47,18 +52,23 @@ public class NoteSimpleRecordPane extends AnchorPane {
 
         photo.setLayoutX(22);
         photo.setLayoutY(20);
-        photo.setFill(Color.BLUE);
+        photo.setFill(Paint.valueOf(color%2==1?"#631c23":"#005792"));
 
         message.setLayoutX(112);
         message.setLayoutY(27);
+        message.setTextFill(Paint.valueOf("#631c23"));
 
         time.setLayoutX(770);
         time.setLayoutY(60);
+        time.setTextFill(Paint.valueOf("#631c23"));
 
         isRead.setLayoutX(888);
         isRead.setLayoutY(27);
-        isRead.setFill(Color.RED);
+        isRead.setFill(Paint.valueOf(color%2==1?"#fce8d8":"#13334c"));
         isRead.setVisible(!ns.isRead());
+
+        String col = color % 2 == 1 ? "#a39391":"#EDECF4";
+        this.setStyle("-fx-background-color: "+ col);
 
         this.setPrefSize(926,94);
         this.setMaxSize(926,94);

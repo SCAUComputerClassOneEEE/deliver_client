@@ -9,7 +9,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -526,7 +525,8 @@ public class PackageController implements Initializable {
         OrderBillRecordPane.selectNum=0;
         allBill.setSelected(false);
         orderBillVbox.getChildren().clear();
-        allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+        AtomicInteger j = new AtomicInteger(1);
+        allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o, j.getAndIncrement())));
         for (int i=0;i<orderBillVbox.getChildren().size();i++){
             ((OrderBillRecordPane)orderBillVbox.getChildren().get(i)).getSelectCheckBox().setDisable(true);
         }
@@ -538,9 +538,10 @@ public class PackageController implements Initializable {
         OrderBillRecordPane.selectNum=0;
         allBill.setSelected(false);
         orderBillVbox.getChildren().clear();
+        AtomicInteger j = new AtomicInteger(1);
         allBillViews.forEach(o->{
             if (!o.getPaid()){
-                orderBillVbox.getChildren().add(new OrderBillRecordPane(o));
+                orderBillVbox.getChildren().add(new OrderBillRecordPane(o, j.getAndIncrement()));
             }
         });
         for (int i=0;i<orderBillVbox.getChildren().size();i++){
@@ -746,14 +747,16 @@ public class PackageController implements Initializable {
     }
 
     private void initNote() {
-
+        noteVbox.getChildren().clear();
     }
 
     @FXML
     private void queryNote() {
         setAllInvisible();
         packages_notes_scrollPane.setVisible(true);
-        noteVbox.getChildren().add(new NoteSimpleRecordPane());
+        int color = noteVbox.getChildren().size()+1;
+        System.out.println(color);
+        noteVbox.getChildren().add(new NoteSimpleRecordPane(color));
     }
 
     /**
