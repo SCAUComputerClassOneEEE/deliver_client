@@ -21,7 +21,7 @@
    <center>
       <AnchorPane prefHeight="649.0" prefWidth="944.0" style="-fx-background-color: #EDECF4;" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="vBox1" layoutX="107.0" layoutY="108.0" prefHeight="411.0" prefWidth="222.0" style="-fx-background-color: #BCA7A7;">
+            <VBox fx:id="vBox1" layoutX="107.0" layoutY="108.0" maxHeight="430.0" maxWidth="222.0" minHeight="430.0" minWidth="222.0" prefHeight="430.0" prefWidth="222.0" style="-fx-background-color: #BCA7A7;">
                <children>
                   <AnchorPane prefHeight="43.0" prefWidth="237.0">
                      <children>
@@ -31,7 +31,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <VBox fx:id="vBox2" layoutX="380.0" layoutY="108.0" prefHeight="412.0" prefWidth="230.0" style="-fx-background-color: #DCC6C6;">
+            <VBox fx:id="vBox2" layoutX="380.0" layoutY="108.0" maxHeight="430.0" maxWidth="222.0" minHeight="430.0" minWidth="222.0" prefHeight="430.0" prefWidth="222.0" style="-fx-background-color: #DCC6C6;">
                <children>
                   <AnchorPane prefHeight="43.0" prefWidth="237.0">
                      <children>
@@ -41,7 +41,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <VBox fx:id="vBox3" layoutX="652.0" layoutY="108.0" prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: #E1E0E7;">
+            <VBox fx:id="vBox3" layoutX="652.0" layoutY="108.0" maxHeight="430.0" maxWidth="222.0" minHeight="430.0" minWidth="222.0" prefHeight="430.0" prefWidth="222.0" style="-fx-background-color: #E1E0E7;">
                <children>
                   <AnchorPane prefHeight="43.0" prefWidth="237.0">
                      <children>

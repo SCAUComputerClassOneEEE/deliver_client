@@ -387,7 +387,7 @@ public class PackageController implements Initializable {
                 AlertStage.createAlertStage("服务器已下线").show();
                 return;
             }
-            packOrderBillInsertInfo.setPackType("pay monthly");
+            packOrderBillInsertInfo.setPayType("月支付");
             root.setCenter(new TextField("已进入待支付"));
         }
         System.out.println(packOrderBillInsertInfo);

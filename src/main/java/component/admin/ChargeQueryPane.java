@@ -3,6 +3,7 @@ package component.admin;
 import component.beans.ConsumptionOfLastYear;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 
 /**
  * @Author: Sky
@@ -23,10 +24,13 @@ public class ChargeQueryPane extends AnchorPane {
     private void init(){
         name.setLayoutX(28);
         name.setLayoutY(12);
-        count.setLayoutX(148);
+        name.setTextFill(Paint.valueOf("#381f21"));
+        count.setLayoutX(115);
         count.setLayoutY(12);
+        count.setTextFill(Paint.valueOf("#381f21"));
         this.setMaxSize(237,43);
         this.setMinSize(237,43);
+        this.setPrefSize(237,43);
         this.getChildren().addAll(name,count);
     }
 

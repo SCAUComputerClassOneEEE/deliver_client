@@ -3,6 +3,7 @@ package component.admin;
 import component.beans.StreetStatistics;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Paint;
 
 /**
  * @Author: Sky
@@ -23,10 +24,13 @@ public class StreetQueryPane extends AnchorPane {
     private void init(){
         street.setLayoutX(28);
         street.setLayoutY(12);
-        count.setLayoutX(170);
+        street.setTextFill(Paint.valueOf("#381f21"));
+        count.setLayoutX(159);
         count.setLayoutY(12);
+        count.setTextFill(Paint.valueOf("#381f21"));
         this.setMaxSize(237,43);
         this.setMinSize(237,43);
+        this.setPrefSize(237,43);
         this.getChildren().addAll(street,count);
     }
 

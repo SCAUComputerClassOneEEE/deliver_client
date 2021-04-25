@@ -350,10 +350,10 @@
                               </AnchorPane>
                               <AnchorPane maxHeight="94.0" maxWidth="926.0" minHeight="94.0" minWidth="926.0" prefHeight="94.0" prefWidth="926.0" style="-fx-background-color: #EDECF4;">
                                  <children>
-                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#13334c" height="55.0" layoutX="22.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="53.0" />
+                                    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#005792" height="55.0" layoutX="22.0" layoutY="20.0" stroke="WHITE" strokeType="INSIDE" width="53.0" />
                                     <Label layoutX="770.0" layoutY="60.0" text="2021/4/20 14:59" textFill="#631c23" />
                                     <Label layoutX="112.0" layoutY="27.0" text="欢迎使用老卢快递，寄快递，找老卢！" textFill="#631c23" />
-                                    <Circle fill="#005792" layoutX="888.0" layoutY="27.0" radius="6.0" stroke="#005792" strokeType="INSIDE" />
+                                    <Circle fill="#13334c" layoutX="888.0" layoutY="27.0" radius="6.0" stroke="#13334c" strokeType="INSIDE" />
                                  </children>
                               </AnchorPane>
                            </children>
