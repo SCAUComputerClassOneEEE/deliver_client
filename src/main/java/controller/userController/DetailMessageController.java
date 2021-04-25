@@ -2,6 +2,7 @@ package controller.userController;
 
 import component.SimpleOrderMessagePane;
 import component.beans.PackOrderBillInsertInfo;
+import component.beans.Transport;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -12,11 +13,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.shape.Line;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.alert.AlertStage;
 import utils.http.AllHttpComUtils;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -88,9 +91,14 @@ public class DetailMessageController implements Initializable {
             OrderDetailController odc = loader.getController();
             odc.init(order_id,packOrderBillInsertInfo.getDeparture(),packOrderBillInsertInfo.getAddress());
 
-            AllHttpComUtils
-                    .getTransportsOfOrder(order_id)
-                    .forEach(odc::addNewRecord);
+            List<Transport> transportsOfOrder = AllHttpComUtils.getTransportsOfOrder(order_id);
+
+
+            if (transportsOfOrder==null||transportsOfOrder.size()==0){
+                AlertStage.createAlertStage("还没有物流信息").show();
+                return;
+            }
+            transportsOfOrder.forEach(odc::addNewRecord);
 
             if (transDetailStage.isShowing()){
                 transDetailStage.close();
@@ -119,18 +127,18 @@ public class DetailMessageController implements Initializable {
         this.line.getStrokeDashArray().addAll(4d);
         this.packOrderBillInsertInfo = packOrderBillInsertInfo;
         System.out.println("闯进来了");
-        this.senderField.setText(packOrderBillInsertInfo.getsName());
+        this.senderField.setText(packOrderBillInsertInfo.getShipperName());
         this.senderAddressField.setText(packOrderBillInsertInfo.getDeparture());
-        this.senderPhoneField.setText(packOrderBillInsertInfo.getsPhoneNumber());
-        this.receiverField.setText(packOrderBillInsertInfo.getcName());
+        this.senderPhoneField.setText(packOrderBillInsertInfo.getShipperPhoneNumber());
+        this.receiverField.setText(packOrderBillInsertInfo.getConsiggeeName());
         this.receiverAddressField.setText(packOrderBillInsertInfo.getAddress());
-        this.receiverPhoneField.setText(packOrderBillInsertInfo.getcPhoneNumber());
+        this.receiverPhoneField.setText(packOrderBillInsertInfo.getConsiggeePhoneNumber());
         this.orderIdField.setText(""+order_id);
         this.packageTypeField.setText(packOrderBillInsertInfo.getPackType());
         this.packageWeightField.setText(""+packOrderBillInsertInfo.getPackWeight());
         this.packageChargeField.setText(""+packOrderBillInsertInfo.getCharge());
         this.packageMessageField.setText(packOrderBillInsertInfo.getDetailMess());
-        this.dangerousCheckBox.setSelected(packOrderBillInsertInfo.isDangerous());
-        this.interCheckBox.setSelected(packOrderBillInsertInfo.isInter());
+        this.dangerousCheckBox.setSelected(packOrderBillInsertInfo.getDangerous());
+        this.interCheckBox.setSelected(packOrderBillInsertInfo.getInter());
     }
 }

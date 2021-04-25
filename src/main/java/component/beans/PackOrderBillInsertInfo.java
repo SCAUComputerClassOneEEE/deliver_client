@@ -7,13 +7,12 @@ import java.lang.reflect.Field;
 import java.sql.Timestamp;
 
 public class PackOrderBillInsertInfo {
-    // 发件人
-    private String sname;
-    private String sphoneNumber;
+    private String shipperName;
+    private String shipperPhoneNumber;
     private String departure; // 省，市，详细地址
     // 收件人
-    private String cname;
-    private String cphoneNumber;
+    private String consiggeeName;
+    private String consiggeePhoneNumber;
     private String address; // 省，市，详细地址
     private Timestamp commitArriveTime; // 约定到达时间，当前时间+一日或两日
     // package info
@@ -35,41 +34,20 @@ public class PackOrderBillInsertInfo {
         ConstructorUtil.newInstance(this, parse);
     }
 
-    @Override
-    public String toString() {
-        return "PackOrderBillInsertInfo{" +
-                "sName='" + sname + '\'' +
-                ", sPhoneNumber='" + sphoneNumber + '\'' +
-                ", departure='" + departure + '\'' +
-                ", cName='" + cname + '\'' +
-                ", cPhoneNumber='" + cphoneNumber + '\'' +
-                ", address='" + address + '\'' +
-                ", commitArriveTime=" + commitArriveTime +
-                ", packType='" + packType + '\'' +
-                ", detailMess='" + detailMess + '\'' +
-                ", packWeight=" + packWeight +
-                ", isDangerous=" + dangerous +
-                ", isInter=" + inter +
-                ", payType='" + payType + '\'' +
-                ", charge=" + charge +
-                ", customerId=" + customerId +
-                '}';
+    public String getShipperName() {
+        return shipperName;
     }
 
-    public String getsName() {
-        return sname;
+    public void setShipperName(String shipperName) {
+        this.shipperName = shipperName;
     }
 
-    public void setsName(String sName) {
-        this.sname = sName;
+    public String getShipperPhoneNumber() {
+        return shipperPhoneNumber;
     }
 
-    public String getsPhoneNumber() {
-        return sphoneNumber;
-    }
-
-    public void setsPhoneNumber(String sPhoneNumber) {
-        this.sphoneNumber = sPhoneNumber;
+    public void setShipperPhoneNumber(String shipperPhoneNumber) {
+        this.shipperPhoneNumber = shipperPhoneNumber;
     }
 
     public String getDeparture() {
@@ -80,20 +58,20 @@ public class PackOrderBillInsertInfo {
         this.departure = departure;
     }
 
-    public String getcName() {
-        return cname;
+    public String getConsiggeeName() {
+        return consiggeeName;
     }
 
-    public void setcName(String cName) {
-        this.cname = cName;
+    public void setConsiggeeName(String consiggeeName) {
+        this.consiggeeName = consiggeeName;
     }
 
-    public String getcPhoneNumber() {
-        return cphoneNumber;
+    public String getConsiggeePhoneNumber() {
+        return consiggeePhoneNumber;
     }
 
-    public void setcPhoneNumber(String cPhoneNumber) {
-        this.cphoneNumber = cPhoneNumber;
+    public void setConsiggeePhoneNumber(String consiggeePhoneNumber) {
+        this.consiggeePhoneNumber = consiggeePhoneNumber;
     }
 
     public String getAddress() {
@@ -128,27 +106,27 @@ public class PackOrderBillInsertInfo {
         this.detailMess = detailMess;
     }
 
-    public double getPackWeight() {
+    public Double getPackWeight() {
         return packWeight;
     }
 
-    public void setPackWeight(double packWeight) {
+    public void setPackWeight(Double packWeight) {
         this.packWeight = packWeight;
     }
 
-    public boolean isDangerous() {
+    public Boolean getDangerous() {
         return dangerous;
     }
 
-    public void setDangerous(boolean dangerous) {
+    public void setDangerous(Boolean dangerous) {
         this.dangerous = dangerous;
     }
 
-    public boolean isInter() {
+    public Boolean getInter() {
         return inter;
     }
 
-    public void setInter(boolean inter) {
+    public void setInter(Boolean inter) {
         this.inter = inter;
     }
 
@@ -160,19 +138,40 @@ public class PackOrderBillInsertInfo {
         this.payType = payType;
     }
 
-    public int getCharge() {
+    public Integer getCharge() {
         return charge;
     }
 
-    public void setCharge(int charge) {
+    public void setCharge(Integer charge) {
         this.charge = charge;
     }
 
-    public long getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(long customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    @Override
+    public String toString() {
+        return "PackOrderBillInsertInfo{" +
+                "shipperName='" + shipperName + '\'' +
+                ", shipperPhoneNumber='" + shipperPhoneNumber + '\'' +
+                ", departure='" + departure + '\'' +
+                ", consiggeeName='" + consiggeeName + '\'' +
+                ", consiggeePhoneNumber='" + consiggeePhoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", commitArriveTime=" + commitArriveTime +
+                ", packType='" + packType + '\'' +
+                ", detailMess='" + detailMess + '\'' +
+                ", packWeight=" + packWeight +
+                ", dangerous=" + dangerous +
+                ", inter=" + inter +
+                ", payType='" + payType + '\'' +
+                ", charge=" + charge +
+                ", customerId=" + customerId +
+                '}';
     }
 }

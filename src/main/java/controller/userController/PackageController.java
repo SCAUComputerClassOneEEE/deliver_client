@@ -277,13 +277,13 @@ public class PackageController implements Initializable {
         {
             String trim = packages_send_shipper_name.getText().trim();
             if (checkCorrectInput("请输入发件人名字", trim)) return;
-            packOrderBillInsertInfo.setsName(trim);
+            packOrderBillInsertInfo.setShipperName(trim);
         }
         // 发件人手机
         {
             String trim = packages_send_shipper_phone.getText().trim();
             if (checkCorrectInput("请输入发件人手机", trim)) return;
-            packOrderBillInsertInfo.setsPhoneNumber(trim);
+            packOrderBillInsertInfo.setShipperPhoneNumber(trim);
         }
         // 发件人地址
         try {
@@ -300,13 +300,13 @@ public class PackageController implements Initializable {
         {
             String trim = packages_send_consiggee_name.getText().trim();
             if (checkCorrectInput("请输入收件人名字", trim)) return;
-            packOrderBillInsertInfo.setcName(trim);
+            packOrderBillInsertInfo.setConsiggeeName(trim);
         }
         // 收件人手机
         {
             String trim = packages_send_consiggee_phone.getText().trim();
             if (checkCorrectInput("请输入发件人手机", trim)) return;
-            packOrderBillInsertInfo.setcPhoneNumber(trim);
+            packOrderBillInsertInfo.setConsiggeePhoneNumber(trim);
         }
         // 收件人地址
         try {
@@ -396,7 +396,7 @@ public class PackageController implements Initializable {
             packOrderBillInsertInfo.setPackType("pay monthly");
             root.setCenter(new TextField("已进入待支付"));
         }
-
+        System.out.println(packOrderBillInsertInfo);
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.show();

@@ -14,6 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
@@ -82,14 +83,13 @@ public abstract class HttpRequestCallable implements Callable<HttpResponse> {
                 }
             } else if (method.equals(HttpClientThreadPool.HttpMethod.POST)) {
                 HttpPost post;
-                try {
-                    post = new HttpPost(url);
-                    String s = JSONObject.toJSONString(obMap.values().toArray()[0]);
-                    post.setEntity(new StringEntity(s));
-                    return new HttpPostCallable(httpClient, post);
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                }
+                post = new HttpPost(url);
+                String s = JSONObject.toJSONString(obMap.values().toArray()[0]);
+                StringEntity stringEntity = new StringEntity(s, Charset.defaultCharset());
+                System.out.println(stringEntity);
+                stringEntity.setContentType("application/json");
+                post.setEntity(stringEntity);
+                return new HttpPostCallable(httpClient, post);
             } else {
 
             }
