@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import javafx.scene.image.Image;
 
 import java.io.*;
+import java.lang.reflect.Field;
 import java.util.Base64;
 
 public class Customer {
@@ -21,14 +22,21 @@ public class Customer {
     }
 
     public Customer(JSONObject parse) {
-        customerId = parse.getLong("customerId");
-        customerPassword = parse.getString("customerPassword");
-        customerName = parse.getString("customerName");
-        city = parse.getString("city");
-        street = parse.getString("street");
-        detailAddress = parse.getString("detailAddress");
-        account = parse.getString("account");
-        avatar = parse.getString("avatar");
+        System.out.println(parse.toString());
+        try {
+            Field[] declaredFields = this.getClass().getDeclaredFields();
+            for (Field field : declaredFields) {
+                field.set(this,
+                        parse.getObject(
+                                field.getName(),
+                                Class.forName(field.getGenericType().getTypeName())
+                        )
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(this);
     }
 
     public Image getCustomerAvatarImg() {

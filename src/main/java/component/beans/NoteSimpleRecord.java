@@ -7,7 +7,7 @@ package component.beans;
 public class NoteSimpleRecord {
     private String message;
     private String time;
-    private boolean isRead;
+    private Boolean isRead;
 
     public NoteSimpleRecord(String message, String time, boolean isRead) {
         this.message = message;

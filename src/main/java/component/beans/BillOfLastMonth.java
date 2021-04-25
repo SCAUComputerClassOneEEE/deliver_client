@@ -2,21 +2,34 @@ package component.beans;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.lang.reflect.Field;
+
 /**
  * @Author: Sky
  * @Date: 2021/4/24 16:31
  */
 public class BillOfLastMonth {
-    private long customerId;
+    private Long customerId;
     private Integer sendPacksCount;
     private Double moneyNumber;
     private Double lastMonthArrears;
 
     public BillOfLastMonth(JSONObject parse) {
-        customerId = parse.getLong("customerId");
-        sendPacksCount = parse.getInteger("sendPacksCount");
-        moneyNumber = parse.getDouble("moneyNumber");
-        lastMonthArrears = parse.getDouble("lastMonthArrears");
+        System.out.println(parse.toString());
+        try {
+            Field[] declaredFields = this.getClass().getDeclaredFields();
+            for (Field field : declaredFields) {
+                field.set(this,
+                        parse.getObject(
+                                field.getName(),
+                                Class.forName(field.getGenericType().getTypeName())
+                        )
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(this);
     }
 
     public long getCustomerId() {

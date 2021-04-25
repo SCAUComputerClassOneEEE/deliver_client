@@ -2,33 +2,38 @@ package component.beans;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 
 public class Transport {
-    private long transportId;
-    private long orderId;
-    private long carrierId;
+    private Long transportId;
+    private Long orderId;
+    private Long carrierId;
     private String carrierType;
-    private long transportTimesOfCarrier;
+    private Long transportTimesOfCarrier;
     private Timestamp inputTime;
     private Timestamp outputTime;
-    private long nextCarrierId;
+    private Long nextCarrierId;
     private String nextCarrierType;
     private String status;
     private String detailMessage;
 
     public Transport(JSONObject parse) {
-        setCarrierId(parse.getLong("carrierId"));
-        setCarrierType(parse.getString("carrierType"));
-        setDetailMessage(parse.getString("transDetailMessage"));
-        setTransportId(parse.getLong("transportId"));
-        setOrderId(parse.getLong("orderId"));
-        setTransportTimesOfCarrier(parse.getLong("transportTimesOfCarrier"));
-        setInputTime(parse.getTimestamp("inputTime"));
-        setOutputTime(parse.getTimestamp("outputTime"));
-        setNextCarrierId(parse.getLong("nextCarrierId"));
-        setNextCarrierType(parse.getString("nextCarrierType"));
-        setStatus(parse.getString("status"));
+        System.out.println(parse.toString());
+        try {
+            Field[] declaredFields = this.getClass().getDeclaredFields();
+            for (Field field : declaredFields) {
+                field.set(this,
+                        parse.getObject(
+                                field.getName(),
+                                Class.forName(field.getGenericType().getTypeName())
+                        )
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(this);
     }
 
     public long getTransportId() {

@@ -20,11 +20,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         this.callable = callable;
     }
 
-    public boolean getStatusOK() {
-        return getResponse(0).getStatusLine().getStatusCode() == HttpStatus.SC_OK;
-    }
-
-    public HttpResponse getResponse(long mills) {
+    private HttpResponse getResponse(long mills) {
         if (mills < 0) mills = 0;
         try {
             if (httpResponse == null) {
@@ -43,15 +39,16 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         return null;
     }
 
-    public Object getContent() {
-        return getContent(0);
+    private InputStream getContentInputStream(long mills) throws IOException {
+        if (mills < 0) mills = 0;
+        final HttpResponse httpResponse;
+        if ((httpResponse = getResponse(mills)) == null) {
+            return null;
+        }
+        return httpResponse.getEntity().getContent();
     }
 
-    public Object getContent(long mills) {
-        return JSONObject.parse(getContentString(mills));
-    }
-
-    public String getContentString(long mills) {
+    private String getContentString(long mills) {
         if (mills < 0) mills = 0;
         try {
             int length = 0;
@@ -88,8 +85,10 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         }
     }
 
-    public Iterator<?> getContentJSONArray() {
-        return getContentJSONArray(0);
+    public boolean getStatusOK() {
+        HttpResponse response = getResponse(0);
+        if (response == null) return false;
+        return response.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
     }
 
     public long getContentLong() {
@@ -118,26 +117,15 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         return longLong;
     }
 
-    public static void main(String[] args) {
-        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/query/test")
-                .onMethod(HttpClientThreadPool.HttpMethod.GET)
-                .addRequestContent("powers", 3)
-                .build();
-        HttpFutureTask httpFutureTask = HttpClientThreadPool.getPoolInstance().submitRequestTask(build);
-        System.out.println(httpFutureTask.getContentLong());
+    public Object getContent() { return getContent(0); }
+
+    public Object getContent(long mills) {
+        return JSONObject.parse(getContentString(mills));
     }
 
-    private InputStream getContentInputStream(long mills) throws IOException {
-        if (mills < 0) mills = 0;
-        final HttpResponse httpResponse;
-        if ((httpResponse = getResponse(mills)) == null) {
-            return null;
-        }
-        return httpResponse.getEntity().getContent();
+    public Iterator<?> getContentJSONArray() {
+        return getContentJSONArray(0);
     }
 
-    public Iterator<?> getContentJSONArray(long mills) {
-        return JSONArray.parseArray(getContentString(mills)).iterator();
-    }
+    public Iterator<?> getContentJSONArray(long mills) { return JSONArray.parseArray(getContentString(mills)).iterator(); }
 }

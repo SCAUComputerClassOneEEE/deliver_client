@@ -1,5 +1,8 @@
 package component.beans;
 
+import com.alibaba.fastjson.JSONObject;
+
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 
 public class PackOrderBillInsertInfo {
@@ -15,14 +18,35 @@ public class PackOrderBillInsertInfo {
     // package info
     private String packType; // 包裹类型
     private String detailMess; // 备注
-    private double packWeight; // 重量
-    private boolean isDangerous; // 危险
-    private boolean isInter; // 国际
+    private Double packWeight; // 重量
+    private Boolean isDangerous; // 危险
+    private Boolean isInter; // 国际
     // bill info
     private String payType; // 立即付、月付。。。
-    private int charge; // 计算得出的费用
-    private long customerId; // 支付的人的id
+    private Integer charge; // 计算得出的费用
+    private Long customerId; // 支付的人的id
 
+    public PackOrderBillInsertInfo() {
+
+    }
+
+    public PackOrderBillInsertInfo(JSONObject parse) {
+        System.out.println(parse.toString());
+        try {
+            Field[] declaredFields = this.getClass().getDeclaredFields();
+            for (Field field : declaredFields) {
+                field.set(this,
+                        parse.getObject(
+                                field.getName(),
+                                Class.forName(field.getGenericType().getTypeName())
+                        )
+                );
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(this);
+    }
 
     @Override
     public String toString() {

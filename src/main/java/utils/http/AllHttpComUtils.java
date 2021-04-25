@@ -151,4 +151,7 @@ public class AllHttpComUtils {
         return t;
     }
 
+    public static void main(String[] args) {
+        PackOrderBillInsertInfo packOrderBillInsertInfo = AllHttpComUtils.getPackOrderBillInsertInfo(1L);
+    }
 }
