@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import org.apache.http.HttpException;
+import utils.alert.AlertStage;
 import utils.http.AllHttpComUtils;
 import utils.http.HttpClientThreadPool;
 import utils.http.HttpFutureTask;
@@ -33,17 +35,28 @@ public class UserLoginController {
     @FXML
     private void userLogin() throws Exception {
         String userPhone=user_text_phone.getText();
+        if (AlertStage.checkNotNullInput("请输入账号！", userPhone))
+            return;
         String userPassword=user_text_password.getText();
-        customer = new Customer();
+        if (AlertStage.checkNotNullInput("请输入密码！", userPassword))
+            return;
+        /*customer = new Customer();
         customer.setCustomerId(Long.parseLong(userPhone));
         customer.setCustomerPassword(""+userPassword);
-        AfterLoginAction.PackageShow();
-        //customer = AllHttpComUtils.login(userPhone, userPassword, true);
-        /*if (customer != null)
+        AfterLoginAction.PackageShow();*/
+        try {
+            customer = AllHttpComUtils.login(userPhone, userPassword, true);
+        } catch (Exception e) {
+            // e.printStackTrace();
+            AlertStage.createAlertStage("服务器出错").show();
+            return;
+        }
+        if (customer != null)
             AfterLoginAction.PackageShow();
         else {
             user_text_password.setText("");
-        }*/
+            AlertStage.createAlertStage("账号或密码错误").show();
+        }
     }
 
     public long getCustomerId() {

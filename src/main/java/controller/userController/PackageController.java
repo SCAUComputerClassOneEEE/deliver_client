@@ -109,6 +109,7 @@ public class PackageController implements Initializable {
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
         queryPackageInformation();
+        user_text_username.setText(ChangeService.userLoginController.getCustomer().getCustomerName());
         /**
          * 监听器去到对应的函数里面加
          */
@@ -166,7 +167,7 @@ public class PackageController implements Initializable {
         /*
         分页加载，一次加载五个，customerId需要输入，这里还未输入
          */
-        loadPackage(18899715136L, offset, size);
+        loadPackage(ChangeService.userLoginController.getCustomerId(), offset, size);
     }
 
     // 加载一次记录
@@ -197,7 +198,7 @@ public class PackageController implements Initializable {
                 if (packages_package_scrollPane.getVvalue() == 1.0) {
                     System.out.println("你触及了我的底线！");
                     // 18899需要获取动态账号
-                    loadPackage(18899715136L, offset, size);
+                    loadPackage(ChangeService.userLoginController.getCustomerId(), offset, size);
                 }
             }
         });
@@ -262,15 +263,6 @@ public class PackageController implements Initializable {
 
     }
 
-    private static boolean checkCorrectInput(String error, String... input) {
-        for (String s : input){
-            if (s.trim().equals("")) {
-                AlertStage.createAlertStage(error).show();
-                return true;
-            }
-        }
-        return false;
-    }
 
     //提交按钮
     @FXML
@@ -279,13 +271,13 @@ public class PackageController implements Initializable {
         // 发件人名字
         {
             String trim = packages_send_shipper_name.getText().trim();
-            if (checkCorrectInput("请输入发件人名字", trim)) return;
+            if (AlertStage.checkNotNullInput("请输入发件人名字", trim)) return;
             packOrderBillInsertInfo.setShipperName(trim);
         }
         // 发件人手机
         {
             String trim = packages_send_shipper_phone.getText().trim();
-            if (checkCorrectInput("请输入发件人手机", trim)) return;
+            if (AlertStage.checkNotNullInput("请输入发件人手机", trim)) return;
             packOrderBillInsertInfo.setShipperPhoneNumber(trim);
         }
         // 发件人地址
@@ -293,7 +285,7 @@ public class PackageController implements Initializable {
             String prov = packages_send_shipper_province.getValue().toString();
             String city = packages_send_shipper_city.getValue().toString();
             String ds = packages_send_shipper_detailAddress.getText().trim();
-            if (checkCorrectInput("请输入发件人详细地址", ds)) return;
+            if (AlertStage.checkNotNullInput("请输入发件人详细地址", ds)) return;
             packOrderBillInsertInfo.setDeparture(prov + ';' + city + ";" + ds);
         } catch (NullPointerException nullPointerException) {
             AlertStage.createAlertStage("请选择省份或城市").show();
@@ -302,13 +294,13 @@ public class PackageController implements Initializable {
         // 收件人名字
         {
             String trim = packages_send_consiggee_name.getText().trim();
-            if (checkCorrectInput("请输入收件人名字", trim)) return;
+            if (AlertStage.checkNotNullInput("请输入收件人名字", trim)) return;
             packOrderBillInsertInfo.setConsiggeeName(trim);
         }
         // 收件人手机
         {
             String trim = packages_send_consiggee_phone.getText().trim();
-            if (checkCorrectInput("请输入发件人手机", trim)) return;
+            if (AlertStage.checkNotNullInput("请输入发件人手机", trim)) return;
             packOrderBillInsertInfo.setConsiggeePhoneNumber(trim);
         }
         // 收件人地址
@@ -316,7 +308,7 @@ public class PackageController implements Initializable {
             String prov = packages_send_consiggee_province.getValue().toString();
             String city = packages_send_consiggee_city.getValue().toString();
             String ds = packages_send_consiggee_detailAddress.getText().trim();
-            if (checkCorrectInput("请输入收件人详细地址", ds)) return;
+            if (AlertStage.checkNotNullInput("请输入收件人详细地址", ds)) return;
             packOrderBillInsertInfo.setAddress(prov + ';' + city + ";" + ds);
         } catch (NullPointerException nullPointerException) {
             AlertStage.createAlertStage("请选择省份或城市").show();
@@ -510,11 +502,11 @@ public class PackageController implements Initializable {
         packages_bill_anchorPane.setVisible(true);
         orderBillVbox.getChildren().clear();
         System.out.println("正在查询");
-        allBillViews = AllHttpComUtils.getAllBills(18899715136L);
+        allBillViews = AllHttpComUtils.getAllBills(ChangeService.userLoginController.getCustomerId());
         if(allBillViews!=null){
             queryAllBill();
         }
-        BillOfLastMonth billOfLastMonth = AllHttpComUtils.getBillOfLastMonth(18899715136L);
+        BillOfLastMonth billOfLastMonth = AllHttpComUtils.getBillOfLastMonth(ChangeService.userLoginController.getCustomerId());
         System.out.println(billOfLastMonth);
         int 上个月寄件数 = billOfLastMonth.getSendPacksCount();
         double 上个月消费数 = billOfLastMonth.getMoneyNumber();

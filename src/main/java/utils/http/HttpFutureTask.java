@@ -7,7 +7,6 @@ import org.apache.http.HttpStatus;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.concurrent.*;
 
@@ -20,25 +19,32 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         this.callable = callable;
     }
 
-    public void syncGetResponse(long mills) {
+    public boolean tryGetServerStop() {
+        syncGetResponse(0);
+        return httpResponse == null;
+    }
+
+    private void syncGetResponse(long mills) {
         if (mills < 0) mills = 0;
         try {
             if (httpResponse == null) {
                 httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
-
-                if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK){
-                    httpResponse = null;
-                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public boolean isStatusOK() {
+        syncGetResponse(0);
+        if (httpResponse == null) return false;
+        return httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
+    }
+
     private InputStream getContentInputStream(long mills) throws IOException {
         if (mills < 0) mills = 0;
         syncGetResponse(mills);
-        if (httpResponse == null) {
+        if (httpResponse == null || !isStatusOK()) {
             return null;
         }
         return httpResponse.getEntity().getContent();
@@ -79,12 +85,6 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
                 e.printStackTrace();
             }
         }
-    }
-
-    public boolean getStatusOK() {
-        syncGetResponse(0);
-        if (httpResponse == null) return false;
-        return httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
     }
 
     public long getContentLong() {

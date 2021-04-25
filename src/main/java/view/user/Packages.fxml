@@ -231,7 +231,7 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0" style="-fx-background-color: #edecf4;" visible="false">
+                  <ScrollPane fx:id="packages_personal_scrollPane" prefHeight="726.0" prefWidth="933.0" style="-fx-background-color: #edecf4;">
                     <content>
                       <AnchorPane fx:id="packages_personal_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
                            <children>
@@ -240,7 +240,7 @@
                                     <Image url="@../picture/头像1.jpg" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="packages_personal_btn_upload" layoutX="63.0" layoutY="154.0" mnemonicParsing="false" onAction="#uploadAction" style="-fx-background-color: edecf4;" text="upload">
+                              <Button fx:id="packages_personal_btn_upload" layoutX="46.0" layoutY="154.0" mnemonicParsing="false" onAction="#uploadAction" style="-fx-background-color: edecf4;" text="upload">
                                  <graphic>
                                     <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -286,7 +286,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
-                              <TextField fx:id="packages_personal_textfiled_customerName" layoutX="273.0" layoutY="64.0" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: F1F1F1;" text="老卢">
+                              <TextField fx:id="packages_personal_textfiled_customerName" layoutX="273.0" layoutY="64.0" prefHeight="52.0" prefWidth="117.0" style="-fx-background-color: F1F1F1;" text="老卢">
                                  <font>
                                     <Font name="System Bold" size="26.0" />
                                  </font>
@@ -302,7 +302,7 @@
                                  </font>
                               </Text>
                               <Line endX="720.0" layoutX="131.0" layoutY="210.0" startX="-100.0" strokeWidth="2.5" />
-                              <Line endX="720.0" layoutX="120.0" layoutY="375.0" startX="-100.0" strokeWidth="2.5" />
+                              <Line endX="720.0" layoutX="131.0" layoutY="375.0" startX="-100.0" strokeWidth="2.5" />
                               <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="48.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../picture/phone.png" />

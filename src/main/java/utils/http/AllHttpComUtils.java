@@ -2,9 +2,9 @@ package utils.http;
 
 import com.alibaba.fastjson.JSONObject;
 import component.beans.*;
+import org.apache.http.HttpException;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,7 +35,7 @@ public class AllHttpComUtils {
         pool.submitRequestTask(build)/*.getStatusOK()*/;
     }
 
-    public static Customer login(String name, String passwd, boolean cusOrAd) {
+    public static Customer login(String name, String passwd, boolean cusOrAd) throws HttpException {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/user/login")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
@@ -63,10 +63,12 @@ public class AllHttpComUtils {
                 .addRequestContent("length", limit)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        List<SimpleOrderInfoBar> tList = getTList(SimpleOrderInfoBar.class, futureTask);
-        assert tList != null;
-        // tList.forEach((s)->System.out.println(s.toString()));
-        return tList;
+        try {
+            return getTList(SimpleOrderInfoBar.class, futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static BillOfLastMonth getBillOfLastMonth(long customerId) {
@@ -76,7 +78,11 @@ public class AllHttpComUtils {
                 .addRequestContent("customer_id", customerId)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getT(BillOfLastMonth.class, futureTask);
+        try {
+            return getT(BillOfLastMonth.class, futureTask);
+        } catch (HttpException e) {
+            return null;
+        }
     }
 
     public static List<StreetStatistics> getTop10Street(){
@@ -87,7 +93,12 @@ public class AllHttpComUtils {
                 .addRequestContent("length", 10)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getTList(StreetStatistics.class,futureTask);
+        try {
+            return getTList(StreetStatistics.class,futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static List<NumberOfLastYear> getTop10NumberOfLastYear() {
@@ -98,7 +109,12 @@ public class AllHttpComUtils {
                 .addRequestContent("length", 10)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getTList(NumberOfLastYear.class,futureTask);
+        try {
+            return getTList(NumberOfLastYear.class,futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static List<ConsumptionOfLastYear> getTop10ConsumptionOfLastYear() {
@@ -109,7 +125,12 @@ public class AllHttpComUtils {
                 .addRequestContent("length", 10)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getTList(ConsumptionOfLastYear.class,futureTask);
+        try {
+            return getTList(ConsumptionOfLastYear.class,futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static List<BillView> getAllBills(long customerId) {
@@ -119,7 +140,12 @@ public class AllHttpComUtils {
                 .addRequestContent("customer_id", customerId)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getTList(BillView.class, futureTask);
+        try {
+            return getTList(BillView.class, futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static PackOrderBillInsertInfo getPackOrderBillInsertInfo(long order_id) {
@@ -129,7 +155,12 @@ public class AllHttpComUtils {
                 .addRequestContent("order_id", order_id)
                 .build();
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getT(PackOrderBillInsertInfo.class, futureTask);
+        try {
+            return getT(PackOrderBillInsertInfo.class, futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static List<Transport> getTransportsOfOrder(long orderId) {
@@ -140,14 +171,22 @@ public class AllHttpComUtils {
                 .build();
 
         HttpFutureTask futureTask = pool.submitRequestTask(build);
-        return getTList(Transport.class, futureTask);
+        try {
+            return getTList(Transport.class, futureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
-    private static <T> List<T> getTList(Class<T> tClass, HttpFutureTask futureTask) {
+    private static <T> List<T> getTList(Class<T> tClass, HttpFutureTask futureTask) throws HttpException {
         ArrayList<T> ts = new ArrayList<>();
-
+        if (futureTask.tryGetServerStop()) {
+            throw new HttpException("server stop.");
+        }
         try {
             Constructor<T> t = tClass.getConstructor(JSONObject.class);
+
             Iterator<?> contentJSON = futureTask.getContentJSONArray();
             if (contentJSON == null) {
                 return null;
@@ -168,9 +207,12 @@ public class AllHttpComUtils {
         return ts;
     }
 
-    private static <T> T getT(Class<T> tClass, HttpFutureTask futureTask) {
+    private static <T> T getT(Class<T> tClass, HttpFutureTask futureTask) throws HttpException {
         T t = null;
 
+        if (futureTask.tryGetServerStop()) {
+            throw new HttpException("server stop.");
+        }
         Object content = futureTask.getContent();
         if (content == null) return null;
 

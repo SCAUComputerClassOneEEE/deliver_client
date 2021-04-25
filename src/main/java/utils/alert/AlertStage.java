@@ -13,4 +13,22 @@ public class AlertStage {
         alert.setHeaderText("Please handle the exception:");
         return alert;
     }
+    public static boolean checkNotNullInput(String error, String... input) {
+        for (String s : input){
+            if (s.trim().equals("")) {
+                AlertStage.createAlertStage(error).show();
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean checkString2LongLegality(String error, String input) {
+        try {
+            Long.parseLong(input);
+        } catch (NumberFormatException e) {
+            AlertStage.createAlertStage(error).show();
+            return false;
+        }
+        return true;
+    }
 }

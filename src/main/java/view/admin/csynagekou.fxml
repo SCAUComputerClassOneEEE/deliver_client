@@ -34,7 +34,7 @@
             <TextField fx:id="packages_personal_textfiled_detailAddress1" layoutX="200.0" layoutY="259.0" prefHeight="25.0" prefWidth="306.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
             <Text layoutX="87.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone:" />
             <TextField fx:id="packages_personal_textfiled_customerPhone1" layoutX="153.0" layoutY="332.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
-            <TextField fx:id="packages_personal_textfiled_customerName1" layoutX="217.0" layoutY="64.0" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: F1F1F1;" text="老卢">
+            <TextField fx:id="packages_personal_textfiled_customerName1" layoutX="217.0" layoutY="64.0" prefHeight="52.0" prefWidth="118.0" style="-fx-background-color: F1F1F1;" text="老卢">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>

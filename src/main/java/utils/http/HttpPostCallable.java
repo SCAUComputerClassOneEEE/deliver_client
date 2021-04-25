@@ -17,8 +17,13 @@ public class HttpPostCallable extends HttpRequestCallable {
     }
 
     @Override
-    public HttpResponse call() throws Exception {
-        return httpClient.execute(httpPost);
+    public HttpResponse call() {
+        try {
+            return httpClient.execute(httpPost);
+        } catch (Exception e) {
+            System.err.println("server stop");
+            return null;
+        }
     }
 
     @Override

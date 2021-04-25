@@ -18,8 +18,13 @@ public class HttpGetCallable extends HttpRequestCallable {
     }
 
     @Override
-    public HttpResponse call() throws Exception {
-        return httpClient.execute(httpGet);
+    public HttpResponse call() {
+        try {
+            return httpClient.execute(httpGet);
+        } catch (Exception e) {
+            System.err.println("server stop");
+            return null;
+        }
     }
 
     public void close() throws IOException {
