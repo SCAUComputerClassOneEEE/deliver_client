@@ -140,7 +140,7 @@ public class PackageController implements Initializable {
 
     private void initBigPane() {
 
-        packages_personal_textfiled_customerID.setText(""+ChangeService.userLoginController.getCustomer().getCustomerId());
+        packages_personal_textfiled_customerID.setText(""+ UserLoginController.getCustomer().getCustomerId());
 
     }
 
@@ -504,6 +504,10 @@ public class PackageController implements Initializable {
         });
     }
 
+    @FXML
+    private void pay(){
+        System.out.println("老卢给二维码");
+    }
     /**
      * 第四个功能
      * personal --csy实现

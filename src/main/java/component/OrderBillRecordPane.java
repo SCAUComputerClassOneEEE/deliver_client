@@ -22,12 +22,12 @@ public class OrderBillRecordPane extends AnchorPane {
 
     public OrderBillRecordPane(BillView billView) {
         isSelected = new CheckBox();
-        orderId = new Label(String.valueOf(billView.getOrderId()));
-        orderCreateTime = new Label(billView.getOrderCreateTime().toString());
-        receiver = new Label(billView.getReceiver());
-        orderStatus = new Label(billView.getOrderStatus());
-        isPaid = new Label(billView.isPaid()?"已支付":"未支付");
-        charge = new Label(String.valueOf(billView.getCharge()));
+        orderId = new Label("订单编号："+ billView.getOrderId());
+        orderCreateTime = new Label("创建时间："+billView.getOrderCreateTime().toString());
+        receiver = new Label("收件人："+billView.getReceiver());
+        orderStatus = new Label("订单状态："+billView.getOrderStatus());
+        isPaid = new Label(billView.isPaid() ? "订单已支付" : "订单未支付");
+        charge = new Label("¥"+ billView.getCharge());
         init();
     }
 
@@ -42,21 +42,25 @@ public class OrderBillRecordPane extends AnchorPane {
 
         orderId.setLayoutX(49);
         orderId.setLayoutY(27);
-        orderCreateTime.setLayoutX(260);
+
+        orderCreateTime.setLayoutX(229);
         orderCreateTime.setLayoutY(27);
-        receiver.setLayoutX(516);
+
+        receiver.setLayoutX(474);
         receiver.setLayoutY(27);
-        orderStatus.setLayoutX(625);
+
+        orderStatus.setLayoutX(605);
         orderStatus.setLayoutY(27);
 
-        isPaid.setLayoutX(725);
+        isPaid.setLayoutX(749);
         isPaid.setLayoutY(27);
 
-        charge.setLayoutX(803);
+        charge.setLayoutX(846);
         charge.setLayoutY(27);
-        this.setMinSize(882,74);
-        this.setMaxSize(882,74);
-        this.getChildren().addAll(isSelected,orderId,orderCreateTime,receiver,orderStatus,charge);
+
+        this.setMinSize(910,74);
+        this.setMaxSize(910,74);
+        this.getChildren().addAll(isSelected,orderId,orderCreateTime,receiver,orderStatus,isPaid,charge);
     }
 
     public CheckBox getIsSelected(){

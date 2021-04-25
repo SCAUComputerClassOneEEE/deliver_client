@@ -84,7 +84,6 @@ public class SimpleOrderMessagePane extends AnchorPane {
 
     private void addFun2Detail(){
         detail.setOnMouseClicked(event -> {
-
             try{
                 detailStage = new Stage();
                 FXMLLoader loader = new FXMLLoader();
