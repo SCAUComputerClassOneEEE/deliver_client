@@ -83,7 +83,7 @@ public class DetailMessageController implements Initializable {
              * 这里需要发送获取数据的请求 获取之后生成界面 --sky
              */
             OrderDetailController odc = loader.getController();
-            odc.init(order_id,"s.getSendDetailAddress()","s.getReceiveDetailAddress()");
+            odc.init(order_id,packOrderBillInsertInfo.getDeparture(),packOrderBillInsertInfo.getAddress());
 
             AllHttpComUtils
                     .getTransportsOfOrder(order_id)

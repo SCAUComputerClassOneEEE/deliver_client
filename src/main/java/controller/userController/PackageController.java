@@ -9,19 +9,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -261,108 +255,143 @@ public class PackageController implements Initializable {
 
     }
 
+    private static boolean checkCorrectInput(String error, String... input) {
+        for (String s : input){
+            if (s.trim().equals("")) {
+                AlertStage.createAlertStage(error).show();
+                return true;
+            }
+        }
+        return false;
+    }
+
     //提交按钮
     @FXML
     private void addClickedActionSend() {
-
-
         PackOrderBillInsertInfo packOrderBillInsertInfo = new PackOrderBillInsertInfo();
-        //发件人
-        packOrderBillInsertInfo.setsName(packages_send_shipper_name.getText().trim());
-        packOrderBillInsertInfo.setsPhoneNumber((packages_send_shipper_phone.getText().trim()));
-        packOrderBillInsertInfo.setDeparture((
-                packages_send_shipper_province.getValue().toString() + ';' + packages_send_shipper_city.getValue().toString() + ";"
-                        + packages_send_shipper_detailAddress.getText().trim()));
-
-        //发件人
-        packOrderBillInsertInfo.setcName(packages_send_consiggee_name.getText().trim());
-        packOrderBillInsertInfo.setcPhoneNumber(packages_send_consiggee_phone.getText().trim());
-        packOrderBillInsertInfo.setAddress(
-                packages_send_consiggee_province.getValue().toString() + ";" + packages_send_consiggee_city.getValue().toString() + ";"
-                        + packages_send_consiggee_detailAddress.getText().trim());
-
-
-        int days = packages_send_serviceType_nextDay.isSelected() ? 1 : (packages_send_serviceType_nextNextDay.isSelected() ? 2 : 3);
-        Timestamp timestamp = new Timestamp(new Date().getTime() + days * 24 * 60 * 60 * 1000);
-
-        packOrderBillInsertInfo.setCommitArriveTime(timestamp);
-
-        //package info
-        //传是哪一种包裹类型
-        boolean flag = false;
-        for (CheckBox e : checkBoxes1) {
-            if (e.isSelected()) {
-                packOrderBillInsertInfo.setPackType(e.getText());
-                flag = true;
-                break;
+        // 发件人名字
+        {
+            String trim = packages_send_shipper_name.getText().trim();
+            if (checkCorrectInput("请输入发件人名字", trim)) return;
+            packOrderBillInsertInfo.setsName(trim);
+        }
+        // 发件人手机
+        {
+            String trim = packages_send_shipper_phone.getText().trim();
+            if (checkCorrectInput("请输入发件人手机", trim)) return;
+            packOrderBillInsertInfo.setsPhoneNumber(trim);
+        }
+        // 发件人地址
+        try {
+            String prov = packages_send_shipper_province.getValue().toString();
+            String city = packages_send_shipper_city.getValue().toString();
+            String ds = packages_send_shipper_detailAddress.getText().trim();
+            if (checkCorrectInput("请输入发件人详细地址", ds)) return;
+            packOrderBillInsertInfo.setDeparture(prov + ';' + city + ";" + ds);
+        } catch (NullPointerException nullPointerException) {
+            AlertStage.createAlertStage("请选择省份或城市").show();
+            return;
+        }
+        // 收件人名字
+        {
+            String trim = packages_send_consiggee_name.getText().trim();
+            if (checkCorrectInput("请输入收件人名字", trim)) return;
+            packOrderBillInsertInfo.setcName(trim);
+        }
+        // 收件人手机
+        {
+            String trim = packages_send_consiggee_phone.getText().trim();
+            if (checkCorrectInput("请输入发件人手机", trim)) return;
+            packOrderBillInsertInfo.setcPhoneNumber(trim);
+        }
+        // 收件人地址
+        try {
+            String prov = packages_send_consiggee_province.getValue().toString();
+            String city = packages_send_consiggee_city.getValue().toString();
+            String ds = packages_send_consiggee_detailAddress.getText().trim();
+            if (checkCorrectInput("请输入收件人详细地址", ds)) return;
+            packOrderBillInsertInfo.setAddress(prov + ';' + city + ";" + ds);
+        } catch (NullPointerException nullPointerException) {
+            AlertStage.createAlertStage("请选择省份或城市").show();
+            return;
+        }
+        // 承诺到达时间
+        {
+            int days = packages_send_serviceType_nextDay.isSelected() ? 1 : (packages_send_serviceType_nextNextDay.isSelected() ? 2 : 3);
+            Timestamp timestamp = new Timestamp(new Date().getTime() + days * 24 * 60 * 60 * 1000);
+            packOrderBillInsertInfo.setCommitArriveTime(timestamp);
+            if (packages_send_serviceType_nextDay.isSelected()) {
+                packOrderBillInsertInfo.setPackType("次日达");
+            } else if (packages_send_serviceType_nextNextDay.isSelected()) {
+                packOrderBillInsertInfo.setPackType("后日达");
+            } else {
+                packOrderBillInsertInfo.setPackType("不需要特殊服务");
             }
         }
+        //package info
+        //传是哪一种包裹类型
+        {
+            boolean flag = false;
+            for (CheckBox e : checkBoxes1) {
+                if (e.isSelected()) {
+                    packOrderBillInsertInfo.setPackType(e.getText());
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag) {
+                packOrderBillInsertInfo.setPackType("null");
+            }
 
-        if (!flag) {
-            packOrderBillInsertInfo.setPackType("null");
-        }
-
-
-        packOrderBillInsertInfo.setDetailMess(packages_send_speacialPackage_detial.getText().trim());
-        packOrderBillInsertInfo.setDangerous(packages_send_speacialPackage_dangerous.isSelected());
-        packOrderBillInsertInfo.setInter(packages_send_speacialPackage_international.isSelected());
-        packOrderBillInsertInfo.setPackWeight(1.0);
-
-        //承诺到达
-        if (packages_send_serviceType_nextDay.isSelected()) {
-            packOrderBillInsertInfo.setPackType("次日达");
-        } else if (packages_send_serviceType_nextNextDay.isSelected()) {
-            packOrderBillInsertInfo.setPackType("后日达");
-        } else {
-            packOrderBillInsertInfo.setPackType("不需要特殊服务");
+            packOrderBillInsertInfo.setDetailMess(packages_send_speacialPackage_detial.getText().trim());
+            packOrderBillInsertInfo.setDangerous(packages_send_speacialPackage_dangerous.isSelected());
+            packOrderBillInsertInfo.setInter(packages_send_speacialPackage_international.isSelected());
+            packOrderBillInsertInfo.setPackWeight(1.0);
         }
         //bill info
         //费用
-        if (packages_send_consiggee_province.getValue().toString().equals("广东省")) {
-            packOrderBillInsertInfo.setCharge(8);
-        } else {
-            packOrderBillInsertInfo.setCharge(12);
+        {
+            if (packages_send_consiggee_province.getValue().toString().equals("广东省")) {
+                packOrderBillInsertInfo.setCharge(8);
+            } else {
+                packOrderBillInsertInfo.setCharge(12);
+            }
         }
         //id
         packOrderBillInsertInfo.setCustomerId(ChangeService.userLoginController.getCustomerId());///要用户名
 
         Stage stage = new Stage();
         BorderPane root = new BorderPane();
-
         Scene scene = new Scene(root);
 
-
+        // 二维码
         if (packages_send_payment_now.isSelected()) {
             packOrderBillInsertInfo.setPackType("pay now");
             final String url = AllHttpComUtils.qr_pay_url;
             long billId = AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
-
-            Image fxImage = QRCodeUtil
-                    .encode2FXImage(
+            if (billId == 0) {
+                AlertStage.createAlertStage("服务器已下线").show();
+                return;
+            }
+            Image fxImage = QRCodeUtil.encode2FXImage(
                             url + "/id=" + billId,
                             null,
-                            true
-                    );
+                            true);
             if (fxImage != null) {
                 root.setCenter(new ImageView(fxImage));
             } else {
-                root.setCenter(new TextField("error qr."));
+                AlertStage.createAlertStage("二维码上传异常").show();
+                return;
             }
-        } else {
-            AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
-            packOrderBillInsertInfo.setPackType("pay monthly");
-            root.setCenter(new TextField("进入待支付"));
         }
-
-        /*
-         *
-         *
-         * http
-         *
-         *
-         * */
-
-        System.out.println(packOrderBillInsertInfo);
+        else if (packages_send_payment_monthly.isSelected()) {
+            if (AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo) == 0) {
+                AlertStage.createAlertStage("服务器已下线").show();
+                return;
+            }
+            packOrderBillInsertInfo.setPackType("pay monthly");
+            root.setCenter(new TextField("已进入待支付"));
+        }
 
         stage.setScene(scene);
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -383,6 +412,14 @@ public class PackageController implements Initializable {
         addProvinceFun();
         addClickedAction2Protocol();
         setAllSelectTrue();
+        {
+            /*
+            * 搞个初值~
+            * */
+            packages_send_serviceType_nextDay.setSelected(true);
+            packages_send_payment_now.setSelected(true);
+            packages_send_speacialPackage_not.setSelected(true);
+        }
         ToggleGroup group = new ToggleGroup(); // 创建一个按钮小组
         packages_send_serviceType_nextDay.setToggleGroup(group); // 把单选按钮1加入到按钮小组
         packages_send_serviceType_nextNextDay.setToggleGroup(group); // 把单选按钮2加入到按钮小组
