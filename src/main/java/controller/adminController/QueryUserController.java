@@ -46,6 +46,11 @@ public class QueryUserController implements Initializable {
              */
             // userDetailController.setCustomer_id(Long.parseLong(customer_id.getText()));
 
+            /**
+             * adminHttp
+             * 这里提供一个customer_id返回用户信息
+             */
+
             Parent root = loader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);

@@ -35,16 +35,26 @@ public class AddDamageController implements Initializable {
     @FXML
     private void submitDamage(){
         if (carrier_id.getText().equals("")||carrier_type.getText().equals("")||damage_record_time.getText().equals("")){
-            AlertStage.createAlertStage("填完啊亲！").show();
+            AlertStage.createAlertStage("请提供全部数据").show();
         }else {
             int carrier_id_int;
             int damage_record_time_int;
             try {
                 carrier_id_int = Integer.parseInt(carrier_id.getText());
                 damage_record_time_int = Integer.parseInt(damage_record_time.getText());
-                AlertStage.createAlertStage("ok").show();
+
+                /**
+                 * adminHttp
+                 * 这里向数据库插入数据 参数依次是
+                 * carrier_id_int
+                 * carrier_type.getText()
+                 * damage_record_time_int
+                 * 直接插入damage_record表就可以了
+                 */
+
+                AlertStage.createAlertStage("已添加").show();
             }catch (Exception e){
-                AlertStage.createAlertStage("叼你啊，1、3填数字啊").show();
+                AlertStage.createAlertStage("第1、3行请填数字").show();
             }
         }
     }

@@ -37,6 +37,10 @@ public class AdminLoginController {
         ChangeService.adminStage.setTitle("管理端");
         ChangeService.adminStage.setScene(scene);
         System.out.println("进入管理端了");
+        /**
+         * adminHttp
+         * 这里要做登录
+         */
     }
 
     @FXML
