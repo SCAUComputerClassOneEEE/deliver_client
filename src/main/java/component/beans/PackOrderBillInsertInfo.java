@@ -7,20 +7,20 @@ import java.sql.Timestamp;
 
 public class PackOrderBillInsertInfo {
     // 发件人
-    private String sName;
-    private String sPhoneNumber;
+    private String sname;
+    private String sphoneNumber;
     private String departure; // 省，市，详细地址
     // 收件人
-    private String cName;
-    private String cPhoneNumber;
+    private String cname;
+    private String cphoneNumber;
     private String address; // 省，市，详细地址
     private Timestamp commitArriveTime; // 约定到达时间，当前时间+一日或两日
     // package info
     private String packType; // 包裹类型
     private String detailMess; // 备注
     private Double packWeight; // 重量
-    private Boolean isDangerous; // 危险
-    private Boolean isInter; // 国际
+    private Boolean dangerous; // 危险
+    private Boolean inter; // 国际
     // bill info
     private String payType; // 立即付、月付。。。
     private Integer charge; // 计算得出的费用
@@ -51,18 +51,18 @@ public class PackOrderBillInsertInfo {
     @Override
     public String toString() {
         return "PackOrderBillInsertInfo{" +
-                "sName='" + sName + '\'' +
-                ", sPhoneNumber='" + sPhoneNumber + '\'' +
+                "sName='" + sname + '\'' +
+                ", sPhoneNumber='" + sphoneNumber + '\'' +
                 ", departure='" + departure + '\'' +
-                ", cName='" + cName + '\'' +
-                ", cPhoneNumber='" + cPhoneNumber + '\'' +
+                ", cName='" + cname + '\'' +
+                ", cPhoneNumber='" + cphoneNumber + '\'' +
                 ", address='" + address + '\'' +
                 ", commitArriveTime=" + commitArriveTime +
                 ", packType='" + packType + '\'' +
                 ", detailMess='" + detailMess + '\'' +
                 ", packWeight=" + packWeight +
-                ", isDangerous=" + isDangerous +
-                ", isInter=" + isInter +
+                ", isDangerous=" + dangerous +
+                ", isInter=" + inter +
                 ", payType='" + payType + '\'' +
                 ", charge=" + charge +
                 ", customerId=" + customerId +
@@ -70,19 +70,19 @@ public class PackOrderBillInsertInfo {
     }
 
     public String getsName() {
-        return sName;
+        return sname;
     }
 
     public void setsName(String sName) {
-        this.sName = sName;
+        this.sname = sName;
     }
 
     public String getsPhoneNumber() {
-        return sPhoneNumber;
+        return sphoneNumber;
     }
 
     public void setsPhoneNumber(String sPhoneNumber) {
-        this.sPhoneNumber = sPhoneNumber;
+        this.sphoneNumber = sPhoneNumber;
     }
 
     public String getDeparture() {
@@ -94,19 +94,19 @@ public class PackOrderBillInsertInfo {
     }
 
     public String getcName() {
-        return cName;
+        return cname;
     }
 
     public void setcName(String cName) {
-        this.cName = cName;
+        this.cname = cName;
     }
 
     public String getcPhoneNumber() {
-        return cPhoneNumber;
+        return cphoneNumber;
     }
 
     public void setcPhoneNumber(String cPhoneNumber) {
-        this.cPhoneNumber = cPhoneNumber;
+        this.cphoneNumber = cPhoneNumber;
     }
 
     public String getAddress() {
@@ -150,19 +150,19 @@ public class PackOrderBillInsertInfo {
     }
 
     public boolean isDangerous() {
-        return isDangerous;
+        return dangerous;
     }
 
     public void setDangerous(boolean dangerous) {
-        isDangerous = dangerous;
+        dangerous = dangerous;
     }
 
     public boolean isInter() {
-        return isInter;
+        return inter;
     }
 
     public void setInter(boolean inter) {
-        isInter = inter;
+        inter = inter;
     }
 
     public String getPayType() {
