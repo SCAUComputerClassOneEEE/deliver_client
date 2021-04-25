@@ -9,54 +9,99 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="775.0" prefWidth="1068.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.MainViewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="712.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.MainViewController">
    <top>
-      <AnchorPane fx:id="user_pane_package_anchorPane" prefHeight="48.0" prefWidth="882.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="user_pane_package_anchorPane" prefHeight="58.0" prefWidth="949.0" style="-fx-background-color: #631C23;" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="user_text_welcome" layoutX="878.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" />
-            <Text fx:id="user_text_username" fill="#2618e4" layoutX="953.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxadminname" />
+            <Text fx:id="user_text_welcome" fill="#edecf4" layoutX="735.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" />
+            <Text fx:id="user_text_username" fill="#edecf4" layoutX="814.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxadminname" />
          </children>
       </AnchorPane>
    </top>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="649.0" prefWidth="944.0" style="-fx-background-color: #EDECF4;" BorderPane.alignment="CENTER">
          <children>
-            <VBox fx:id="vBox1" layoutX="62.0" layoutY="69.0" prefHeight="336.0" prefWidth="237.0">
+            <VBox fx:id="vBox1" layoutX="107.0" layoutY="108.0" prefHeight="411.0" prefWidth="222.0" style="-fx-background-color: #BCA7A7;">
                <children>
                   <AnchorPane prefHeight="43.0" prefWidth="237.0">
                      <children>
-                        <Label layoutX="28.0" layoutY="12.0" text="五山街道" />
-                        <Label layoutX="170.0" layoutY="12.0" text="18人" />
+                        <Label layoutX="28.0" layoutY="12.0" text="五山街道" textFill="#381f21" />
+                        <Label layoutX="159.0" layoutY="12.0" text="18人" textFill="#381f21" />
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
-            <VBox fx:id="vBox2" layoutX="395.0" layoutY="69.0" prefHeight="313.0" prefWidth="248.0">
+            <VBox fx:id="vBox2" layoutX="380.0" layoutY="108.0" prefHeight="412.0" prefWidth="230.0" style="-fx-background-color: #DCC6C6;">
                <children>
                   <AnchorPane prefHeight="43.0" prefWidth="237.0">
                      <children>
-                        <Label layoutX="28.0" layoutY="12.0" text="孙考毅" />
-                        <Label layoutX="148.0" layoutY="12.0" text="消费200元" />
+                        <Label layoutX="28.0" layoutY="12.0" text="孙考毅" textFill="#381f21" />
+                        <Label layoutX="115.0" layoutY="12.0" text="消费200元" textFill="#381f21" />
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
-            <VBox fx:id="vBox3" layoutX="740.0" layoutY="69.0" prefHeight="313.0" prefWidth="248.0">
+            <VBox fx:id="vBox3" layoutX="652.0" layoutY="108.0" prefHeight="415.0" prefWidth="227.0" style="-fx-background-color: #E1E0E7;">
                <children>
                   <AnchorPane prefHeight="43.0" prefWidth="237.0">
                      <children>
-                        <Label layoutX="36.0" layoutY="12.0" text="孙考毅" />
-                        <Label layoutX="165.0" layoutY="12.0" text="寄件数：2" />
+                        <Label layoutX="36.0" layoutY="12.0" text="孙考毅" textFill="#381f21" />
+                        <Label layoutX="127.0" layoutY="12.0" text="寄件数：2" textFill="#381f21" />
                      </children>
                   </AnchorPane>
                </children>
             </VBox>
-            <Label layoutX="147.0" layoutY="37.0" text="街道前十" />
-            <Label layoutX="489.0" layoutY="37.0" text="消费前十" />
-            <Label layoutX="834.0" layoutY="37.0" text="寄件前十" />
-            <Button layoutX="159.0" layoutY="578.0" mnemonicParsing="false" onAction="#button1Fun" text="新增出事载体" />
-            <Button layoutX="492.0" layoutY="578.0" mnemonicParsing="false" onAction="#button2Fun" text="修改载体表格" />
-            <Button layoutX="821.0" layoutY="578.0" mnemonicParsing="false" onAction="#button3Fun" text="查看用户信息" />
+            <Label layoutX="187.0" layoutY="69.0" style="-fx-border-color: #381F21;" text="街道前十" textFill="#381f21">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="456.0" layoutY="69.0" style="-fx-border-color: #381F21;" text="消费前十" textFill="#381f21">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label layoutX="738.0" layoutY="69.0" style="-fx-border-color: #381F21;" text="寄件前十" textFill="#381f21">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Button layoutX="144.0" layoutY="545.0" mnemonicParsing="false" onAction="#button1Fun" style="-fx-background-color: #EDECF4;" text="新增出事载体">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutX="407.0" layoutY="545.0" mnemonicParsing="false" onAction="#button2Fun" style="-fx-background-color: #EDECF4;" text="修改载体表格">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/modify.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button layoutX="687.0" layoutY="541.0" mnemonicParsing="false" onAction="#button3Fun" style="-fx-background-color: #EDECF4;" text="查看用户信息">
+               <graphic>
+                  <ImageView fitHeight="43.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../picture/look.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <ImageView fitHeight="51.0" fitWidth="75.0" layoutX="23.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/congratulation.png" />
+               </image>
+            </ImageView>
+            <Text fill="#631c23" layoutX="93.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Congratulations!!!">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="63.0" fitWidth="57.0" layoutX="16.0" layoutY="577.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/congratulation2.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </center>

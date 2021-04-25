@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,18 +8,33 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.AdminLoginController">
+<AnchorPane prefHeight="331.0" prefWidth="507.0" style="-fx-background-color: #EDECF4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.AdminLoginController">
     <children>
-        <Text layoutX="162.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator login" wrappingWidth="275.62890625">
+        <Text fill="#381f21" layoutX="119.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Administrator login" wrappingWidth="275.62890625">
             <font>
                 <Font size="27.0" />
             </font>
         </Text>
-        <TextField fx:id="ad_text_account" layoutX="210.0" layoutY="115.0"  />
-        <PasswordField fx:id="ad_text_password" layoutX="210.0" layoutY="180.0" />
-        <Button fx:id="ad_btn_login" layoutX="367.0" layoutY="277.0" mnemonicParsing="false" text="login" onAction="#adminLogin" />
-        <Button fx:id="ad_btn_clear" layoutX="467.0" layoutY="277.0" mnemonicParsing="false" text="clear" onAction="#adminClear" />
-        <Text layoutX="117.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
-        <Text layoutX="113.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+        <TextField fx:id="ad_text_account" layoutX="194.0" layoutY="115.0" />
+        <PasswordField fx:id="ad_text_password" layoutX="194.0" layoutY="180.0" />
+        <Button fx:id="ad_btn_login" layoutX="366.0" layoutY="239.0" mnemonicParsing="false" onAction="#adminLogin" style="-fx-background-color: #EDECF4;">
+         <graphic>
+            <ImageView fitHeight="41.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/send.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+        <Button fx:id="ad_btn_clear" layoutX="428.0" layoutY="239.0" mnemonicParsing="false" onAction="#adminClear" style="-fx-background-color: #EDECF4;">
+         <graphic>
+            <ImageView fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/clean.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+        <Text fill="#381f21" layoutX="101.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account" />
+        <Text fill="#381f21" layoutX="97.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
+      <AnchorPane layoutY="-4.0" prefHeight="36.0" prefWidth="513.0" style="-fx-background-color: #631C23;" />
     </children>
 </AnchorPane>

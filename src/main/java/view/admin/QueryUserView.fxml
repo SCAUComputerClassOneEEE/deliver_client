@@ -9,11 +9,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="anchorPane1" prefHeight="179.0" prefWidth="495.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.QueryUserController">
+<AnchorPane fx:id="anchorPane1" prefHeight="194.0" prefWidth="523.0" style="-fx-background-color: #EDECF4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.QueryUserController">
    <children>
-      <TextField fx:id="customer_id" layoutX="150.0" layoutY="83.0" />
-      <Button layoutX="364.0" layoutY="83.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <Label layoutX="54.0" layoutY="88.0" text="customer_id" />
-      <Label layoutX="139.0" layoutY="34.0" text="请输入需要查看的custonmer_id" />
+      <TextField fx:id="customer_id" layoutX="190.0" layoutY="97.0" />
+      <Button layoutX="403.0" layoutY="128.0" mnemonicParsing="false" onAction="#search" style="-fx-background-color: #EDECF4;" />
+      <Label layoutX="82.0" layoutY="102.0" text="customer_id" textFill="#381f21" />
+      <Label layoutX="205.0" layoutY="43.0" text="查看用户信息" textFill="#381f21">
+         <font>
+            <Font size="19.0" />
+         </font></Label>
+      <AnchorPane prefHeight="30.0" prefWidth="524.0" style="-fx-background-color: #631C23;" />
+      <ImageView fitHeight="45.0" fitWidth="63.0" layoutX="413.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/send.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
