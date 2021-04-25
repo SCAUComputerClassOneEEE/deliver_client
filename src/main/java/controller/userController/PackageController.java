@@ -9,6 +9,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -106,6 +107,8 @@ public class PackageController implements Initializable {
      */
     public void initialize(URL location, ResourceBundle resources) {
         setAllInvisible();
+        packages_package_scrollPane.setVisible(true);
+        queryPackageInformation();
         /**
          * 监听器去到对应的函数里面加
          */
@@ -134,8 +137,8 @@ public class PackageController implements Initializable {
     }
 
     private void initBigPane() {
-
         packages_personal_textfiled_customerID.setText(""+ UserLoginController.getCustomer().getCustomerId());
+
 
     }
 
@@ -486,10 +489,10 @@ public class PackageController implements Initializable {
     @FXML
     private void allBillAction() {
         if (allBill.isSelected()) {
-            orderBillVbox.getChildren().forEach(o -> ((OrderBillRecordPane) o).getIsSelected().setSelected(true));
+            orderBillVbox.getChildren().forEach(o -> ((OrderBillRecordPane) o).getSelectCheckBox().setSelected(true));
             OrderBillRecordPane.selectNum = orderBillVbox.getChildren().size();
         } else {
-            orderBillVbox.getChildren().forEach(o -> ((OrderBillRecordPane) o).getIsSelected().setSelected(false));
+            orderBillVbox.getChildren().forEach(o -> ((OrderBillRecordPane) o).getSelectCheckBox().setSelected(false));
             OrderBillRecordPane.selectNum = 0;
         }
     }
@@ -509,7 +512,7 @@ public class PackageController implements Initializable {
         System.out.println("正在查询");
         allBillViews = AllHttpComUtils.getAllBills(18899715136L);
         if(allBillViews!=null){
-            allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+            queryAllBill();
         }
         BillOfLastMonth billOfLastMonth = AllHttpComUtils.getBillOfLastMonth(18899715136L);
         System.out.println(billOfLastMonth);
@@ -519,6 +522,7 @@ public class PackageController implements Initializable {
         billMessage1.setText("上个月寄件数:"+上个月寄件数);
         billMessage2.setText("上个月消费数:"+上个月消费数);
         billMessage3.setText("上个月欠款数:"+上个月欠款数);
+
     }
 
     private void initBill() {
@@ -531,6 +535,10 @@ public class PackageController implements Initializable {
         allBill.setSelected(false);
         orderBillVbox.getChildren().clear();
         allBillViews.forEach(o->orderBillVbox.getChildren().add(new OrderBillRecordPane(o)));
+        for (int i=0;i<orderBillVbox.getChildren().size();i++){
+            ((OrderBillRecordPane)orderBillVbox.getChildren().get(i)).getSelectCheckBox().setDisable(true);
+        }
+        allBill.setDisable(true);
     }
 
     @FXML
@@ -543,13 +551,25 @@ public class PackageController implements Initializable {
                 orderBillVbox.getChildren().add(new OrderBillRecordPane(o));
             }
         });
+        for (int i=0;i<orderBillVbox.getChildren().size();i++){
+            ((OrderBillRecordPane)orderBillVbox.getChildren().get(i)).getSelectCheckBox().setDisable(false);
+        }
+        allBill.setDisable(false);
     }
 
     @FXML
     private void pay(){
         System.out.println("老卢给二维码");
         List<Long> order_ids = new ArrayList<>();
-        orderBillVbox.getChildren().forEach(o->order_ids.add(((OrderBillRecordPane)o).getOrderId()));
+        orderBillVbox.getChildren().forEach(o->{
+            if (((OrderBillRecordPane)o).getSelectCheckBox().isSelected()){
+                order_ids.add(((OrderBillRecordPane)o).getOrderId());
+            }
+        });
+        if (order_ids.size()==0){
+            AlertStage.createAlertStage("请选择账单").show();
+            return;
+        }
         Image fxImage = QRCodeUtil.encode2FXImage(order_ids,null,true);
 
         Stage stage = new Stage();

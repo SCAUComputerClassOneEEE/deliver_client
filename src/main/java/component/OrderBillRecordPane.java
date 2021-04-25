@@ -63,11 +63,12 @@ public class OrderBillRecordPane extends AnchorPane {
         this.getChildren().addAll(isSelected,orderId,orderCreateTime,receiver,orderStatus,isPaid,charge);
     }
 
-    public CheckBox getIsSelected(){
-        return this.isSelected;
-    }
 
     public long getOrderId(){
         return Long.parseLong(this.orderId.getText().split("：")[1]);
+    }
+
+    public CheckBox getSelectCheckBox(){
+        return this.isSelected;
     }
 }
