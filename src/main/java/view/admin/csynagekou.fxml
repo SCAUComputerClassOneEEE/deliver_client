@@ -9,60 +9,59 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane fx:id="packages_personal_scrollPane1" prefHeight="726.0" prefWidth="933.0" style="-fx-background-color: #edecf4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.csynagekouController">
+<ScrollPane fx:id="packages_personal_scrollPane1" prefHeight="418.0" prefWidth="527.0" style="-fx-background-color: #edecf4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.csynagekouController">
    <content>
-      <AnchorPane fx:id="packages_personal_anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="722.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
+      <AnchorPane fx:id="packages_personal_anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="524.0" style="-fx-background-color: #edecf4;">
          <children>
-            <ImageView fx:id="packages_personal_avatar1" fitHeight="126.0" fitWidth="124.0" layoutX="36.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="packages_personal_avatar1" fitHeight="90.0" fitWidth="107.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../picture/头像1.jpg" />
                </image>
             </ImageView>
-            <Text fx:id="packages_personal_textfiled_customerID1" fill="#655a5a" layoutX="300.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
-            <Text fill="#655a5a" layoutX="192.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
-            <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="490.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+            <Text fx:id="packages_personal_textfiled_customerID1" fill="#381f21" layoutX="244.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
+            <Text fill="#655a5a" layoutX="136.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
+            <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="375.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../picture/二维码.png" />
                </image>
             </ImageView>
-            <Text fill="#655a5a" layoutX="192.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
-            <Text layoutX="134.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city" />
-            <Text layoutX="401.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street" />
-            <Text layoutX="131.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_address" />
-            <TextField fx:id="packages_personal_textfiled_city1" editable="false" layoutX="184.0" layoutY="257.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
-            <TextField fx:id="packages_personal_textfiled_street1" layoutX="458.0" layoutY="257.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
-            <TextField fx:id="packages_personal_textfiled_detailAddress1" layoutX="244.0" layoutY="303.0" prefHeight="33.0" prefWidth="342.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
-            <Text layoutX="135.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
-            <TextField fx:id="packages_personal_textfiled_customerPhone1" layoutX="201.0" layoutY="414.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
-            <TextField fx:id="packages_personal_textfiled_customerName1" layoutX="273.0" layoutY="64.0" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: F1F1F1;" text="老卢">
+            <Text fill="#655a5a" layoutX="136.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
+            <Text fill="#381f21" layoutX="87.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
+            <Text fill="#381f21" layoutX="246.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="stree:t" />
+            <Text fill="#381f21" layoutX="87.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_addres:s" />
+            <TextField fx:id="packages_personal_textfiled_city1" editable="false" layoutX="137.0" layoutY="216.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
+            <TextField fx:id="packages_personal_textfiled_street1" layoutX="305.0" layoutY="216.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
+            <TextField fx:id="packages_personal_textfiled_detailAddress1" layoutX="200.0" layoutY="259.0" prefHeight="25.0" prefWidth="306.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
+            <Text layoutX="87.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone:" />
+            <TextField fx:id="packages_personal_textfiled_customerPhone1" layoutX="153.0" layoutY="332.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
+            <TextField fx:id="packages_personal_textfiled_customerName1" layoutX="217.0" layoutY="64.0" prefHeight="29.0" prefWidth="97.0" style="-fx-background-color: F1F1F1;" text="老卢">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="42.0" layoutY="221.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="42.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../picture/place.png" />
                </image>
             </ImageView>
-            <Text layoutX="78.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+            <Text layoutX="78.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Line endX="720.0" layoutX="131.0" layoutY="210.0" startX="-100.0" strokeWidth="2.5" />
-            <Line endX="720.0" layoutX="120.0" layoutY="375.0" startX="-100.0" strokeWidth="2.5" />
-            <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="48.0" layoutY="390.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="46.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../picture/phone.png" />
                </image>
             </ImageView>
-            <Text layoutX="75.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+            <Text layoutX="73.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
                <font>
                   <Font size="24.0" />
                </font>
             </Text>
-            <Label layoutX="136.0" layoutY="492.0" text="已拉黑" />
-            <Label layoutX="57.0" layoutY="492.0" text="状态" />
+            <Label layoutX="193.0" layoutY="373.0" text="禁止登录" />
+            <Label layoutX="87.0" layoutY="373.0" text="authorization:" textFill="#381f21" />
+            <AnchorPane layoutX="-9.0" layoutY="-5.0" prefHeight="38.0" prefWidth="536.0" style="-fx-background-color: #631C23;" />
          </children>
       </AnchorPane>
    </content>
