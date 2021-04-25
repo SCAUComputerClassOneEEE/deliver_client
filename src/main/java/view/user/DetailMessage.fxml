@@ -56,7 +56,7 @@
          <image>
             <Image url="@../picture/shipper.png" />
          </image></ImageView>
-      <Line endY="300.0" layoutX="365.0" layoutY="150.0" />
+      <Line fx:id="line" endY="300.0" layoutX="365.0" layoutY="150.0" />
       <Text layoutX="77.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="shipper:" />
       <Text layoutX="418.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="consignee:" />
       <ImageView fitHeight="40.0" fitWidth="57.0" layoutX="375.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">

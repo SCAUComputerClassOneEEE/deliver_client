@@ -36,12 +36,14 @@ public class SimpleOrderMessagePane extends AnchorPane {
     private static Stage detailStage;
     private SimpleOrderInfoBar s;
 
-    public SimpleOrderMessagePane(SimpleOrderInfoBar s){
+    private int color;
+    public SimpleOrderMessagePane(SimpleOrderInfoBar s,int color){
+        this.color = color;
         this.s = s;
-        order_id = new Label(String.valueOf(s.getOrderId()));
-        order_status = new Label(String.valueOf(s.getOrderStatus()));
-        receive_name = new Label(s.getReceiveName());
-        order_creat_time = new Label(s.getOrderCreateTime().toString());
+        order_id = new Label("订单编号："+String.valueOf(s.getOrderId()));
+        order_status = new Label("订单状态："+String.valueOf(s.getOrderStatus()));
+        receive_name = new Label("收件人："+s.getReceiveName());
+        order_creat_time = new Label("订单创建时间："+s.getOrderCreateTime().toString());
         init();
     }
 
@@ -58,30 +60,35 @@ public class SimpleOrderMessagePane extends AnchorPane {
         /*
         设置位置、字体大小颜色、添加功能等
          */
-        order_id.setLayoutX(14);
-        order_id.setLayoutY(23);
+        order_id.setLayoutX(32);
+        order_id.setLayoutY(33);
+        order_id.setTextFill(Paint.valueOf("#631c23"));
 
-        order_status.setLayoutX(135);
-        order_status.setLayoutY(9);
-        order_status.setPrefSize(75,48);
-        order_status.setFont(new Font(24));
-        order_status.setTextFill(Paint.valueOf("RED"));
+        order_status.setLayoutX(256);
+        order_status.setLayoutY(33);
+        order_status.setTextFill(Paint.valueOf("#631c23"));
 
-        receive_name.setLayoutX(244);
-        receive_name.setLayoutY(23);
+        receive_name.setLayoutX(407);
+        receive_name.setLayoutY(33);
+        receive_name.setTextFill(Paint.valueOf("#631c23"));
 
-        order_creat_time.setLayoutX(336);
-        order_creat_time.setLayoutY(23);
+        order_creat_time.setLayoutX(533);
+        order_creat_time.setLayoutY(33);
+        order_creat_time.setTextFill(Paint.valueOf("#631c23"));
 
         detail = new Label("查看详情");
-        detail.setLayoutX(361);
-        detail.setLayoutY(42);
-        detail.setTextFill(Paint.valueOf("BLUE"));
+        detail.setLayoutX(820);
+        detail.setLayoutY(33);
+        detail.setTextFill(Paint.valueOf(color%2==1?"#fce8d8":"#263859"));
         detail.setUnderline(true);
         addFun2Detail();
 
+        String col = color%2==1?" #a39391":"#EDECF4";
+        this.setStyle("-fx-background-color:"+col);
+        this.setPrefSize(917,85);
+        this.setMaxSize(917,85);
+        this.setMinSize(917,85);
         this.getChildren().addAll(order_id,order_status,receive_name,order_creat_time,detail);
-        this.setPrefSize(440,66);
     }
 
     private void addFun2Detail(){
@@ -102,6 +109,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
 
                 detailMessageController.setOrder_id(s.getOrderId());
                 // 填充
+                assert packOrderBillInsertInfo != null;
                 detailMessageController.fillData(packOrderBillInsertInfo);
 
                 if (detailStage.isShowing()){

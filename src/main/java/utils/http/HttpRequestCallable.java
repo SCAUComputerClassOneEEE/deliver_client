@@ -23,7 +23,7 @@ public abstract class HttpRequestCallable implements Callable<HttpResponse> {
     public abstract void close() throws IOException;
 
     public static class HttpRequestCallableBuilder {
-        public static final String URL = "http://localhost:8081";
+        public static final String URL = "http://localhost:8080";
 
         String url;
         HttpClientThreadPool.HttpMethod method;

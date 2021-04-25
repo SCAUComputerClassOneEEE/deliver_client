@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Line;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import utils.http.AllHttpComUtils;
@@ -70,6 +71,8 @@ public class DetailMessageController implements Initializable {
     private CheckBox interCheckBox;
 
     @FXML
+    private Line line;
+    @FXML
     private void transDetail(){
         try{
             transDetailStage = new Stage();
@@ -113,6 +116,7 @@ public class DetailMessageController implements Initializable {
     }
 
     public void fillData(PackOrderBillInsertInfo packOrderBillInsertInfo){
+        this.line.getStrokeDashArray().addAll(4d);
         this.packOrderBillInsertInfo = packOrderBillInsertInfo;
         System.out.println("闯进来了");
         this.senderField.setText(packOrderBillInsertInfo.getsName());

@@ -29,6 +29,7 @@ import java.io.*;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class PackageController implements Initializable {
     private ArrayList<CheckBox> checkBoxes1 = new ArrayList<>();
@@ -156,7 +157,9 @@ public class PackageController implements Initializable {
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
         packages_show_vBox.setVisible(true);
+        AnchorPane title =  (AnchorPane)packages_show_vBox.getChildren().get(0);
         packages_show_vBox.getChildren().clear();
+        packages_show_vBox.getChildren().add(title);
         /*
         分页加载，一次加载五个，customerId需要输入，这里还未输入
          */
@@ -170,7 +173,8 @@ public class PackageController implements Initializable {
         packages_package_scrollPane.setVisible(true);
         List<SimpleOrderInfoBar> simpleOrderInfoBarPage = AllHttpComUtils.getSimpleOrderInfoBarPage(customerId, offset, limit);
         if (simpleOrderInfoBarPage == null) return;
-        simpleOrderInfoBarPage.forEach((s) -> results.add(new SimpleOrderMessagePane(s)));
+        AtomicInteger i = new AtomicInteger(1);
+        simpleOrderInfoBarPage.forEach((s) -> results.add(new SimpleOrderMessagePane(s, i.getAndIncrement())));
         /*
         这里需要提供描述订单的类的数据数组，然后循环添加
         */

@@ -9,11 +9,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="475.0" style="-fx-background-color: #EDECF4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.OrderDetailController">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="643.0" prefWidth="482.0" style="-fx-background-color: #EDECF4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.OrderDetailController">
     <content>
         <VBox fx:id="parent" prefHeight="641.0" prefWidth="474.0" style="-fx-background-color: #EDECF4;">
             <children>
-            <AnchorPane maxHeight="101.0" maxWidth="474.0" minHeight="101.0" minWidth="474.0" prefHeight="101.0" prefWidth="474.0" style="-fx-background-color: #631C23;">
+            <AnchorPane maxHeight="101.0" maxWidth="501.0" minHeight="101.0" minWidth="474.0" prefHeight="101.0" prefWidth="501.0" style="-fx-background-color: #631C23;">
                <children>
                   <Label layoutX="180.0" layoutY="14.0" prefHeight="36.0" prefWidth="115.0" text="运单详情" textFill="#edecf4">
                      <font>

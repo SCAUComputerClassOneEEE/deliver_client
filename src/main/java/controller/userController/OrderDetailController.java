@@ -35,6 +35,11 @@ public class OrderDetailController implements Initializable {
         // "1157843878343"、"广州"、"阳江"这三个字段需要数据填充
         orderId.setText("运单编号:"+order_id);
         send2ReceivePath.setText(sendAdd.split(";")[1]+" → "+receiveAdd.split(";")[1]);
+
+        // 删一些东西，没事的
+        parent.getChildren().remove(2);
+        parent.getChildren().remove(2);
+        parent.getChildren().remove(2);
     }
 
     public void addNewRecord(Transport t){
