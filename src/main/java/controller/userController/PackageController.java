@@ -498,7 +498,7 @@ public class PackageController implements Initializable {
         allBill.setSelected(false);
         orderBillVbox.getChildren().clear();
         allBillViews.forEach(o->{
-            if (!o.isPaid()){
+            if (!o.getPaid()){
                 orderBillVbox.getChildren().add(new OrderBillRecordPane(o));
             }
         });

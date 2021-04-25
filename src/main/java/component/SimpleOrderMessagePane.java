@@ -1,8 +1,10 @@
 package component;
 
 import com.alibaba.fastjson.JSONObject;
+import component.beans.PackOrderBillInsertInfo;
 import component.beans.SimpleOrderInfoBar;
 import component.beans.Transport;
+import controller.userController.DetailMessageController;
 import controller.userController.OrderDetailController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -83,28 +85,29 @@ public class SimpleOrderMessagePane extends AnchorPane {
     }
 
     private void addFun2Detail(){
+        // 查看详情之后的函数
         detail.setOnMouseClicked(event -> {
             try{
                 detailStage = new Stage();
                 FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/OrderDetail.fxml"));
+                loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/DetailMessage.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 detailStage.setScene(scene);
+                DetailMessageController detailMessageController = loader.getController();
 
-                /*
-                 * 这里需要发送获取数据的请求 获取之后生成界面 --sky
-                 */
-                OrderDetailController odc = loader.getController();
-                odc.init(s.getOrderId(),s.getSendDetailAddress(),s.getReceiveDetailAddress());
+                // 应该给order_id对应的详细信息
+                PackOrderBillInsertInfo packOrderBillInsertInfo = AllHttpComUtils.getPackOrderBillInsertInfo(s.getOrderId());
+                if (packOrderBillInsertInfo==null) System.out.println("老卢干假工");
 
-                AllHttpComUtils
-                        .getTransportsOfOrder(Long.parseLong(order_id.getText()))
-                        .forEach(odc::addNewRecord);
+                detailMessageController.setOrder_id(s.getOrderId());
+                // 填充
+                detailMessageController.fillData(packOrderBillInsertInfo);
 
                 if (detailStage.isShowing()){
                     detailStage.close();
                 }
+
                 detailStage.initModality(Modality.APPLICATION_MODAL);
                 detailStage.show();
             } catch (Exception e) {

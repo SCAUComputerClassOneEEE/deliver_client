@@ -26,7 +26,7 @@ public class OrderBillRecordPane extends AnchorPane {
         orderCreateTime = new Label("创建时间："+billView.getOrderCreateTime().toString());
         receiver = new Label("收件人："+billView.getReceiver());
         orderStatus = new Label("订单状态："+billView.getOrderStatus());
-        isPaid = new Label(billView.isPaid() ? "订单已支付" : "订单未支付");
+        isPaid = new Label(billView.getPaid() ? "订单已支付" : "订单未支付");
         charge = new Label("¥"+ billView.getCharge());
         init();
     }
