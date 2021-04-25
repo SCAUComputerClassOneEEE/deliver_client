@@ -598,8 +598,7 @@ public class PackageController implements Initializable {
     private void savePersoanlInfromationAction(){
         String pass =packages_personal_textfiled_password.getText();
         String again=packages_personal_textfiled_againPassword.getText();
-        Stage stage = new Stage();
-        BorderPane root = new BorderPane();
+
 
         if (!pass.equals(again)){
             AlertStage.createAlertStage("两次密码输入不一致，请重新输入！").show();
@@ -630,10 +629,7 @@ public class PackageController implements Initializable {
 
         }
 
-        Scene scene = new Scene(root);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.show();
+
 
 
 

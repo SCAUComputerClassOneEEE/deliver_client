@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,37 +9,60 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="503.0" prefWidth="735.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.DetailMessageController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="538.0" prefWidth="750.0" style="-fx-background-color: #EDECF4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.DetailMessageController">
    <children>
-      <Label layoutX="290.0" layoutY="14.0" text="订单详情">
-         <font>
-            <Font size="34.0" />
-         </font>
-      </Label>
-      <Label layoutX="18.0" layoutY="91.0" text="发件人" />
-      <TextField fx:id="senderField" layoutX="101.0" layoutY="86.0" />
-      <TextField fx:id="receiverField" layoutX="471.0" layoutY="86.0" />
-      <Label layoutX="379.0" layoutY="91.0" text="收件人" />
-      <TextField fx:id="senderPhoneField" layoutX="101.0" layoutY="139.0" />
-      <Label layoutX="14.0" layoutY="144.0" text="发件人手机" />
-      <TextField fx:id="receiverPhoneField" layoutX="471.0" layoutY="139.0" />
-      <Label layoutX="380.0" layoutY="144.0" text="收件人手机" />
-      <TextField fx:id="senderAddressField" layoutX="101.0" layoutY="191.0" />
-      <Label layoutX="22.0" layoutY="196.0" text="发件地址" />
-      <TextField fx:id="receiverAddressField" layoutX="471.0" layoutY="191.0" />
-      <Label layoutX="380.0" layoutY="196.0" text="收件地址" />
-      <TextField fx:id="packageTypeField" layoutX="471.0" layoutY="247.0" />
-      <Label layoutX="380.0" layoutY="252.0" text="物品类别" />
-      <TextField fx:id="orderIdField" layoutX="101.0" layoutY="247.0" />
-      <Label layoutX="22.0" layoutY="252.0" text="订单编号" />
-      <TextField fx:id="packageWeightField" layoutX="101.0" layoutY="301.0" />
-      <Label layoutX="22.0" layoutY="306.0" text="包裹重量" />
-      <CheckBox fx:id="dangerousCheckBox" layoutX="380.0" layoutY="356.0" mnemonicParsing="false" text="危险品" />
-      <CheckBox fx:id="interCheckBox" layoutX="495.0" layoutY="356.0" mnemonicParsing="false" text="国际物品" />
-      <TextField fx:id="packageChargeField" layoutX="471.0" layoutY="301.0" />
-      <Label layoutX="380.0" layoutY="306.0" text="订单金额" />
-      <Button layoutX="560.0" layoutY="429.0" mnemonicParsing="false" onAction="#transDetail" text="跟踪物流信息" />
-      <Label layoutX="22.0" layoutY="356.0" text="订单备注" />
-      <TextField fx:id="packageMessageField" layoutX="101.0" layoutY="351.0" />
+      <Label layoutX="46.0" layoutY="156.0" text="发件人" />
+      <TextField fx:id="senderField" layoutX="117.0" layoutY="149.0" />
+      <TextField fx:id="receiverField" layoutX="489.0" layoutY="149.0" />
+      <Label layoutX="397.0" layoutY="154.0" text="收件人" />
+      <TextField fx:id="senderPhoneField" layoutX="117.0" layoutY="206.0" />
+      <Label layoutX="39.0" layoutY="211.0" text="发件人手机" />
+      <TextField fx:id="receiverPhoneField" layoutX="488.0" layoutY="202.0" />
+      <Label layoutX="397.0" layoutY="207.0" text="收件人手机" />
+      <TextField fx:id="senderAddressField" layoutX="117.0" layoutY="254.0" />
+      <Label layoutX="46.0" layoutY="259.0" text="发件地址" />
+      <TextField fx:id="receiverAddressField" layoutX="488.0" layoutY="254.0" />
+      <Label layoutX="397.0" layoutY="259.0" text="收件地址" />
+      <TextField fx:id="packageTypeField" layoutX="488.0" layoutY="310.0" />
+      <Label layoutX="397.0" layoutY="315.0" text="物品类别" />
+      <TextField fx:id="orderIdField" layoutX="117.0" layoutY="310.0" />
+      <Label layoutX="46.0" layoutY="315.0" text="订单编号" />
+      <TextField fx:id="packageWeightField" layoutX="117.0" layoutY="364.0" />
+      <Label layoutX="46.0" layoutY="369.0" text="包裹重量" />
+      <CheckBox fx:id="dangerousCheckBox" layoutX="397.0" layoutY="419.0" mnemonicParsing="false" text="危险品" />
+      <CheckBox fx:id="interCheckBox" layoutX="512.0" layoutY="419.0" mnemonicParsing="false" text="国际物品" />
+      <TextField fx:id="packageChargeField" layoutX="488.0" layoutY="364.0" />
+      <Label layoutX="397.0" layoutY="369.0" text="订单金额" />
+      <Button layoutX="562.0" layoutY="464.0" mnemonicParsing="false" onAction="#transDetail" style="-fx-background-color: #EDECF4; -fx-border-color: #AEB8C3;" text="跟踪物流信息">
+         <graphic>
+            <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/send.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Label layoutX="46.0" layoutY="420.0" text="订单备注" />
+      <TextField fx:id="packageMessageField" layoutX="117.0" layoutY="415.0" />
+      <Pane layoutX="-3.0" prefHeight="70.0" prefWidth="756.0" style="-fx-background-color: #631C23;">
+         <children>
+            <Label layoutX="307.0" layoutY="14.0" text="订单详情" textFill="#edecf4">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="40.0" fitWidth="45.0" layoutX="35.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/shipper.png" />
+         </image></ImageView>
+      <Line endY="300.0" layoutX="365.0" layoutY="150.0" />
+      <Text layoutX="77.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="shipper:" />
+      <Text layoutX="418.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="consignee:" />
+      <ImageView fitHeight="40.0" fitWidth="57.0" layoutX="375.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/cosigge.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

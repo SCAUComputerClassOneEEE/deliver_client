@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -8,25 +9,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="487.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.userController.NoteDetailController">
-   <content>
-      <VBox fx:id="parent" prefHeight="221.0" prefWidth="481.0">
+<AnchorPane fx:id="parent" prefHeight="260.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutY="68.0" prefHeight="192.0" prefWidth="531.0" style="-fx-background-color: #EDECF4;">
          <children>
-            <AnchorPane prefHeight="225.0" prefWidth="481.0">
-               <children>
-                  <Line endX="455.0" layoutY="56.0" />
-                  <Label layoutX="183.0" layoutY="6.0" prefHeight="36.0" prefWidth="115.0" text="通知详情" textFill="#030303">
-                     <font>
-                        <Font size="27.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="orderId" layoutX="14.0" layoutY="67.0" text="运单号：1568848457745" />
-                  <Label fx:id="send2ReceivePath" layoutX="20.0" layoutY="106.0" text="你的包裹出事了" />
-                  <Label layoutX="23.0" layoutY="147.0" text="出事时载体" />
-                  <Label layoutX="23.0" layoutY="178.0" text="出事时间" />
-               </children>
-            </AnchorPane>
+            <Label fx:id="orderId" layoutX="20.0" layoutY="26.0" text="运单号：1568848457745" />
+            <Label fx:id="send2ReceivePath" layoutX="20.0" layoutY="59.0" text="你的包裹出事了" />
+            <Label layoutX="20.0" layoutY="96.0" text="出事时载体" />
+            <Label layoutX="20.0" layoutY="129.0" text="出事时间" />
+            <ImageView fitHeight="69.0" fitWidth="75.0" layoutX="423.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../picture/unhappy.png" />
+               </image>
+            </ImageView>
          </children>
-      </VBox>
-   </content>
-</ScrollPane>
+      </AnchorPane>
+      <AnchorPane prefHeight="69.0" prefWidth="531.0" style="-fx-background-color: #631C23;">
+         <children>
+            <Label layoutX="201.0" layoutY="14.0" prefHeight="36.0" prefWidth="115.0" text="通知详情" textFill="#edecf4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Line endX="460.0" layoutX="31.0" layoutY="55.0" startX="-5.0" stroke="#edecf4" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

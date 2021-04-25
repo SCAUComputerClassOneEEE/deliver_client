@@ -52,7 +52,7 @@
             </VBox>
             <AnchorPane fx:id="packages_anchorPane" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <ScrollPane fx:id="packages_package_scrollPane" layoutX="3.0" prefHeight="726.0" prefWidth="929.0" style="-fx-background-color: #edecf4;">
+                  <ScrollPane fx:id="packages_package_scrollPane" layoutX="3.0" prefHeight="726.0" prefWidth="929.0" style="-fx-background-color: #edecf4;" visible="false">
                      <content>
                         <VBox fx:id="packages_show_vBox" prefHeight="718.0" prefWidth="927.0" style="-fx-background-color: #edecf4;">
                            <children>
@@ -93,7 +93,7 @@
                            </children></VBox>
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0" visible="false">
+                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0">
                      <content>
                       <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
                            <children>
@@ -123,7 +123,7 @@
                               <CheckBox fx:id="packages_send_packageType_makeup" layoutX="450.0" layoutY="464.0" mnemonicParsing="false" text="化妆品" />
                               <CheckBox fx:id="packages_send_packageType_medicine" layoutX="85.0" layoutY="507.0" mnemonicParsing="false" text="药品" />
                               <Text layoutX="258.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <Button fx:id="packages_send_btn_send" layoutX="770.0" layoutY="659.0" mnemonicParsing="false" onAction="#addClickedActionSend" style="-fx-background-color: #DCDDD8;" text="send">
+                              <Button fx:id="packages_send_btn_send" layoutX="770.0" layoutY="659.0" mnemonicParsing="false" onAction="#addClickedActionSend" style="-fx-background-color: #edecf4; -fx-border-color: #AEB8C3;" text="send">
                                  <graphic>
                                     <ImageView fitHeight="35.0" fitWidth="61.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -270,17 +270,17 @@
                               <PasswordField fx:id="packages_personal_textfiled_againPassword" layoutX="223.0" layoutY="612.0" style="-fx-background-color: F1F1F1;" text="666666666" />
                               <Text layoutX="135.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone" />
                               <TextField fx:id="packages_personal_textfiled_customerPhone" layoutX="201.0" layoutY="414.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
-                              <Button fx:id="packages_personal_btn_modify" layoutX="655.0" layoutY="642.0" mnemonicParsing="false" onAction="#modifiedAction" prefHeight="54.0" prefWidth="126.0" style="-fx-background-color: #edecf4;" text="modify">
+                              <Button fx:id="packages_personal_btn_modify" layoutX="657.0" layoutY="643.0" mnemonicParsing="false" onAction="#modifiedAction" prefHeight="54.0" prefWidth="118.0" style="-fx-background-color: #edecf4; -fx-border-color: #AEB8C3;" text="modify">
                                  <graphic>
-                                    <ImageView fitHeight="59.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="32.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../picture/modify.png" />
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
-                              <Button fx:id="packages_personal_btn_save" layoutX="775.0" layoutY="642.0" mnemonicParsing="false" onAction="#savePersoanlInfromationAction" style="-fx-background-color: #edecf4;" text="save">
+                              <Button fx:id="packages_personal_btn_save" layoutX="794.0" layoutY="642.0" mnemonicParsing="false" onAction="#savePersoanlInfromationAction" prefHeight="52.0" prefWidth="94.0" style="-fx-background-color: #edecf4; -fx-border-color: #AEB8C3;" text="save">
                                  <graphic>
-                                    <ImageView fitHeight="47.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="39.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../picture/save.png" />
                                        </image>
@@ -336,7 +336,7 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0" visible="false">
+                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0">
                      <content>
                         <VBox fx:id="noteVbox" prefHeight="721.0" prefWidth="926.0">
                            <children>
