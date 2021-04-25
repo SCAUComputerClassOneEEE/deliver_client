@@ -20,29 +20,25 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
         this.callable = callable;
     }
 
-    private HttpResponse getResponse(long mills) {
+    public void syncGetResponse(long mills) {
         if (mills < 0) mills = 0;
         try {
             if (httpResponse == null) {
                 httpResponse = mills == 0 ? get() : get(mills, TimeUnit.MILLISECONDS);
-                if (httpResponse == null)
-                    return null;
-                if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK){
-                    return null;
-                }
 
-                return httpResponse;
+                if (httpResponse.getStatusLine().getStatusCode() != HttpStatus.SC_OK){
+                    httpResponse = null;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
     }
 
     private InputStream getContentInputStream(long mills) throws IOException {
         if (mills < 0) mills = 0;
-        final HttpResponse httpResponse;
-        if ((httpResponse = getResponse(mills)) == null) {
+        syncGetResponse(mills);
+        if (httpResponse == null) {
             return null;
         }
         return httpResponse.getEntity().getContent();
@@ -86,9 +82,9 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
     }
 
     public boolean getStatusOK() {
-        HttpResponse response = getResponse(0);
-        if (response == null) return false;
-        return response.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
+        syncGetResponse(0);
+        if (httpResponse == null) return false;
+        return httpResponse.getStatusLine().getStatusCode() == HttpStatus.SC_OK;
     }
 
     public long getContentLong() {

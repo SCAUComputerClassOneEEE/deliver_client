@@ -141,7 +141,7 @@ public class PackOrderBillInsertInfo {
     }
 
     public void setDangerous(boolean dangerous) {
-        dangerous = dangerous;
+        this.dangerous = dangerous;
     }
 
     public boolean isInter() {
@@ -149,7 +149,7 @@ public class PackOrderBillInsertInfo {
     }
 
     public void setInter(boolean inter) {
-        inter = inter;
+        this.inter = inter;
     }
 
     public String getPayType() {
