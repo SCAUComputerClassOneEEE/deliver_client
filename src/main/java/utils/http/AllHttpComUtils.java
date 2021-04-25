@@ -79,6 +79,39 @@ public class AllHttpComUtils {
         return getT(BillOfLastMonth.class, futureTask);
     }
 
+    public static List<StreetStatistics> getTop10Street(){
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/user/street")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("offset", 0)
+                .addRequestContent("length", 10)
+                .build();
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getTList(StreetStatistics.class,futureTask);
+    }
+
+    public static List<NumberOfLastYear> getTop10NumberOfLastYear() {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/rankingList/totalList")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("offset", 0)
+                .addRequestContent("length", 10)
+                .build();
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getTList(NumberOfLastYear.class,futureTask);
+    }
+
+    public static List<ConsumptionOfLastYear> getTop10ConsumptionOfLastYear() {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/rankingList/consumeList")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("offset", 0)
+                .addRequestContent("length", 10)
+                .build();
+        HttpFutureTask futureTask = pool.submitRequestTask(build);
+        return getTList(ConsumptionOfLastYear.class,futureTask);
+    }
+
     public static List<BillView> getAllBills(long customerId) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/query/bills")

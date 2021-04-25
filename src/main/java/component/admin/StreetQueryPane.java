@@ -1,5 +1,6 @@
 package component.admin;
 
+import component.beans.StreetStatistics;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -11,9 +12,11 @@ public class StreetQueryPane extends AnchorPane {
     private Label street;
     private Label count;
 
-    public StreetQueryPane(){
-        street = new Label("五山街道");
-        count = new Label("18人");
+    private StreetStatistics s;
+    public StreetQueryPane(StreetStatistics s){
+        this.s = s;
+        street = new Label(s.getStreet());
+        count = new Label(""+s.getNumber()+"人");
         init();
     }
 

@@ -1,6 +1,7 @@
 package component.beans;
 
 import com.alibaba.fastjson.JSONObject;
+import utils.constructor.ConstructorUtil;
 
 import java.lang.reflect.Field;
 import java.sql.Timestamp;
@@ -19,21 +20,7 @@ public class Transport {
     private String transDetailMessage;
 
     public Transport(JSONObject parse) {
-        System.out.println(parse.toString());
-        try {
-            Field[] declaredFields = this.getClass().getDeclaredFields();
-            for (Field field : declaredFields) {
-                field.set(this,
-                        parse.getObject(
-                                field.getName(),
-                                Class.forName(field.getGenericType().getTypeName())
-                        )
-                );
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(this);
+        ConstructorUtil.newInstance(this, parse);
     }
 
     @Override

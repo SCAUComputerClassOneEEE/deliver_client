@@ -57,7 +57,7 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             StringBuilder stringBuilder = new StringBuilder();
             InputStream content = getContentInputStream(mills);
             if (content == null) {
-                //System.err.println("getContentInputStream(mills) = null");
+                System.err.println("getContentInputStream(mills) = null");
                 return null;
             }
 

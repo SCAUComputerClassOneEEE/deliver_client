@@ -1,5 +1,6 @@
 package component.admin;
 
+import component.beans.NumberOfLastYear;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -11,9 +12,11 @@ public class PackageNumQueryPane extends AnchorPane {
     private Label name;
     private Label count;
 
-    public PackageNumQueryPane(){
-        name = new Label("孙考毅");
-        count = new Label("寄件数："+2);
+    private NumberOfLastYear n;
+    public PackageNumQueryPane(NumberOfLastYear n){
+        this.n = n;
+        name = new Label(n.getCustomerName());
+        count = new Label("寄件数："+n.getNumber());
         init();
     }
 

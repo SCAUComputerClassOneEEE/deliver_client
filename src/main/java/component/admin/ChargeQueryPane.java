@@ -1,5 +1,6 @@
 package component.admin;
 
+import component.beans.ConsumptionOfLastYear;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
@@ -11,9 +12,11 @@ public class ChargeQueryPane extends AnchorPane {
     private Label name;
     private Label count;
 
-    public ChargeQueryPane(){
-        name = new Label("孙考毅");
-        count = new Label("消费"+200+"元");
+    private ConsumptionOfLastYear c;
+    public ChargeQueryPane(ConsumptionOfLastYear c){
+        this.c = c;
+        name = new Label(c.getCustomerName());
+        count = new Label("消费"+c.getConsumption()+"元");
         init();
     }
 

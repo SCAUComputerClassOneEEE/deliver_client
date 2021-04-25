@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.http.AllHttpComUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -86,8 +87,11 @@ public class MainViewController implements Initializable {
     }
 
     private void init(){
-        vBox1.getChildren().add(new StreetQueryPane());
-        vBox2.getChildren().add(new ChargeQueryPane());
-        vBox3.getChildren().add(new PackageNumQueryPane());
+        vBox1.getChildren().clear();
+        vBox2.getChildren().clear();
+        vBox3.getChildren().clear();
+        AllHttpComUtils.getTop10Street().forEach(o-> vBox1.getChildren().add(new StreetQueryPane(o)));
+        AllHttpComUtils.getTop10ConsumptionOfLastYear().forEach(o->vBox2.getChildren().add(new ChargeQueryPane(o)));
+        AllHttpComUtils.getTop10NumberOfLastYear().forEach(o->vBox3.getChildren().add(new PackageNumQueryPane(o)));
     }
 }
