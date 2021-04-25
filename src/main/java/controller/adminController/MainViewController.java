@@ -79,10 +79,7 @@ public class MainViewController implements Initializable {
             e.printStackTrace();
         }
     }
-    @FXML
-    private void button4Fun(){
 
-    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         init();

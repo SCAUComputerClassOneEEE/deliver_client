@@ -507,6 +507,27 @@ public class PackageController implements Initializable {
     @FXML
     private void pay(){
         System.out.println("老卢给二维码");
+        List<Long> order_ids = new ArrayList<>();
+        orderBillVbox.getChildren().forEach(o->order_ids.add(((OrderBillRecordPane)o).getOrderId()));
+        Image fxImage = QRCodeUtil.encode2FXImage(order_ids,null,true);
+
+        Stage stage = new Stage();
+        BorderPane root = new BorderPane();
+        Scene scene = new Scene(root);
+
+        final String url = AllHttpComUtils.qr_pay_url;
+        if (fxImage != null) {
+            root.setCenter(new ImageView(fxImage));
+        } else {
+            root.setCenter(new TextField("error qr."));
+        }
+        // root.setCenter(new TextField("进入待支付"));
+
+        stage.setScene(scene);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.show();
+        stage.setAlwaysOnTop(true);
+        stage.setResizable(false);
     }
     /**
      * 第四个功能
