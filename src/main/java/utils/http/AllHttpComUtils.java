@@ -38,7 +38,7 @@ public class AllHttpComUtils {
         }
     }
 
-    public static NoteSimpleRecord getNoteSimpleRecord(long id) {
+    public static List<NoteSimpleRecord> getNoteSimpleRecord(long id) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/user/note")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
@@ -46,7 +46,7 @@ public class AllHttpComUtils {
                 .build();
         HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
         try {
-            return getT(NoteSimpleRecord.class, httpFutureTask);
+            return getTList(NoteSimpleRecord.class, httpFutureTask);
         } catch (HttpException e) {
             e.printStackTrace();
             return null;
@@ -253,8 +253,8 @@ public class AllHttpComUtils {
         }
         return t;
     }
-
+/*
     public static void main(String[] args) {
         NoteSimpleRecord noteSimpleRecord = AllHttpComUtils.getNoteSimpleRecord(18899715136L);
-    }
+    }*/
 }

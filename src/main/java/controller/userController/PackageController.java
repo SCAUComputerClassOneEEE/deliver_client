@@ -764,15 +764,22 @@ public class PackageController implements Initializable {
     @FXML
     private void queryNote() {
         setAllInvisible();
+        noteVbox.getChildren().clear();
         packages_notes_scrollPane.setVisible(true);
-        int color = noteVbox.getChildren().size()+1;
-        System.out.println(color);
-        NoteSimpleRecord noteSimpleRecord = AllHttpComUtils.getNoteSimpleRecord(ChangeService.userLoginController.getCustomerId());
+        AtomicInteger color = /*noteVbox.getChildren().size()+*/new AtomicInteger(1);
+        System.out.println(color.get());
+        List<NoteSimpleRecord> noteSimpleRecord =
+                AllHttpComUtils.getNoteSimpleRecord(ChangeService.userLoginController.getCustomerId());
         if (noteSimpleRecord == null) {
             AlertStage.createAlertStage("服务器异常").show();
             return;
         }
-        noteVbox.getChildren().add(new NoteSimpleRecordPane(noteSimpleRecord, color));
+        noteSimpleRecord
+                .forEach(n->noteVbox
+                        .getChildren()
+                        .add(new NoteSimpleRecordPane(n, color.getAndIncrement())
+                        )
+                );
     }
 
     /**
