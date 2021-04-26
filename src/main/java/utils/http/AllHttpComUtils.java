@@ -35,6 +35,21 @@ public class AllHttpComUtils {
         pool.submitRequestTask(build)/*.getStatusOK()*/;
     }
 
+    public static NoteSimpleRecord getNoteSimpleRecord(long id) {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/user/customer")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("customer_id", id)
+                .build();
+        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
+        try {
+            return getT(NoteSimpleRecord.class, httpFutureTask);
+        } catch (HttpException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Customer selectCustomerById(long id) throws HttpException {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/user/customer")

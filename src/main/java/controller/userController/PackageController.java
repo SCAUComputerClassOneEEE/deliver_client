@@ -756,7 +756,10 @@ public class PackageController implements Initializable {
         packages_notes_scrollPane.setVisible(true);
         int color = noteVbox.getChildren().size()+1;
         System.out.println(color);
-        noteVbox.getChildren().add(new NoteSimpleRecordPane(color));
+
+        NoteSimpleRecord noteSimpleRecord = AllHttpComUtils.getNoteSimpleRecord(ChangeService.userLoginController.getCustomerId());
+
+        noteVbox.getChildren().add(new NoteSimpleRecordPane(noteSimpleRecord, color));
     }
 
     /**

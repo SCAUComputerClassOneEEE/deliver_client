@@ -109,6 +109,12 @@ public class HttpFutureTask extends FutureTask<HttpResponse> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                callable.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return longLong;
     }
