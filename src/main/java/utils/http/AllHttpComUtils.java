@@ -15,6 +15,42 @@ public class AllHttpComUtils {
     public static final String qr_pay_url =
             HttpRequestCallable.HttpRequestCallableBuilder.URL + "/payBill/QRPay";
 
+    public static void createCarrier(Carrier carrier) throws HttpException {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/insert/carriers")
+                .onMethod(HttpClientThreadPool.HttpMethod.POST)
+                .addRequestContent("carrier", carrier)
+                .build();
+        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
+        if (!httpFutureTask.isStatusOK()) {
+            throw new HttpException("服务器异常，请重试");
+        }
+    }
+
+    public static void updateCarrier(Carrier carrier) throws HttpException {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/insert/carriers_u")
+                .onMethod(HttpClientThreadPool.HttpMethod.POST)
+                .addRequestContent("carrier", carrier)
+                .build();
+        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
+        if (!httpFutureTask.isStatusOK()) {
+            throw new HttpException("服务器异常，请重试");
+        }
+    }
+
+    public static void createDamageCarrier(DamageRecord damageRecord) throws HttpException {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/insert/damageRecord")
+                .onMethod(HttpClientThreadPool.HttpMethod.POST)
+                .addRequestContent("damageRecord", damageRecord)
+                .build();
+        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
+        if (!httpFutureTask.isStatusOK()) {
+            throw new HttpException("服务器异常，请重试");
+        }
+    }
+
     public static long createP_O_BInsertInfo(PackOrderBillInsertInfo packOrderBillInsertInfo) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/insert/order")

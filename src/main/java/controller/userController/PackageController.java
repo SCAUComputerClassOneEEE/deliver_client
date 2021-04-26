@@ -81,7 +81,6 @@ public class PackageController implements Initializable {
     * */
     static {
         try {
-            System.out.println(PackageController.class.getClassLoader().getResource("regionsData.txt"));
             InputStream resourceAsStream = PackageController.class.getClassLoader().getResourceAsStream("regionsData.txt");
             assert resourceAsStream != null;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resourceAsStream));

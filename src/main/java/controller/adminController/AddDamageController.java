@@ -1,4 +1,5 @@
 package controller.adminController;
+import component.beans.DamageRecord;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -9,7 +10,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.http.HttpException;
 import utils.alert.AlertStage;
+import utils.http.AllHttpComUtils;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,14 +43,17 @@ public class AddDamageController implements Initializable {
                 carrier_id_int = Integer.parseInt(carrier_id.getText());
                 damage_record_time_int = Integer.parseInt(damage_record_time.getText());
 
-                /**
-                 * adminHttp
-                 * 这里向数据库插入数据 参数依次是
-                 * carrier_id_int
-                 * carrier_type.getText()
-                 * damage_record_time_int
-                 * 直接插入damage_record表就可以了
-                 */
+                DamageRecord damageRecord = new DamageRecord();
+                damageRecord.setDamageRecordTime((long) damage_record_time_int);
+                damageRecord.setCarrierId((long) carrier_id_int);
+                damageRecord.setCarrierType(carrier_type.getText());
+
+                try {
+                    AllHttpComUtils.createDamageCarrier(damageRecord);
+                } catch (HttpException e) {
+                    AlertStage.createAlertStage("出服务器出错").show();
+                    return;
+                }
 
                 AlertStage.createAlertStage("已添加").show();
             }catch (Exception e){

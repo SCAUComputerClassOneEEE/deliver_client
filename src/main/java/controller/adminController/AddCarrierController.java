@@ -1,9 +1,12 @@
 package controller.adminController;
 
+import component.beans.Carrier;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import org.apache.http.HttpException;
 import utils.alert.AlertStage;
+import utils.http.AllHttpComUtils;
 import utils.myJudge.DigitJudge;
 
 import java.net.URL;
@@ -29,11 +32,13 @@ public class AddCarrierController implements Initializable {
     @FXML
     private void modify(){
         if (!inputDataJudge())return;
-        setValue();
-        /**
-         * adminHttp
-         * 老卢在这里做修改 查有没有carrierId、carrierType，没有不能改
-         */
+        Carrier carrier = setValue();
+        try {
+            AllHttpComUtils.updateCarrier(carrier);
+        } catch (HttpException e) {
+            AlertStage.createAlertStage("服务器出错").show();
+            return;
+        }
 
         System.out.println("要修改");
     }
@@ -41,11 +46,13 @@ public class AddCarrierController implements Initializable {
     @FXML
     private void add(){
         if (!inputDataJudge())return;
-        setValue();
-
-        /**
-         * 老卢在这里做新增 直接增
-         */
+        Carrier carrier = setValue();
+        try {
+            AllHttpComUtils.createCarrier(carrier);
+        } catch (HttpException e) {
+            AlertStage.createAlertStage("服务器出错").show();
+            return;
+        }
         System.out.println("要新增");
     }
 
@@ -61,13 +68,15 @@ public class AddCarrierController implements Initializable {
         return true;
     }
 
-    private void setValue(){
+    private Carrier setValue(){
         long carrierId = Long.parseLong(carrier_id.getText());
         String carrierType = carrier_type.getText();
-        int deliverTime = Integer.parseInt(deliver_time.getText());
+        Long deliverTime = Long.parseLong(deliver_time.getText());
         String connectPhone = connect_phone.getText();
         String detailMessage = detail_message.getText();
+        return new Carrier(carrierId, carrierType, deliverTime, connectPhone, detailMessage);
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
