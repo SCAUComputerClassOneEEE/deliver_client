@@ -79,6 +79,7 @@ public class DetailMessageController implements Initializable {
     private void transDetail(){
         try{
             transDetailStage = new Stage();
+            transDetailStage.setResizable(false);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/OrderDetail.fxml"));
             Parent root = loader.load();
@@ -126,12 +127,22 @@ public class DetailMessageController implements Initializable {
     public void fillData(PackOrderBillInsertInfo packOrderBillInsertInfo){
         this.line.getStrokeDashArray().addAll(4d);
         this.packOrderBillInsertInfo = packOrderBillInsertInfo;
-        System.out.println("闯进来了");
+        // System.out.println("进来了");
         this.senderField.setText(packOrderBillInsertInfo.getShipperName());
-        this.senderAddressField.setText(packOrderBillInsertInfo.getDeparture());
+
+        String[] adds = packOrderBillInsertInfo.getDeparture().split(";");
+        StringBuilder add = new StringBuilder();
+        for (String s : adds) add.append(s);
+        this.senderAddressField.setText(add.toString());
+
         this.senderPhoneField.setText(packOrderBillInsertInfo.getShipperPhoneNumber());
         this.receiverField.setText(packOrderBillInsertInfo.getConsiggeeName());
-        this.receiverAddressField.setText(packOrderBillInsertInfo.getAddress());
+
+        adds = packOrderBillInsertInfo.getAddress().split(";");
+        add = new StringBuilder();
+        for (String s : adds) add.append(s);
+        this.receiverAddressField.setText(add.toString());
+
         this.receiverPhoneField.setText(packOrderBillInsertInfo.getConsiggeePhoneNumber());
         this.orderIdField.setText(""+order_id);
         this.packageTypeField.setText(packOrderBillInsertInfo.getPackType());

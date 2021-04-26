@@ -15,6 +15,7 @@ public class AdminMain extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         ChangeService.adminStage = primaryStage;
+        primaryStage.setResizable(false);
         try {
             FXMLLoader loader = new FXMLLoader();
             System.out.println(getClass().getResource("/admin/AdminLogin.fxml"));

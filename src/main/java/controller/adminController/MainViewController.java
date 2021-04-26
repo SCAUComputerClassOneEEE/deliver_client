@@ -38,6 +38,7 @@ public class MainViewController implements Initializable {
     private void button1Fun(){
         try{
             stage = new Stage();
+            stage.setResizable(false);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/AddDamageView.fxml"));
             Parent root = loader.load();
@@ -54,6 +55,7 @@ public class MainViewController implements Initializable {
     private void button2Fun(){
         try{
             stage = new Stage();
+            stage.setResizable(false);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/AddCarrierView.fxml"));
             Parent root = loader.load();
@@ -69,6 +71,7 @@ public class MainViewController implements Initializable {
     private void button3Fun(){
         try{
             stage = new Stage();
+            stage.setResizable(false);
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/admin/QueryUserView.fxml"));
             Parent root = loader.load();

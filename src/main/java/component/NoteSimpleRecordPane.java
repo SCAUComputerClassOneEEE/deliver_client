@@ -34,27 +34,13 @@ public class NoteSimpleRecordPane extends AnchorPane {
     public NoteSimpleRecordPane(NoteSimpleRecord ns,int color){
         this.color = color;
         this.ns = ns;
-        String mess = "你的包裹（id为："+ns.getOrderId() + "），" +
-                "载体识别号：" + ns.getCarrierId() + "" +
-                " 载体类型：" + ns.getCarrierType() +
-                "的第" + ns.getTransportTimesOfCarrier() +
-                "次运输过程中发生事故。";
+        String mess = "你有一个运输出现异常的订单";
         message = new Label(mess);
         time = new Label(ns.getTime().toString());
         photo = new Rectangle(55,55);
         isRead = new Circle(5);
         init();
     }
-/*
-    public NoteSimpleRecordPane(int color){
-        this.color = color;
-        this.ns = ns;
-        message = new Label();
-        time = new Label();
-        photo = new Rectangle(55,55);
-        isRead = new Circle(5);
-        init();
-    }*/
 
     private void  init(){
 
@@ -86,7 +72,7 @@ public class NoteSimpleRecordPane extends AnchorPane {
 
             try{
                 isRead.setVisible(false);
-
+                noteDetailStage.setResizable(false);
                 noteDetailStage = new Stage();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(NoteSimpleRecordPane.class.getResource("/user/NoteDetail.fxml"));
@@ -95,6 +81,8 @@ public class NoteSimpleRecordPane extends AnchorPane {
                 noteDetailStage.setScene(scene);
 
                 NoteDetailController noteDetailController = loader.getController();
+                // System.out.println(ns);
+                noteDetailController.init(ns);
                 noteDetailStage.initModality(Modality.APPLICATION_MODAL);
                 noteDetailStage.show();
             } catch (Exception e) {

@@ -11,6 +11,7 @@ public class AlertStage {
         Alert alert = new Alert(Alert.AlertType.ERROR ,message);
         alert.setTitle("error");
         alert.setHeaderText("Please handle the exception:");
+        alert.setResizable(false);
         return alert;
     }
     public static boolean checkNotNullInput(String error, String... input) {
