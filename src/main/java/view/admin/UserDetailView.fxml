@@ -9,67 +9,61 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane prefHeight="418.0" prefWidth="527.0" style="-fx-background-color: #edecf4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.UserDetailController">
-   <content>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="524.0" style="-fx-background-color: #edecf4;">
-         <children>
-            <ImageView fx:id="avatarImageView" fitHeight="90.0" fitWidth="107.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-
-            </ImageView>
-            <Text fx:id="customerId" fill="#381f21" layoutX="244.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
-            <Text fill="#655a5a" layoutX="136.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
-            <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="375.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+<AnchorPane maxHeight="415.0" maxWidth="524.0" minHeight="415.0" minWidth="524.0" prefHeight="415.0" prefWidth="524.0" style="-fx-background-color: #edecf4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.UserDetailController">
+   <children>
+      <ImageView fx:id="avatarImageView" fitHeight="90.0" fitWidth="107.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" />
+      <Text fx:id="customerId" fill="#381f21" layoutX="244.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
+      <Text fill="#655a5a" layoutX="136.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
+      <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="375.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/二维码.png" />
+         </image>
+      </ImageView>
+      <Text fill="#655a5a" layoutX="136.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
+      <Text fill="#381f21" layoutX="87.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
+      <Text fill="#381f21" layoutX="246.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street:" />
+      <Text fill="#381f21" layoutX="87.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_address:" />
+      <TextField fx:id="city" editable="false" layoutX="137.0" layoutY="216.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
+      <TextField fx:id="street" layoutX="305.0" layoutY="216.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
+      <TextField fx:id="address" layoutX="200.0" layoutY="259.0" prefHeight="25.0" prefWidth="306.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
+      <Text layoutX="87.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone:" />
+      <TextField fx:id="phone" layoutX="153.0" layoutY="332.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
+      <TextField fx:id="customerName" layoutX="217.0" layoutY="64.0" prefHeight="52.0" prefWidth="152.0" style="-fx-background-color: F1F1F1;" text="老卢">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </TextField>
+      <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="42.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/place.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="78.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="46.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../picture/phone.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="73.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Label fx:id="authorization" layoutX="193.0" layoutY="373.0" text="禁止登录" />
+      <Label layoutX="87.0" layoutY="373.0" text="authorization:" textFill="#381f21" />
+      <AnchorPane layoutX="-9.0" layoutY="-5.0" prefHeight="38.0" prefWidth="536.0" style="-fx-background-color: #631C23;" />
+      <Button fx:id="modify" layoutX="375.0" layoutY="366.0" mnemonicParsing="false" onAction="#modifyFun" style="-fx-background-color: #edecf4;">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../picture/二维码.png" />
+                  <Image url="@../picture/modify.png" />
                </image>
             </ImageView>
-            <Text fill="#655a5a" layoutX="136.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
-            <Text fill="#381f21" layoutX="87.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
-            <Text fill="#381f21" layoutX="246.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street:" />
-            <Text fill="#381f21" layoutX="87.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_addres:s" />
-            <TextField fx:id="city" editable="false" layoutX="137.0" layoutY="216.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
-            <TextField fx:id="street" layoutX="305.0" layoutY="216.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
-            <TextField fx:id="address" layoutX="200.0" layoutY="259.0" prefHeight="25.0" prefWidth="306.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
-            <Text layoutX="87.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone:" />
-            <TextField fx:id="phone" layoutX="153.0" layoutY="332.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
-            <TextField fx:id="customerName" layoutX="217.0" layoutY="64.0" prefHeight="52.0" prefWidth="152.0" style="-fx-background-color: F1F1F1;" text="老卢">
-               <font>
-                  <Font name="System Bold" size="26.0" />
-               </font>
-            </TextField>
-            <ImageView fitHeight="36.0" fitWidth="54.0" layoutX="42.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../picture/place.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="78.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="30.0" fitWidth="24.0" layoutX="46.0" layoutY="306.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../picture/phone.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="73.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Text>
-            <Label fx:id="authorization" layoutX="193.0" layoutY="373.0" text="禁止登录" />
-            <Label layoutX="87.0" layoutY="373.0" text="authorization:" textFill="#381f21" />
-            <AnchorPane layoutX="-9.0" layoutY="-5.0" prefHeight="38.0" prefWidth="536.0" style="-fx-background-color: #631C23;" />
-            <Button fx:id="modify" layoutX="375.0" layoutY="366.0" mnemonicParsing="false" onAction="#modifyFun" style="-fx-background-color: #edecf4;">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../picture/modify.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
-         </children>
-      </AnchorPane>
-   </content>
-</ScrollPane>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>
