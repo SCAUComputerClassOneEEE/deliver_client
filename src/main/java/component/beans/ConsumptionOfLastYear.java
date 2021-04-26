@@ -16,6 +16,15 @@ public class ConsumptionOfLastYear {
         return customerId;
     }
 
+    @Override
+    public String toString() {
+        return "ConsumptionOfLastYear{" +
+                "customerId=" + customerId +
+                ", customerName='" + customerName + '\'' +
+                ", consumption=" + consumption +
+                '}';
+    }
+
     public void setCustomerId(Long orderId) {
         this.customerId = orderId;
     }

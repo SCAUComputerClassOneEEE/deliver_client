@@ -1,7 +1,9 @@
 package component.admin;
 
+import component.beans.Customer;
 import component.beans.NumberOfLastYear;
 import controller.adminController.QueryUserController;
+import controller.adminController.UserDetailController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -10,6 +12,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.http.HttpException;
+import utils.alert.AlertStage;
+import utils.http.AllHttpComUtils;
 
 /**
  * @Author: Sky
@@ -46,7 +51,16 @@ public class PackageNumQueryPane extends AnchorPane {
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
-                //UserDetailController userDetailController = loader.getController();
+                UserDetailController userDetailController = loader.getController();
+                Customer customer;
+                try {
+                    customer = AllHttpComUtils.selectCustomerById(n.getCustomerId());
+                } catch (HttpException e) {
+                    AlertStage.createAlertStage("服务器异常").show();
+                    return;
+                }
+
+                userDetailController.init(customer);
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
             }catch (Exception e){

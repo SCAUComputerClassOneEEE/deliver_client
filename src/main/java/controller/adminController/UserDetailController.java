@@ -59,12 +59,12 @@ public class UserDetailController implements Initializable {
     }
 
     public void init(Customer customer){
-/*        customerName.setText(customer.getCustomerName());
+        customerName.setText(customer.getCustomerName());
         customerId.setText(customer.getCustomerId().toString());
         city.setText(customer.getCity());
         street.setText(customer.getStreet());
         address.setText(customer.getDetailAddress());
-        phone.setText(customer.getCustomerId().toString());*/
+        phone.setText(customer.getCustomerId().toString());
     }
 
 

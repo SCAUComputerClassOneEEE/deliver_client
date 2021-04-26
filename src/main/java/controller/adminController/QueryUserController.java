@@ -1,6 +1,7 @@
 package controller.adminController;
 
 import component.SimpleOrderMessagePane;
+import component.beans.Customer;
 import controller.userController.DetailMessageController;
 import controller.userController.QueryTrackingController;
 import javafx.fxml.FXML;
@@ -11,7 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.http.HttpException;
 import utils.alert.AlertStage;
+import utils.http.AllHttpComUtils;
 import utils.myJudge.DigitJudge;
 
 import java.net.URL;
@@ -57,8 +60,19 @@ public class QueryUserController implements Initializable {
              * adminHttp
              * 这里提供一个customer_id返回用户信息
              */
+            Customer customer;
+            try {
+                customer = AllHttpComUtils.selectCustomerById(Long.parseLong(customer_id.getText()));
 
-
+            } catch (HttpException e) {
+                AlertStage.createAlertStage("服务器关闭").show();
+                return;
+            }
+            if (customer == null) {
+                AlertStage.createAlertStage("用户不存在").show();
+                return;
+            }
+            userDetailController.init(customer);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e) {
