@@ -9,16 +9,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane  prefHeight="418.0" prefWidth="527.0" style="-fx-background-color: #edecf4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.UserDetailController">
+<ScrollPane prefHeight="418.0" prefWidth="527.0" style="-fx-background-color: #edecf4;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.adminController.UserDetailController">
    <content>
-      <AnchorPane  minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="524.0" style="-fx-background-color: #edecf4;">
+      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="524.0" style="-fx-background-color: #edecf4;">
          <children>
             <ImageView fitHeight="90.0" fitWidth="107.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../picture/头像1.jpg" />
                </image>
             </ImageView>
-            <Text  fill="#381f21" layoutX="244.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
+            <Text fx:id="customerId" fill="#381f21" layoutX="244.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
             <Text fill="#655a5a" layoutX="136.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
             <ImageView fitHeight="107.0" fitWidth="120.0" layoutX="375.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -27,14 +27,14 @@
             </ImageView>
             <Text fill="#655a5a" layoutX="136.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer ID: " />
             <Text fill="#381f21" layoutX="87.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="city:" />
-            <Text fill="#381f21" layoutX="246.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="stree:t" />
+            <Text fill="#381f21" layoutX="246.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="street:" />
             <Text fill="#381f21" layoutX="87.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="detail_addres:s" />
-            <TextField editable="false" layoutX="137.0" layoutY="216.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
-            <TextField layoutX="305.0" layoutY="216.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
-            <TextField layoutX="200.0" layoutY="259.0" prefHeight="25.0" prefWidth="306.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
+            <TextField fx:id="city" editable="false" layoutX="137.0" layoutY="216.0" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: #F1F1F1;" text="广州市" />
+            <TextField fx:id="street" layoutX="305.0" layoutY="216.0" prefHeight="17.0" prefWidth="139.0" style="-fx-background-color: F1F1F1;" text="五山街道" />
+            <TextField fx:id="address" layoutX="200.0" layoutY="259.0" prefHeight="25.0" prefWidth="306.0" style="-fx-background-color: F1F1F1;" text="华南农业大学泰山区学生宿舍16栋驿站" />
             <Text layoutX="87.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="phone:" />
-            <TextField layoutX="153.0" layoutY="332.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
-            <TextField layoutX="217.0" layoutY="64.0" prefHeight="52.0" prefWidth="118.0" style="-fx-background-color: F1F1F1;" text="老卢">
+            <TextField fx:id="phone" layoutX="153.0" layoutY="332.0" style="-fx-background-color: F1F1F1;" text="19927520212" />
+            <TextField fx:id="customerName" layoutX="217.0" layoutY="64.0" prefHeight="52.0" prefWidth="118.0" style="-fx-background-color: F1F1F1;" text="老卢">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>

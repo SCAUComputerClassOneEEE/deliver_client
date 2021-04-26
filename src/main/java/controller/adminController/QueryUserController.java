@@ -1,5 +1,8 @@
 package controller.adminController;
 
+import component.SimpleOrderMessagePane;
+import controller.userController.DetailMessageController;
+import controller.userController.QueryTrackingController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,22 +41,24 @@ public class QueryUserController implements Initializable {
             stage = new Stage();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(QueryUserController.class.getResource("/admin/UserDetailView.fxml"));
-            UserDetailController userDetailController = (UserDetailController)loader.getController();
-            System.out.println("userDetailController == null "+(userDetailController ==null));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            UserDetailController userDetailController = loader.getController();
+            System.out.println("userDetailController == null "+(userDetailController == null));
 
             /**
              * 不知道为什么这里获取控制器实例出错了
              */
-            // userDetailController.setCustomer_id(Long.parseLong(customer_id.getText()));
+            assert userDetailController != null;
+            // userDetailController.init(customer);
 
             /**
              * adminHttp
              * 这里提供一个customer_id返回用户信息
              */
 
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
+
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
         } catch (Exception e) {

@@ -21,9 +21,6 @@ import java.util.ResourceBundle;
 public class AddDamageController implements Initializable {
 
     @FXML
-    private Button submit;
-
-    @FXML
     private TextField carrier_id;
 
     @FXML
