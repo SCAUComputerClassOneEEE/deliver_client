@@ -1,9 +1,16 @@
 package component.admin;
 
 import component.beans.ConsumptionOfLastYear;
+import controller.adminController.QueryUserController;
+import controller.adminController.UserDetailController;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Paint;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * @Author: Sky
@@ -32,6 +39,21 @@ public class ChargeQueryPane extends AnchorPane {
         this.setMinSize(237,43);
         this.setPrefSize(237,43);
         this.getChildren().addAll(name,count);
+        this.setOnMouseClicked(event -> {
+            try {
+                Stage stage = new Stage();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(QueryUserController.class.getResource("/admin/UserDetailView.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                //UserDetailController userDetailController = loader.getController();
+                stage.initModality(Modality.APPLICATION_MODAL);
+                stage.show();
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        });
     }
 
     public Label getName() {
