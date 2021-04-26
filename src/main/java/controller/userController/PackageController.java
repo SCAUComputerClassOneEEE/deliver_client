@@ -684,26 +684,31 @@ public class PackageController implements Initializable {
 
     @FXML
     private void uploadAction() {
-        packages_personal_btn_upload.setOnMouseClicked(event -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("All Images" ,"."),
-                    new FileChooser.ExtensionFilter("JPG","*.jpg"),
-                    new FileChooser.ExtensionFilter("PNG","*.png"));
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            File file = fileChooser.showOpenDialog(stage);
-            if(file.length() > 2*1024*1024) {
-                AlertStage.createAlertStage("头像应该小于2M").show();
-                return;
-            }
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images" ,"."),
+                new FileChooser.ExtensionFilter("JPG","*.jpg"),
+                new FileChooser.ExtensionFilter("PNG","*.png"));
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        File file = fileChooser.showOpenDialog(stage);
+        if (file == null) {
+            return;
+        }
+
+        if(file.length() > 2*1024*1024) {
+            AlertStage.createAlertStage("头像应该小于2M").show();
+        }
+        else if (file.length() <= 2*1024*1024 && file.length() > 0) {
             try {
                 UserLoginController.getCustomer().setAvatar(file);
                 packages_personal_avatar.setImage(new Image(new FileInputStream(file)));
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        });
+        } else {
+            AlertStage.createAlertStage("file length 0" + file).show();
+        }
     }
 
     //初始化客户的信息

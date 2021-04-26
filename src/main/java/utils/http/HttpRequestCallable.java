@@ -86,7 +86,7 @@ public abstract class HttpRequestCallable implements Callable<HttpResponse> {
                 post = new HttpPost(url);
                 String s = JSONObject.toJSONString(obMap.values().toArray()[0]);
                 StringEntity stringEntity = new StringEntity(s, Charset.defaultCharset());
-                System.out.println(stringEntity);
+                // System.out.println(stringEntity);
                 stringEntity.setContentType("application/json");
                 post.setEntity(stringEntity);
                 return new HttpPostCallable(httpClient, post);
