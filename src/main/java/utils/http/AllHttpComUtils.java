@@ -35,6 +35,16 @@ public class AllHttpComUtils {
         pool.submitRequestTask(build)/*.getStatusOK()*/;
     }
 
+    public static Customer selectCustomerById(long id) throws HttpException {
+        HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
+                .addURL("/user/customer")
+                .onMethod(HttpClientThreadPool.HttpMethod.GET)
+                .addRequestContent("customer_id", id)
+                .build();
+        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
+        return getT(Customer.class, httpFutureTask);
+    }
+
     public static Customer login(String name, String passwd, boolean cusOrAd) throws HttpException {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/user/login")
