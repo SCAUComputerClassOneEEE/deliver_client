@@ -13,10 +13,8 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="524.0" style="-fx-background-color: #edecf4;">
          <children>
-            <ImageView fitHeight="90.0" fitWidth="107.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../picture/头像1.jpg" />
-               </image>
+            <ImageView fx:id="avatarImageView" fitHeight="90.0" fitWidth="107.0" layoutX="22.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+
             </ImageView>
             <Text fx:id="customerId" fill="#381f21" layoutX="244.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="66666666666" />
             <Text fill="#655a5a" layoutX="136.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname：" wrappingWidth="100.0234375" />
@@ -62,7 +60,7 @@
             <Label fx:id="authorization" layoutX="193.0" layoutY="373.0" text="禁止登录" />
             <Label layoutX="87.0" layoutY="373.0" text="authorization:" textFill="#381f21" />
             <AnchorPane layoutX="-9.0" layoutY="-5.0" prefHeight="38.0" prefWidth="536.0" style="-fx-background-color: #631C23;" />
-            <Button fx:id="modify" layoutX="422.0" layoutY="366.0" mnemonicParsing="false" onAction="#modifyFun" style="-fx-background-color: #edecf4;">
+            <Button fx:id="modify" layoutX="375.0" layoutY="366.0" mnemonicParsing="false" onAction="#modifyFun" style="-fx-background-color: #edecf4;">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>

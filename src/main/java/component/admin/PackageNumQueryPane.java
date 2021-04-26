@@ -46,6 +46,7 @@ public class PackageNumQueryPane extends AnchorPane {
         this.setOnMouseClicked(event -> {
             try {
                 Stage stage = new Stage();
+                stage.setResizable(false);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(QueryUserController.class.getResource("/admin/UserDetailView.fxml"));
                 Parent root = loader.load();

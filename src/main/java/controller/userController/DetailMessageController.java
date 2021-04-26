@@ -116,6 +116,7 @@ public class DetailMessageController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Collections.addAll(textFields,senderField,receiverField,senderPhoneField,receiverPhoneField,senderAddressField,receiverAddressField,orderIdField,packageTypeField, packageWeightField, packageChargeField, packageMessageField);
         textFields.forEach(o-> o.setEditable(false));
+        textFields.forEach(o-> o.setFocusTraversable(false));
         dangerousCheckBox.setDisable(true);
         interCheckBox.setDisable(true);
     }
