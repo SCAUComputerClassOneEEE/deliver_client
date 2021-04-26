@@ -371,7 +371,7 @@ public class PackageController implements Initializable {
                 return;
             }
             Image fxImage = QRCodeUtil.encode2FXImage(
-                            url + "/id=" + billId,
+                            url + "?id=" + billId,
                             null,
                             true);
             if (fxImage != null) {
