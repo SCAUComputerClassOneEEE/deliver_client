@@ -97,6 +97,7 @@ public class SimpleOrderMessagePane extends AnchorPane {
             try{
                 detailStage = new Stage();
                 detailStage.setResizable(false);
+                detailStage.sizeToScene();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/DetailMessage.fxml"));
                 Parent root = loader.load();

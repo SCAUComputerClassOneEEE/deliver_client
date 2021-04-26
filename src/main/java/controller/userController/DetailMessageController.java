@@ -80,6 +80,7 @@ public class DetailMessageController implements Initializable {
         try{
             transDetailStage = new Stage();
             transDetailStage.setResizable(false);
+            transDetailStage.sizeToScene();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/OrderDetail.fxml"));
             Parent root = loader.load();

@@ -19,7 +19,7 @@
       </Pane>
       <Text layoutX="310.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tracking no：" />
       <TextField fx:id="user_text_trackingno" layoutX="416.0" layoutY="303.0" prefHeight="30.0" prefWidth="411.0" />
-      <Button fx:id="user_btn_enter" layoutX="813.0" layoutY="388.0" mnemonicParsing="false" onAction="#query" prefHeight="79.0" prefWidth="189.0" style="-fx-background-color: #edecf4;" text="Enter">
+      <Button fx:id="user_btn_enter" layoutX="880.0" layoutY="272.0" mnemonicParsing="false" onAction="#query" prefHeight="91.0" prefWidth="89.0" style="-fx-background-color: #edecf4;">
          <graphic>
             <ImageView fitHeight="83.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
                <image>

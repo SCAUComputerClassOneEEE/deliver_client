@@ -74,6 +74,7 @@ public class NoteSimpleRecordPane extends AnchorPane {
                 isRead.setVisible(false);
                 noteDetailStage = new Stage();
                 noteDetailStage.setResizable(false);
+                noteDetailStage.sizeToScene();
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(NoteSimpleRecordPane.class.getResource("/user/NoteDetail.fxml"));
                 Parent root = loader.load();

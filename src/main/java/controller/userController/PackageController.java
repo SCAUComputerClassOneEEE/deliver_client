@@ -396,6 +396,7 @@ public class PackageController implements Initializable {
         stage.show();
         stage.setAlwaysOnTop(true);
         stage.setResizable(false);
+        stage.sizeToScene();
     }
 
     // 发送按钮
@@ -582,6 +583,7 @@ public class PackageController implements Initializable {
         stage.show();
         stage.setAlwaysOnTop(true);
         stage.setResizable(false);
+        stage.sizeToScene();
     }
     /**
      * 第四个功能

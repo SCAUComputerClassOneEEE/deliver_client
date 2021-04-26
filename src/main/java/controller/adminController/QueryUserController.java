@@ -43,6 +43,7 @@ public class QueryUserController implements Initializable {
         try{
             stage = new Stage();
             stage.setResizable(false);
+            stage.sizeToScene();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(QueryUserController.class.getResource("/admin/UserDetailView.fxml"));
             Parent root = loader.load();

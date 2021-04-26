@@ -1,9 +1,13 @@
 package application;
 
+import controller.userController.QueryTrackingController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.Mnemonic;
 import javafx.stage.Stage;
 import service.ChangeService;
 
@@ -19,6 +23,7 @@ public class UserMain extends Application {
             loader.setLocation(getClass().getResource("/user/QueryTracking.fxml"));
             Parent root = (Parent)loader.load();
             Scene scene = new Scene(root);
+
             ChangeService.stage.setScene(scene);
             ChangeService.stage.setTitle("Query Tracking");
             ChangeService.stage.show();

@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import utils.alert.AlertStage;
 import utils.http.AllHttpComUtils;
 import utils.myJudge.DigitJudge;
 
@@ -36,7 +37,10 @@ public class QueryTrackingController {
 
     @FXML
     private void query() {
-        if ("".equals(user_text_trackingno.getText()) || !DigitJudge.isNumeric(user_text_trackingno.getText())) return;
+        if ("".equals(user_text_trackingno.getText()) || !DigitJudge.isNumeric(user_text_trackingno.getText())) {
+            AlertStage.createAlertStage("请输入正确的订单号").show();
+            return;
+        }
         long trackingNo = Long.parseLong(user_text_trackingno.getText());
         try{
             Stage detailStage = new Stage();
@@ -66,5 +70,7 @@ public class QueryTrackingController {
         //
     }
 
-
+    public Button getUser_btn_enter(){
+        return this.user_btn_enter;
+    }
 }
