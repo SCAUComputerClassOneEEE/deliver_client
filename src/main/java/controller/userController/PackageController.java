@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.http.HttpException;
 import service.ChangeService;
 import utils.alert.AlertStage;
 import utils.http.AllHttpComUtils;
@@ -36,7 +37,7 @@ public class PackageController implements Initializable {
     private ArrayList<CheckBox> checkBoxes2 = new ArrayList<>();
 
     private String gray="-fx-background-color: rgb(237,236,244);";
-    private String white="-fx-background-color: rgb(255，255,255)";
+    private String white="-fx-background-color: rgb(255,255,255)";
 
     interface Region { }
 
@@ -108,8 +109,8 @@ public class PackageController implements Initializable {
         setAllInvisible();
         packages_package_scrollPane.setVisible(true);
         queryPackageInformation();
-        user_text_username.setText(ChangeService.userLoginController.getCustomer().getCustomerName());
-        /**
+        user_text_username.setText(UserLoginController.getCustomer().getCustomerName());
+        /*
          * 监听器去到对应的函数里面加
          */
         initBigPane();
@@ -183,7 +184,6 @@ public class PackageController implements Initializable {
         */
         this.offset+=results.size();
         for (SimpleOrderMessagePane s : results) {
-            System.out.println(",,");
             packages_show_vBox.getChildren().add(s);
         }
     }
@@ -591,6 +591,8 @@ public class PackageController implements Initializable {
         getPersonalFXML();
     }
 
+
+
     @FXML
     private void modifiedPersonalInformation() {
         setAllInvisible();
@@ -600,28 +602,10 @@ public class PackageController implements Initializable {
         packages_personal_btn_modify.setVisible(true);
         packages_personal_textfiled_againPassword.setVisible(false);
         packages_personal_btn_save.setVisible(false);
-        packages_personal_textfiled_account.setStyle(gray);
-        packages_personal_textfiled_againPassword.setStyle(gray);
-        packages_personal_textfiled_street.setStyle(gray);
-        packages_personal_textfiled_city.setStyle(gray);
-        packages_personal_textfiled_customerName.setStyle(gray);
-        packages_personal_textfiled_customerPhone.setStyle(gray);
-        packages_personal_textfiled_detailAddress.setStyle(gray);
-        packages_personal_textfiled_password.setStyle(gray);
 
-
-        packages_personal_textfiled_againPassword.setEditable(false);
-        packages_personal_textfiled_street.setEditable(false);
-        packages_personal_textfiled_account.setEditable(false);
-        packages_personal_textfiled_city.setEditable(false);
-        packages_personal_textfiled_customerName.setEditable(false);
-        packages_personal_textfiled_customerPhone.setEditable(false);
-        packages_personal_textfiled_detailAddress.setEditable(false);
-        packages_personal_textfiled_password.setEditable(false);
+        modifyPersonalButtonStyleChange(gray);
+        modifyPersonalButtonSetEditable(false);
     }
-
-
-
 
     @FXML
     private void modifiedAction() {
@@ -629,93 +613,102 @@ public class PackageController implements Initializable {
         packages_personal_btn_save.setVisible(true);
         packages_personal_textfiled_againPassword.setVisible(true);
         packages_personal_text_again.setVisible(true);
-        packages_personal_textfiled_againPassword.setStyle(white);
-        packages_personal_textfiled_account.setStyle(white);
-        packages_personal_textfiled_city.setStyle(white);
-        packages_personal_textfiled_customerName.setStyle(white);
-        packages_personal_textfiled_customerPhone.setStyle(white);
-        packages_personal_textfiled_detailAddress.setStyle(white);
-        packages_personal_textfiled_street.setStyle(white);
-        packages_personal_textfiled_password.setStyle(white);
 
-        packages_personal_textfiled_againPassword.setEditable(true);
-        packages_personal_textfiled_street.setEditable(true);
-        packages_personal_textfiled_account.setEditable(true);
-        packages_personal_textfiled_city.setEditable(true);
-        packages_personal_textfiled_customerName.setEditable(true);
-        packages_personal_textfiled_customerPhone.setEditable(true);
-        packages_personal_textfiled_detailAddress.setEditable(true);
-        packages_personal_textfiled_password.setEditable(true);
+        modifyPersonalButtonStyleChange(white);
+        modifyPersonalButtonSetEditable(true);
     }
 
     @FXML
-    private void savePersoanlInfromationAction(){
+    private void savePersonalInformationAction(){
         String pass =packages_personal_textfiled_password.getText();
         String again=packages_personal_textfiled_againPassword.getText();
 
+        if (AlertStage.checkNotNullInput("空白输入", pass, again)) return;
 
         if (!pass.equals(again)){
             AlertStage.createAlertStage("两次密码输入不一致，请重新输入！").show();
         }
         else {
-            Customer newCus=ChangeService.userLoginController.getCustomer();
+            Customer newCus= UserLoginController.getCustomer();
+            System.out.println(newCus);
             newCus.setCity(packages_personal_textfiled_city.getText());
             newCus.setStreet(packages_personal_textfiled_street.getText());
             newCus.setDetailAddress(packages_personal_textfiled_detailAddress.getText());
             newCus.setCustomerId(Long.parseLong(packages_personal_textfiled_customerPhone.getText()));
             newCus.setCustomerPassword(pass);
+            try {
+                AllHttpComUtils.updateCustomer(newCus);
+            } catch (HttpException e) {
+                AlertStage.createAlertStage(e.getMessage()).show();
+                return;
+            }
             packages_personal_textfiled_customerID.setText(packages_personal_textfiled_customerPhone.getText());
 
             AlertStage.createAlertStage("保存成功！").show();
 
-            packages_personal_textfiled_againPassword.setStyle(gray);
-            packages_personal_textfiled_street.setStyle(gray);
-            packages_personal_textfiled_city.setStyle(gray);
-            packages_personal_textfiled_customerName.setStyle(gray);
-            packages_personal_textfiled_customerPhone.setStyle(gray);
-            packages_personal_textfiled_detailAddress.setStyle(gray);
-            packages_personal_textfiled_password.setStyle(gray);
-            packages_personal_textfiled_account.setStyle(gray);
+            modifyPersonalButtonStyleChange(gray);
+            packages_personal_btn_save.setVisible(false);
             packages_personal_textfiled_againPassword.setVisible(false);
             packages_personal_btn_modify.setVisible(true);
             packages_personal_text_again.setVisible(false);
-
-
         }
+    }
 
+    /*
+    * 更改按钮的可操作性
+    * */
+    private void modifyPersonalButtonSetEditable(boolean editable) {
+        packages_personal_textfiled_againPassword.setEditable(editable);
+        packages_personal_textfiled_street.setEditable(editable);
+        packages_personal_textfiled_account.setEditable(editable);
+        packages_personal_textfiled_city.setEditable(editable);
+        packages_personal_textfiled_customerName.setEditable(editable);
+        packages_personal_textfiled_customerPhone.setEditable(editable);
+        packages_personal_textfiled_detailAddress.setEditable(editable);
+        packages_personal_textfiled_password.setEditable(editable);
+    }
 
-
-
+    /*
+    * 更改修改按钮的颜色
+    * */
+    private void modifyPersonalButtonStyleChange(String color) {
+        packages_personal_textfiled_password.setStyle(color);
+        packages_personal_textfiled_account.setStyle(color);
+        packages_personal_textfiled_street.setStyle(color);
+        packages_personal_textfiled_againPassword.setStyle(color);
+        packages_personal_textfiled_city.setStyle(color);
+        packages_personal_textfiled_customerName.setStyle(color);
+        packages_personal_textfiled_customerPhone.setStyle(color);
+        packages_personal_textfiled_detailAddress.setStyle(color);
     }
 
     @FXML
     private void uploadAction() {
         packages_personal_btn_upload.setOnMouseClicked(event -> {
             FileChooser fileChooser = new FileChooser();
-            fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images" ,"."),
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All Images" ,"."),
                     new FileChooser.ExtensionFilter("JPG","*.jpg"),
                     new FileChooser.ExtensionFilter("PNG","*.png"));
-            //fileChooser.setInitialDirectory(new File(System.getProperty("")));
             Stage stage = new Stage();
-
             stage.initModality(Modality.APPLICATION_MODAL);
             File file = fileChooser.showOpenDialog(stage);
+            if(file.length() > 2*1024*1024) {
+                AlertStage.createAlertStage("头像应该小于2M").show();
+                return;
+            }
             try {
-                ChangeService.userLoginController.getCustomer().setAvatar(file);
-
+                UserLoginController.getCustomer().setAvatar(file);
                 packages_personal_avatar.setImage(new Image(new FileInputStream(file)));
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         });
     }
 
     //初始化客户的信息
     private void initPersonal() {
-
-        Customer customer = ChangeService.userLoginController.getCustomer();
+        Customer customer = UserLoginController.getCustomer();
         if (customer != null) {
             packages_personal_textfiled_customerName.setText(customer.getCustomerName());
             packages_personal_textfiled_city.setText(customer.getCity());
@@ -726,13 +719,26 @@ public class PackageController implements Initializable {
             packages_personal_textfiled_password.setText(customer.getCustomerPassword());
             packages_personal_textfiled_againPassword.setText(customer.getCustomerPassword());
             String avatar = customer.getAvatar();
-            if (avatar != null && avatar.equals("")) {
+            if (avatar != null && !avatar.equals("")) {
+                // 从服务器获得的头像作为本地展示
                 byte[] decode = Base64.getDecoder().decode(avatar);
                 ByteArrayInputStream inputStream = new ByteArrayInputStream(decode);
                 packages_personal_avatar.setImage(new Image(inputStream));
             } else {
-                packages_personal_avatar.setImage(
-                        new Image(PackageController.class.getResourceAsStream("/picture/头像1.jpg")));
+                // 默认图片
+                InputStream resourceAsStream = PackageController.class.getResourceAsStream("/picture/头像1.jpg");
+                if (resourceAsStream == null ) {
+                    System.out.println("no user avatar");
+                    return;
+                }
+                packages_personal_avatar.setImage(new Image(resourceAsStream));
+                try {
+                    // 以备用更新数据库
+                    UserLoginController.getCustomer().setAvatar(resourceAsStream);
+                } catch (Exception e) {
+                    System.err.println("初始化本地头像出错");
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -756,9 +762,11 @@ public class PackageController implements Initializable {
         packages_notes_scrollPane.setVisible(true);
         int color = noteVbox.getChildren().size()+1;
         System.out.println(color);
-
         NoteSimpleRecord noteSimpleRecord = AllHttpComUtils.getNoteSimpleRecord(ChangeService.userLoginController.getCustomerId());
-
+        if (noteSimpleRecord == null) {
+            AlertStage.createAlertStage("服务器异常").show();
+            return;
+        }
         noteVbox.getChildren().add(new NoteSimpleRecordPane(noteSimpleRecord, color));
     }
 

@@ -278,7 +278,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
-                              <Button fx:id="packages_personal_btn_save" layoutX="794.0" layoutY="642.0" mnemonicParsing="false" onAction="#savePersoanlInfromationAction" prefHeight="52.0" prefWidth="94.0" style="-fx-background-color: #edecf4; -fx-border-color: #AEB8C3;" text="save">
+                              <Button fx:id="packages_personal_btn_save" layoutX="794.0" layoutY="642.0" mnemonicParsing="false" onAction="#savePersonalInformationAction" prefHeight="52.0" prefWidth="94.0" style="-fx-background-color: #edecf4; -fx-border-color: #AEB8C3;" text="save">
                                  <graphic>
                                     <ImageView fitHeight="39.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

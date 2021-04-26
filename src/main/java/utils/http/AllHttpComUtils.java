@@ -26,18 +26,21 @@ public class AllHttpComUtils {
         return httpFutureTask.getContentLong();
     }
 
-    public static void updateCustomer(Customer customer) {
+    public static void updateCustomer(Customer customer) throws HttpException {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
                 .addURL("/user/customer")
                 .onMethod(HttpClientThreadPool.HttpMethod.POST)
                 .addRequestContent("customer", customer)
                 .build();
-        pool.submitRequestTask(build)/*.getStatusOK()*/;
+        HttpFutureTask httpFutureTask = pool.submitRequestTask(build);/*.getStatusOK()*/
+        if (!httpFutureTask.isStatusOK()) {
+            throw new HttpException("服务器异常，请重试");
+        }
     }
 
     public static NoteSimpleRecord getNoteSimpleRecord(long id) {
         HttpRequestCallable build = new HttpRequestCallable.HttpRequestCallableBuilder()
-                .addURL("/user/customer")
+                .addURL("/user/note")
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
                 .addRequestContent("customer_id", id)
                 .build();
@@ -252,6 +255,6 @@ public class AllHttpComUtils {
     }
 
     public static void main(String[] args) {
-        PackOrderBillInsertInfo packOrderBillInsertInfo = AllHttpComUtils.getPackOrderBillInsertInfo(1L);
+        NoteSimpleRecord noteSimpleRecord = AllHttpComUtils.getNoteSimpleRecord(18899715136L);
     }
 }

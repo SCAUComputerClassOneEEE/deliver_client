@@ -22,18 +22,22 @@ public class Customer {
 
     }
 
-    public Customer(JSONObject parse) {
-        ConstructorUtil.newInstance(this, parse);
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", customerPassword='" + customerPassword + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", detailAddress='" + detailAddress + '\'' +
+                ", account='" + account + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
     }
 
-    public Image getCustomerAvatarImg() {
-        return new Image(
-                new ByteArrayInputStream(
-                        Base64.getDecoder().decode(
-                                avatar
-                        )
-                )
-        );
+    public Customer(JSONObject parse) {
+        ConstructorUtil.newInstance(this, parse);
     }
 
     public String getAvatar() {
@@ -44,6 +48,13 @@ public class Customer {
         FileInputStream fileInputStream = new FileInputStream(file);
         byte[] fileBytes = new byte[(int)file.length()];
         fileInputStream.read(fileBytes);
+        String avatar = Base64.getEncoder().encodeToString(fileBytes);
+        setAvatar(avatar);
+    }
+
+    public void setAvatar(InputStream inputStream) throws IOException {
+        byte[] fileBytes = new byte[1024*1024*8];
+        inputStream.read(fileBytes);
         String avatar = Base64.getEncoder().encodeToString(fileBytes);
         setAvatar(avatar);
     }

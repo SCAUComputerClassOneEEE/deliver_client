@@ -16,6 +16,17 @@ public class NoteSimpleRecord {
     private Timestamp time;
     private Integer transportTimesOfCarrier;
 
+    @Override
+    public String toString() {
+        return "NoteSimpleRecord{" +
+                "orderId=" + orderId +
+                ", carrierId=" + carrierId +
+                ", carrierType='" + carrierType + '\'' +
+                ", time=" + time +
+                ", transportTimesOfCarrier=" + transportTimesOfCarrier +
+                '}';
+    }
+
     public NoteSimpleRecord(JSONObject parse) {
         ConstructorUtil.newInstance(this, parse);
     }
