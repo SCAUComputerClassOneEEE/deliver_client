@@ -45,6 +45,8 @@ public class OneTransRecordPane extends AnchorPane {
             picturePath = "ok.png";
         }else if (orderStatus.getText().equals("派件中")){
             picturePath = "deliver.png";
+        }else if (orderStatus.getText().equals("揽件中")){
+            picturePath = "lj.png";
         }else {
             picturePath = "car.png";
         }
