@@ -1,6 +1,7 @@
 package component;
 
 import component.beans.NoteSimpleRecord;
+import controller.userController.NoteDetailController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,23 +28,25 @@ public class NoteSimpleRecordPane extends AnchorPane {
     private Stage noteDetailStage;
 
     private int color;
+    private long orderId;
+    private String damageDetail;// 2号火车第3次运输出现事故
 
     public NoteSimpleRecordPane(NoteSimpleRecord ns,int color){
         this.color = color;
         this.ns = ns;
+        message = new Label();
+        time = new Label();
         photo = new Rectangle(55,55);
-        message = new Label(ns.getMessage());
-        time = new Label(ns.getTime());
         isRead = new Circle(5);
         init();
     }
 
     public NoteSimpleRecordPane(int color){
         this.color = color;
-        this.ns = new NoteSimpleRecord("你的快递丢了","2021/4/20 16:02",false);
+        this.ns = ns;
+        message = new Label();
+        time = new Label();
         photo = new Rectangle(55,55);
-        message = new Label(ns.getMessage());
-        time = new Label(ns.getTime());
         isRead = new Circle(5);
         init();
     }
@@ -65,7 +68,6 @@ public class NoteSimpleRecordPane extends AnchorPane {
         isRead.setLayoutX(888);
         isRead.setLayoutY(27);
         isRead.setFill(Paint.valueOf(color%2==1?"#fce8d8":"#13334c"));
-        isRead.setVisible(!ns.isRead());
 
         String col = color % 2 == 1 ? "#a39391":"#EDECF4";
         this.setStyle("-fx-background-color: "+ col);
@@ -78,7 +80,6 @@ public class NoteSimpleRecordPane extends AnchorPane {
         this.setOnMouseClicked(event -> {
 
             try{
-                ns.setRead(true);
                 isRead.setVisible(false);
 
                 noteDetailStage = new Stage();
@@ -88,6 +89,7 @@ public class NoteSimpleRecordPane extends AnchorPane {
                 Scene scene = new Scene(root);
                 noteDetailStage.setScene(scene);
 
+                NoteDetailController noteDetailController = loader.getController();
                 noteDetailStage.initModality(Modality.APPLICATION_MODAL);
                 noteDetailStage.show();
             } catch (Exception e) {

@@ -13,10 +13,13 @@
    <children>
       <AnchorPane layoutY="68.0" prefHeight="192.0" prefWidth="531.0" style="-fx-background-color: #EDECF4;">
          <children>
-            <Label fx:id="orderId" layoutX="20.0" layoutY="26.0" text="运单号：1568848457745" />
-            <Label fx:id="send2ReceivePath" layoutX="20.0" layoutY="59.0" text="你的包裹出事了" />
-            <Label layoutX="20.0" layoutY="96.0" text="出事时载体" />
-            <Label layoutX="20.0" layoutY="129.0" text="出事时间" />
+            <Label fx:id="orderId" layoutX="32.0" layoutY="71.0" text="订单编号：1568848457745" textFill="#4e0e2e" />
+            <Label fx:id="send2ReceivePath" layoutX="32.0" layoutY="23.0" text="你的包裹出事了" textFill="#4e0e2e">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
+            <Label fx:id="damageDetail" layoutX="32.0" layoutY="105.0" text="2号货车第4次运输途中出现事故" textFill="#4e0e2e" />
+            <Label fx:id="time" layoutX="32.0" layoutY="138.0" text="出事时间：2021-04-26 12:23:21.0" textFill="#4e0e2e" />
             <ImageView fitHeight="69.0" fitWidth="75.0" layoutX="423.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../picture/unhappy.png" />
