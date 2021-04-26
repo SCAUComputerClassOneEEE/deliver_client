@@ -69,7 +69,7 @@ public class AllHttpComUtils {
                 .onMethod(HttpClientThreadPool.HttpMethod.GET)
                 .addRequestContent("phone_number", name)
                 .addRequestContent("password", passwd)
-                .addRequestContent("type", cusOrAd ? 1 : 0)
+                .addRequestContent("type", cusOrAd ? 0 : 1)
                 .build();
         HttpFutureTask httpFutureTask = pool.submitRequestTask(build);
         return getT(Customer.class, httpFutureTask);

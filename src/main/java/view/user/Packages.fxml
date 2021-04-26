@@ -14,7 +14,7 @@
       <AnchorPane fx:id="user_pane_package_anchorPane" prefHeight="48.0" prefWidth="882.0" style="-fx-background-color: #381F21;" BorderPane.alignment="CENTER">
          <children>
             <Text fx:id="user_text_welcome" fill="#edecf4" layoutX="878.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome" />
-            <Text fx:id="user_text_username" fill="#edecf4" layoutX="953.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxusername" />
+            <Text fx:id="user_text_username" fill="#edecf4" layoutX="953.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="xxxusername" underline="true" />
          </children>
       </AnchorPane>
    </top>
