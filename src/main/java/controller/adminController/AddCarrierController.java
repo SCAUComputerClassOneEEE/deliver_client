@@ -40,7 +40,7 @@ public class AddCarrierController implements Initializable {
             return;
         }
 
-        System.out.println("要修改");
+        AlertStage.createAlertStage("修改成功").show();
     }
 
     @FXML
@@ -53,7 +53,7 @@ public class AddCarrierController implements Initializable {
             AlertStage.createAlertStage("服务器出错").show();
             return;
         }
-        System.out.println("要新增");
+        AlertStage.createAlertStage("新增成功").show();
     }
 
     private boolean inputDataJudge(){
