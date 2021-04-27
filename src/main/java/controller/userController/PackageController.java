@@ -376,22 +376,24 @@ public class PackageController implements Initializable {
                 AlertStage.createAlertStage("二维码上传异常").show();
                 return;
             }
+            stage.setScene(scene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
+            stage.setAlwaysOnTop(true);
+            stage.setResizable(false);
+            stage.sizeToScene();
         }
         else if (packages_send_payment_monthly.isSelected()) {
+            packOrderBillInsertInfo.setPayType("月支付");
             if (AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo) == 0) {
                 AlertStage.createAlertStage("服务器已下线").show();
                 return;
             }
-            packOrderBillInsertInfo.setPayType("月支付");
+
+            AlertStage.createAlertStage("已进入待支付").show();
             root.setCenter(new TextField("已进入待支付"));
         }
-        System.out.println(packOrderBillInsertInfo);
-        stage.setScene(scene);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.show();
-        stage.setAlwaysOnTop(true);
-        stage.setResizable(false);
-        stage.sizeToScene();
+
     }
 
     // 发送按钮
