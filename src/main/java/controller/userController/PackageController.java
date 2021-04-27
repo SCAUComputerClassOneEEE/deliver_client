@@ -770,7 +770,7 @@ public class PackageController implements Initializable {
         List<NoteSimpleRecord> noteSimpleRecord =
                 AllHttpComUtils.getNoteSimpleRecord(ChangeService.userLoginController.getCustomerId());
         if (noteSimpleRecord == null) {
-            AlertStage.createAlertStage("服务器异常").show();
+            AlertStage.createAlertStage("无系统通知记录或服务器异常").show();
             return;
         }
         noteSimpleRecord
