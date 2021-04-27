@@ -93,7 +93,7 @@
                            </children></VBox>
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0" visible="false">
+                  <ScrollPane fx:id="packages_send_scrollPane" prefHeight="729.0" prefWidth="933.0">
                      <content>
                       <AnchorPane fx:id="packages_send_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="725.0" prefWidth="930.0" style="-fx-background-color: #edecf4;">
                            <children>
@@ -131,7 +131,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></Button>
-                              <RadioButton layoutX="41.0" layoutY="671.0" mnemonicParsing="false" text="我已同意并接受" />
+                              <RadioButton fx:id="agree" layoutX="41.0" layoutY="671.0" mnemonicParsing="false" text="我已同意并接受" />
                               <Text fx:id="protocol" fill="#2618e4" layoutX="184.0" layoutY="687.0" strokeType="OUTSIDE" strokeWidth="0.0" text="《快递服务协议》" underline="true" />
                               <Text layoutX="20.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="97.13671875" />
                               <RadioButton fx:id="packages_send_serviceType_nextDay" layoutX="88.0" layoutY="597.0" mnemonicParsing="false" text="次日达" />
@@ -172,7 +172,7 @@
                         </AnchorPane>
                      </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_bill_scrollPane" prefHeight="727.0" prefWidth="935.0">
+                  <ScrollPane fx:id="packages_bill_scrollPane" prefHeight="727.0" prefWidth="935.0" visible="false">
                     <content>
                       <AnchorPane fx:id="packages_bill_anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="724.0" prefWidth="933.0" style="-fx-background-color: #EDECF4;">
                            <children>
@@ -336,7 +336,7 @@
                            </children></AnchorPane>
                     </content>
                   </ScrollPane>
-                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0">
+                  <ScrollPane fx:id="packages_notes_scrollPane" prefHeight="725.0" prefWidth="932.0" visible="false">
                      <content>
                         <VBox fx:id="noteVbox" prefHeight="721.0" prefWidth="926.0" style="-fx-background-color: #EDECF4;">
                            <children>

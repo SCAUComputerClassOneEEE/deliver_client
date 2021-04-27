@@ -152,7 +152,7 @@ public class PackageController implements Initializable {
 
     private int offset = 0;
     //private int lastCount = 0;
-    private final int size  = 5;
+    private final int size  = 10;
     // 查询用户的所有包裹简介
     @FXML
     private void queryPackageInformation() {
@@ -234,15 +234,7 @@ public class PackageController implements Initializable {
 
     // 老卢丢了不负责
     private void addClickedAction2Protocol() {
-        protocol.setOnMouseClicked(event -> {
-            Stage stage = new Stage();
-            BorderPane root = new BorderPane();
-            Scene scene = new Scene(root);
-            AlertStage.createAlertStage("快递丢了老卢不负责的喔！");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setScene(scene);
-            stage.show();
-        });
+        protocol.setOnMouseClicked(event -> AlertStage.createAlertStage("快递丢了老卢不负责的喔！").show());
     }
 
     private void pacTypeOnlyOne() {
@@ -265,6 +257,10 @@ public class PackageController implements Initializable {
     //提交按钮
     @FXML
     private void addClickedActionSend() {
+        if (!agree.isSelected()){
+            AlertStage.createAlertStage("请同意快递服务协议！").show();
+            return;
+        }
         PackOrderBillInsertInfo packOrderBillInsertInfo = new PackOrderBillInsertInfo();
         // 发件人名字
         {
@@ -363,7 +359,7 @@ public class PackageController implements Initializable {
 
         // 二维码
         if (packages_send_payment_now.isSelected()) {
-            packOrderBillInsertInfo.setPackType("pay now");
+            packOrderBillInsertInfo.setPayType("立即付");
             final String url = AllHttpComUtils.qr_pay_url;
             long billId = AllHttpComUtils.createP_O_BInsertInfo(packOrderBillInsertInfo);
             if (billId == 0) {
@@ -860,6 +856,9 @@ public class PackageController implements Initializable {
     // 2
     private void getSendFXML() {
     }
+
+    @FXML
+    private RadioButton agree;
 
     @FXML
     private AnchorPane packages_send_anchorPane;

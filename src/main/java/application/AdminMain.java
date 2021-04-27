@@ -24,6 +24,9 @@ public class AdminMain extends Application {
             ChangeService.adminStage.setScene(scene);
             ChangeService.adminStage.setTitle("AdminServer");
             ChangeService.adminStage.show();
+            primaryStage.setOnCloseRequest(event -> {
+                System.exit(0);
+            });
         } catch(Exception e) {
             e.printStackTrace();
         }

@@ -15,8 +15,12 @@ public class AfterLoginAction {
         ChangeService.packageController = loader.getController();
         Scene scene = new Scene(root);
         ChangeService.stage.setTitle("Package View");
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         System.out.println("进入AfterLoginAction了!");
+        primaryStage.setOnCloseRequest(event -> {
+            System.exit(0);
+        });
     }
 
     public static void PackageShow() throws Exception {

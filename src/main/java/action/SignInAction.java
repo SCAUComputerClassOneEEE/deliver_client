@@ -16,6 +16,8 @@ public class SignInAction {
         Scene scene = new Scene(root);
         ChangeService.stage.setTitle("User login");
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.sizeToScene();
         System.out.println("进入signINAction了!");
     }
 

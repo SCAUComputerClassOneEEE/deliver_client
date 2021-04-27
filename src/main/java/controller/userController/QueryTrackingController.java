@@ -44,6 +44,8 @@ public class QueryTrackingController {
         long trackingNo = Long.parseLong(user_text_trackingno.getText());
         try{
             Stage detailStage = new Stage();
+            detailStage.setResizable(false);
+            detailStage.sizeToScene();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(SimpleOrderMessagePane.class.getResource("/user/DetailMessage.fxml"));
             Parent root = loader.load();
