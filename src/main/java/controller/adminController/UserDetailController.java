@@ -63,8 +63,8 @@ public class UserDetailController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        modify.setText("允许登录");
-        authorization.setText("禁止登录");
+        modify.setText("禁止登录");
+        authorization.setText("允许登录");
     }
 
     public void init(Customer customer){

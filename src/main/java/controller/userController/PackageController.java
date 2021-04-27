@@ -152,7 +152,7 @@ public class PackageController implements Initializable {
 
     private int offset = 0;
     //private int lastCount = 0;
-    private final int size  = 10;
+    private final int size  = 8;
     // 查询用户的所有包裹简介
     @FXML
     private void queryPackageInformation() {
@@ -508,6 +508,7 @@ public class PackageController implements Initializable {
         int 上个月寄件数 = billOfLastMonth.getSendPacksCount();
         double 上个月消费数 = billOfLastMonth.getMoneyNumber();
         double 上个月欠款数 = billOfLastMonth.getLastMonthArrears();
+        System.out.println("上个月寄件数" + 上个月寄件数);
         billMessage1.setText("上个月寄件数:"+上个月寄件数);
         billMessage2.setText("上个月消费数:"+上个月消费数);
         billMessage3.setText("上个月欠款数:"+上个月欠款数);

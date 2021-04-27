@@ -4,6 +4,7 @@ import com.google.zxing.*;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import utils.http.AllHttpComUtils;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageInputStream;
@@ -105,8 +106,10 @@ public class QRCodeUtil {
 
     public static javafx.scene.image.Image encode2FXImage(java.util.List<Long> orderIds, String insertLOGOImgPath, boolean needCompress) {
         StringBuilder stringBuilder = new StringBuilder();
+        final String url = AllHttpComUtils.qr_pay_url;
         orderIds.forEach(oid -> stringBuilder.append(oid.toString()).append(","));
         stringBuilder.delete(stringBuilder.length() - 1, stringBuilder.length());
-        return encode2FXImage(stringBuilder.toString(), insertLOGOImgPath, needCompress);
+        System.out.println(url + "?id=" + stringBuilder.toString());
+        return encode2FXImage(url + "?id=" + stringBuilder.toString(), insertLOGOImgPath, needCompress);
     }
 }

@@ -58,6 +58,10 @@ public class QueryTrackingController {
             System.out.println(packOrderBillInsertInfo);
 
             dmc.setOrder_id(trackingNo);
+            if (packOrderBillInsertInfo == null){
+                AlertStage.createAlertStage("订单不存在").show();
+                return;
+            }
             dmc.fillData(packOrderBillInsertInfo);
 
 
